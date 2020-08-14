@@ -19,6 +19,26 @@
 				"command": "spinasm.createproject",
 				"title": "SpinASM : Create project structure"
 			}
+		],
+		"languages": [
+			{
+				"id": "spn",
+				"aliases": [
+					"SPIN",
+					"spn"
+				],
+				"extensions": [
+					".spn"
+				],
+				"configuration": "./language-configuration.json"
+			}
+		],
+		"grammars": [
+			{
+				"language": "spn",
+				"scopeName": "source.spn",
+				"path": "./syntaxes/spn.tmLanguage.json"
+			}
 		]
 	},
 	"scripts": {
@@ -36,5 +56,8 @@
 		"mocha": "^8.0.1",
 		"typescript": "^3.8.3",
 		"vscode-test": "^1.4.0"
+	},
+	"dependencies": {
+		"ini": "^1.3.5"
 	}
 }

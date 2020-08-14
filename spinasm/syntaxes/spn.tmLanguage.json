@@ -1,0 +1,36 @@
+{
+	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+	"name": "SPIN",
+	"patterns": [
+		{
+			"include": "#comments"
+		},
+		{
+			"include": "#keywords"
+		},
+		{
+			"include": "#constants"
+		}
+	],
+	"repository": {
+		"comments": {
+			"patterns": [{
+				"name": "comment.line",
+				"match": ";.*$"
+			}]
+		},
+		"keywords": {
+			"patterns": [{
+				"match": "^(EQU|MEM|RDAX?|RMPA|WRAP|RDFX|WRAX?|WRHX|WRLX|MAXX|ABSA|MULX|LOG|EXP|SOF|AND|OR|XOR|SKP|WLDS|WLDR|JAM|CHO|NOP|NOT|CLR)",
+				"name": "keyword.other"
+			}]
+		},
+		"constants": {
+			"patterns": [{
+				"match": "SIN0_RATE|SIN0_RANGE|SIN1_RATE|SIN1_RANGE|RMP0_RATE|RMP0_RANGE|RMP1_RATE|RMP1_RANGE|POT0|POT1|POT2|ADCL|ADCR|DACL|DACR|ADDR_PTR|REG[0-9]?|REG1[0-9]|REG2[0-9]|REG[0-1]|SIN0|SIN1|RMP0|RMP1|RDA|SOF|RDAL|ABSA|SIN|COS|REG|COMPC|COMPA|RMP2|NA|RUN|ZRC|ZRO|GEZ|NEG",
+				"name": "variable.other"
+			}]
+		}
+	},
+	"scopeName": "source.spn"
+}
