@@ -10,7 +10,9 @@
 		"Other"
 	],
 	"activationEvents": [
-		"onCommand:spinasm.createproject"
+		"onCommand:spinasm.createproject",
+		"onCommand:spinasm.buildproject",
+		"onCommand:spinasm.uploadproject"
 	],
 	"main": "./extension.js",
 	"contributes": {
@@ -18,6 +20,14 @@
 			{
 				"command": "spinasm.createproject",
 				"title": "SpinASM : Create project structure"
+			},
+			{
+				"command": "spinasm.buildproject",
+				"title": "SpinASM : Build"
+			},
+			{
+				"command": "spinasm.uploadproject",
+				"title": "SpinASM : Upload"
 			}
 		],
 		"languages": [
