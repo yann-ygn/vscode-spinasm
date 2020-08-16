@@ -1,6 +1,6 @@
 # spinasm README
 
-This is the README for your extension "spinasm". After writing up a brief description, we recommend including the following sections.
+This extension was created in an attempt to move away from the official SpinASM IDE and to able to work with the FV-1 chip directly from a modern, cross-platform editor.
 
 ## Features
 

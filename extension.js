@@ -260,7 +260,7 @@ function activate(context) {
 			// Programs to write
 			var programs = [ ];
 
-			// Iterate thu the 8 programs folder
+			// Iterate thu the 8 programs folder to find the programs
 			for (var i = 0; i < 8; i++) {
 				// Get the current folder
 				var currentProgramFolder = path.join(folderPath, 'slot_' + i.toString());
