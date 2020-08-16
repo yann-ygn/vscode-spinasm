@@ -5,7 +5,7 @@ const { Console } = require('console');
 const fs = require("fs");
 const path = require("path");
 const ini = require("ini");
-const { exec, execSync } = require('child_process');
+const exec = require('child_process');
 			
 // Current folder path
 const folderPath = vscode.workspace.rootPath.toString();
@@ -297,32 +297,34 @@ function activate(context) {
 				{
 					var command =  compilerCommand + ' -p ' + programs.indexOf(program) + ' ' + '"' + program + '"' + ' ' + '"' + outputFile + '"';
 					outputConsole.appendLine('Compiler command line : ' + command);
+					
+					//var result = exec.spawnSync(command, { encoding: 'utf8', stdio: [process.stdin, process.stdout, process.stderr] });
+					//process.on('exit', function() {
+					//	outputConsole.appendLine(result.output.toString());
+					//	outputConsole.appendLine(result.stderr.toString());
+					//})
 
-					var result = execSync(command);
-					outputConsole.appendLine(result.toString());
+					const asfv1 = exec.exec(command, function (error, stdout, stderr) {
+						if (error) {
+							outputConsole.appendLine(error.stack);
+							outputConsole.appendLine('Error code: ' + error.code);
+							outputConsole.appendLine('Signal received: ' + error.signal);
+						}
+		
+						if (stdout) {
+							outputConsole.appendLine('asfv1 output : ' + stdout);
+						}
+		
+						if (stderr) {
+							outputConsole.appendLine('asfv1 output : ' + stderr);
+						}
+					});
+		
+					asfv1.on('exit', function (code) {
+						outputConsole.appendLine('asfv1 exited with code : ' + code);
+					});
 				}
 			})
-
-			/**
-			const asfv1 = exec(command, function (error, stdout, stderr) {
-				if (error) {
-					outputConsole.appendLine(error.stack);
-					outputConsole.appendLine('Error code: ' + error.code);
-					outputConsole.appendLine('Signal received: ' + error.signal);
-				}
-
-				if (stdout) {
-					outputConsole.appendLine('asfv1 output : ' + stdout);
-				}
-
-				if (stderr) {
-					outputConsole.appendLine('asfv1 error output : ' + stderr);
-				}
-			});
-
-			asfv1.on('exit', function (code) {
-				outputConsole.appendLine('asfv1 exited with code : ' + code);
-			}); **/
 		})
 	);
 }
