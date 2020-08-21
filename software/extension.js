@@ -6,6 +6,7 @@ const fs = require("fs");
 const path = require("path");
 const ini = require("ini");
 const exec = require('child_process');
+const SerialPort = require('serialport')
 			
 // Current folder path
 const folderPath = vscode.workspace.rootPath.toString();
@@ -325,6 +326,34 @@ function activate(context) {
 					});
 				}
 			})
+		}),
+		
+		vscode.commands.registerCommand('spinasm.testserial', function () {
+			
+			const port = config.serial.port.trim();
+			outputConsole.appendLine(port);
+			const serialport = new SerialPort(port, { 
+				baudRate: 115200
+			});
+			
+			var buffer = new buffer(1);
+			buffer[0] = 0x01;
+
+			serialport.open(function (error) {
+				if (error) {
+					outputConsole.appendLine('Error while opening the port ' + error);
+				} else {
+					outputConsole.appendLine('CST port open');
+					serialport.write(buffer, function (err, result) {
+						if (err) {
+							outputConsole.appendLine('Error while sending message : ' + err);
+						}
+						if (result) {
+							outputConsole.appendLine('Response received after sending message : ' + result);
+						}    
+					});
+				}              
+			});
 		})
 	);
 }
