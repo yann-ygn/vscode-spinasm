@@ -29,6 +29,11 @@ void Programmer::executeOrder()
             Serial.print(ok); // Answer
             m_currentOrder = none; // Reset the current order
         }
+        else if (m_currentOrder == ruready)
+        {
+            Serial.print(ok); // Answer
+            m_currentOrder = none; // Reset the current order
+        }
         else
         {
             Serial.println("Unknown order code"); // WTF case

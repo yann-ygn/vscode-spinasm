@@ -332,28 +332,61 @@ function activate(context) {
 			
 			const port = config.serial.port.trim();
 			outputConsole.appendLine(port);
-			const serialport = new SerialPort(port, { 
+			var sp = new SerialPort(port, {
 				baudRate: 115200
+			})
+
+			function sendSync(port, src) {
+				return new Promise((resolve, reject) => {
+					port.write(src);
+					port.once('data', (data) => {
+						resolve(data.toString());
+					});
+			
+					port.once('error', (err) => {
+						reject(err);
+					});
+				});
+			}
+
+			var response;
+
+			sendSync(sp, [0x01]).then((data) => {
+				outputConsole.appendLine('Response : ' + data);
+				response = data;
+				outputConsole.appendLine('Response2 : ' + response);
+				if (response == "99") {
+					sendSync(sp, [0x02]).then((data) => {
+						outputConsole.appendLine('Response3 : ' + data);
+					});	
+				}
+			});
+
+			
+
+			/**
+			var response = 0;			
+			
+			sp.on('data', function(data) {
+				response = data;
+				outputConsole.appendLine('Receiving data : ' + data);
+			});
+
+			sp.open(function () {
+				outputConsole.appendLine("Port opened")
 			});
 			
-			var buffer = new buffer(1);
-			buffer[0] = 0x01;
+			sp.write([0x01]); // ruthere
+			outputConsole.appendLine(response.toString());
+			
+			if (response == 99)
+			{
+				sp.write([0x02]); // ruready
+			}
 
-			serialport.open(function (error) {
-				if (error) {
-					outputConsole.appendLine('Error while opening the port ' + error);
-				} else {
-					outputConsole.appendLine('CST port open');
-					serialport.write(buffer, function (err, result) {
-						if (err) {
-							outputConsole.appendLine('Error while sending message : ' + err);
-						}
-						if (result) {
-							outputConsole.appendLine('Response received after sending message : ' + result);
-						}    
-					});
-				}              
-			});
+			sp.close(function () {
+				outputConsole.appendLine("Port closed")
+			});*/
 		})
 	);
 }

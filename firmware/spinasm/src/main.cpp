@@ -1,8 +1,6 @@
 #include <Arduino.h>
 #include "programmer.h"
 
-#define DATA_ADDR 0x50
-
 Programmer prog0;
 
 void setup() 
