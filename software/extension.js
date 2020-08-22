@@ -6,7 +6,8 @@ const fs = require("fs");
 const path = require("path");
 const ini = require("ini");
 const exec = require('child_process');
-const SerialPort = require('serialport')
+const SerialPort = require('serialport');
+const { DefaultSerializer } = require('v8');
 			
 // Current folder path
 const folderPath = vscode.workspace.rootPath.toString();
@@ -330,63 +331,159 @@ function activate(context) {
 		
 		vscode.commands.registerCommand('spinasm.testserial', function () {
 			
+			// Get the serial port to use from the config
 			const port = config.serial.port.trim();
-			outputConsole.appendLine(port);
+			outputConsole.appendLine('Serial port : ' + port);
+
+			/**
+			 * @brief Create the serial port object
+			 */
 			var sp = new SerialPort(port, {
 				baudRate: 115200
-			})
+			});
 
-			function sendSync(port, src) {
-				return new Promise((resolve, reject) => {
-					port.write(src);
-					port.once('data', (data) => {
-						resolve(data.toString());
+			// Callbacks
+			sp.on('error', (err) => {
+				outputConsole.appendLine(err);
+			});
+
+			/**
+			 * @brief Open the serial port
+			 * @param {*} port SerialPort object
+			 */
+			async function openSerialPort (port) {
+				let promise = new Promise((resolve, reject) => {					
+					outputConsole.appendLine("Opening serial port : " + port.path);
+					port.once('open', (response) => {
+						resolve();
 					});
 			
 					port.once('error', (err) => {
 						reject(err);
 					});
 				});
-			}
 
-			var response;
+				await promise;
 
-			sendSync(sp, [0x01]).then((data) => {
-				outputConsole.appendLine('Response : ' + data);
-				response = data;
-				outputConsole.appendLine('Response2 : ' + response);
-				if (response == "99") {
-					sendSync(sp, [0x02]).then((data) => {
-						outputConsole.appendLine('Response3 : ' + data);
-					});	
+				if (port.isOpen) {
+					outputConsole.appendLine("Port opened");
+					return true;
 				}
-			});
-
-			
+				else {
+					outputConsole.appendLine("Port closed");
+					return false;
+				}
+			}
 
 			/**
-			var response = 0;			
+			 * @brief Close the serial port
+			 * @param {*} port SerialPort object
+			 */
+			async function closeSerialPort(port) {
+				let promise = new Promise((resolve, reject) => {					
+					outputConsole.appendLine("Closing serial port : " + port.path);
+					port.close();
+					port.once('close', (response) => {
+						resolve();
+					});
 			
-			sp.on('data', function(data) {
-				response = data;
-				outputConsole.appendLine('Receiving data : ' + data);
-			});
+					port.once('error', (err) => {
+						reject(err);
+					});
+				});
 
-			sp.open(function () {
-				outputConsole.appendLine("Port opened")
-			});
-			
-			sp.write([0x01]); // ruthere
-			outputConsole.appendLine(response.toString());
-			
-			if (response == 99)
-			{
-				sp.write([0x02]); // ruready
+				await promise;
+
+				if (port.isOpen) {
+					outputConsole.appendLine("Port opened");
+					return true;
+				}
+				else {
+					outputConsole.appendLine("Port closed");
+					return false;
+				}
 			}
 
-			sp.close(function () {
-				outputConsole.appendLine("Port closed")
-			});*/
+			/**
+			 * @brief Poll the programmer, send 0x01 (ruthere), expect 0x63 (ok -> return true) or no response (return false)
+			 * @param {*} port SerialPort object
+			 */
+			async function checkProgrammerPresent (port) {
+				let data = [0x01]; //ruthere
+
+				let promise = new Promise((resolve, reject) => {					
+					outputConsole.appendLine("Sending ruthere order");
+					port.write(data);
+					port.once('data', (response) => {
+						resolve(response.toString());
+					});
+			
+					port.once('error', (err) => {
+						reject(err);
+					});
+				});
+
+				let returnData = await promise;
+				outputConsole.appendLine('Response : ' + returnData);
+				
+				if (returnData == '99') {
+					outputConsole.appendLine("Programmer present");
+					return true;
+				}
+				else {
+					outputConsole.appendLine("Programmer not present");
+					return false;
+				}
+			}
+
+			async function checkProgrammerReady (port) {
+				let data = [0x02]; // ruready
+
+				let promise = new Promise((resolve, reject) => {					
+					outputConsole.appendLine("Sending rudeady order");
+					port.write(data);
+					port.once('data', (response) => {
+						resolve(response.toString());
+					});
+			
+					port.once('error', (err) => {
+						reject(err);
+					});
+				});
+
+				let returnData = await promise;
+				outputConsole.appendLine('Response : ' + returnData);
+				
+				if (returnData == '99') {
+					outputConsole.appendLine("Programmer ready");
+					return true;
+				}
+				else {
+					outputConsole.appendLine("Programmer not ready");
+					return false;
+				}
+			}
+
+			(async () => {
+				if (await openSerialPort(sp)) { // Serial port open
+					if (await checkProgrammerPresent(sp)) { // Programmer present
+						if (await checkProgrammerReady(sp)) { // Programmer ready
+
+						}
+						else { // Programmer not ready
+
+						}
+					}					
+					else { // Programmer not present
+
+					}
+				}
+				else { // Serial port not open
+
+				}
+
+				await closeSerialPort(sp);
+			})();
 		})
 	);
 }

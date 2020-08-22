@@ -8,6 +8,9 @@ enum orders
     none = 0,
     ruthere = 1, // Programmer present
     ruready = 2, // Programmer ready/busy
+    read = 3,
+    write = 4,
+    end = 5, // End read/write
     nok = 98,
     ok = 99
 };
@@ -20,6 +23,10 @@ class Programmer
         uint8_t m_currentOrder = 0; // Current order being processed
         bool m_newMessage = false;
         uint8_t m_currentMessage = 0; // Current serial message to process
+        bool m_addressReceived = false;
+        uint16_t m_address = 0; // Read/Write address
+        bool m_dataReceived = false;
+        uint8_t m_data[32];
 
     public:
         void programmerSetup();
