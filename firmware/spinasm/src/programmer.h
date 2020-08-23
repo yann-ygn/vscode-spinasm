@@ -21,12 +21,15 @@ class Programmer
         bool m_busy = false; // Is the programmer busy
         bool m_newOrder = false;
         uint8_t m_currentOrder = 0; // Current order being processed
-        bool m_newMessage = false;
         uint8_t m_currentMessage = 0; // Current serial message to process
         bool m_addressReceived = false;
         uint16_t m_address = 0; // Read/Write address
         bool m_dataReceived = false;
+        uint8_t m_length = 0;
         uint8_t m_data[32];
+        bool m_error = false;
+
+        void resetBuffer();
 
     public:
         void programmerSetup();

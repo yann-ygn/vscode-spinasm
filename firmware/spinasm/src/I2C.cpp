@@ -202,14 +202,7 @@ bool I2C::present(uint8_t address)
   }
   stop();
   timeOutDelay = tempTime;
-  if(returnStatus)
-  {
-    return true;
-  }
-  else
-  {
-    return false;
-  }
+  return returnStatus;
 }
 
 
