@@ -61,7 +61,7 @@ uint8_t Eeprom::readByte(uint16_t address)
     Wire.write(lowByte(address));
     Wire.endTransmission(true);
 
-    Wire.requestFrom(m_address, 1, true);
+    Wire.requestFrom(m_address, (uint8_t)1, (uint8_t)1);
 
     uint8_t rdata = 0;
     if (Wire.available() >= 1)
@@ -94,7 +94,7 @@ void Eeprom::readArray(uint16_t address, uint8_t * data, uint8_t length)
     Wire.write(lowByte(address));
     Wire.endTransmission(true);
     
-    Wire.requestFrom(m_address, length, true);
+    Wire.requestFrom(m_address, length, (uint8_t)1);
 
     if (Wire.available() >= length)
     {

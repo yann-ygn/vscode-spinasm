@@ -11,8 +11,8 @@
 	],
 	"activationEvents": [
 		"onCommand:spinasm.createproject",
-		"onCommand:spinasm.buildproject",
-		"onCommand:spinasm.uploadproject",
+		"onCommand:spinasm.compileprogram0",
+		"onCommand:spinasm.compileprogram1",
 		"onCommand:spinasm.testserial"
 	],
 	"main": "./extension.js",
@@ -23,12 +23,44 @@
 				"title": "SpinASM : Create project structure"
 			},
 			{
-				"command": "spinasm.buildproject",
-				"title": "SpinASM : Build"
+				"command": "spinasm.compileprogram0",
+				"title": "SpinASM : Compile program 0"
 			},
 			{
-				"command": "spinasm.uploadproject",
-				"title": "SpinASM : Upload"
+				"command": "spinasm.compileprogram1",
+				"title": "SpinASM : Compile program 1"
+			},
+			{
+				"command": "spinasm.compileprogram2",
+				"title": "SpinASM : Compile program 2"
+			},
+			{
+				"command": "spinasm.compileprogram3",
+				"title": "SpinASM : Compile program 3"
+			},
+			{
+				"command": "spinasm.compileprogram4",
+				"title": "SpinASM : Compile program 4"
+			},
+			{
+				"command": "spinasm.compileprogram5",
+				"title": "SpinASM : Compile program 5"
+			},
+			{
+				"command": "spinasm.compileprogram6",
+				"title": "SpinASM : Compile program 6"
+			},
+			{
+				"command": "spinasm.compileprogram7",
+				"title": "SpinASM : Compile program 7"
+			},
+			{
+				"command": "spinasm.compileallprograms",
+				"title": "SpinASM : Compile all programs"
+			},
+			{
+				"command": "spinasm.compileallprogramstobin",
+				"title": "SpinASM : Compile all programs to .bin"
 			},
 			{
 				"command": "spinasm.testserial",
