@@ -31,7 +31,7 @@ class Programmer {
                     if (startCode == ':' && byteCount == 4 && recordType == 0) { // Data record
                         for (let i = 9; i < 9 + (byteCount * 2); i = i + 2) {
                             let dataByte = parseInt(line.substr(i, 2), 16);
-                            test.push(dataByte);
+                            test.push(dataByte); 
                         }
                     }
                 });
