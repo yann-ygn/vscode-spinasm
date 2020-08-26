@@ -13,6 +13,15 @@
 		"onCommand:spinasm.createproject",
 		"onCommand:spinasm.compileprogram0",
 		"onCommand:spinasm.compileprogram1",
+		"onCommand:spinasm.compileprogram2",
+		"onCommand:spinasm.compileprogram3",
+		"onCommand:spinasm.compileprogram4",
+		"onCommand:spinasm.compileprogram5",
+		"onCommand:spinasm.compileprogram6",
+		"onCommand:spinasm.compileprogram7",
+		"onCommand:spinasm.compileallprograms",
+		"onCommand:spinasm.compileallprogramstobin",
+		"onCommand:spinasm.test",
 		"onCommand:spinasm.testserial"
 	],
 	"main": "./extension.js",
@@ -61,6 +70,10 @@
 			{
 				"command": "spinasm.compileallprogramstobin",
 				"title": "SpinASM : Compile all programs to .bin"
+			},
+			{
+				"command": "spinasm.test",
+				"title": "SpinASM : Test"
 			},
 			{
 				"command": "spinasm.testserial",
