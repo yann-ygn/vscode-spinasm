@@ -6,21 +6,62 @@ Eeprom eeprom0(0x50);
 
 void Programmer::programmerSetup()
 {
-    Serial.begin(115200);
+    Serial.begin(57600);
     eeprom0.eepromSetup();
 }
 
 void Programmer::processSerialInput()
 {
-    if (Serial.available() >= 1)
+    resetBuffer();
+
+    while (Serial.available() > 0 && ! m_newData)
+    {
+        delay(1);
+        m_currentChar = Serial.read();
+        //Serial.print(m_currentChar);
+        
+        if (m_receiveInProgress)
+        {
+            if (m_currentChar != m_endMarker)
+            {
+                m_data[m_index] = m_currentChar;
+                //Serial.print(1);
+                m_index ++;
+                m_dataBytes = m_index;
+                //Serial.print(m_dataBytes);
+            }
+            else
+            {   
+                //Serial.print(0);
+                m_newData = true;
+                m_receiveInProgress = false;
+            }
+        }
+
+        else if (m_currentChar == m_startMarker)
+        {
+            m_receiveInProgress = true;
+            //Serial.print(2);
+        }
+    }
+
+    /**
+    if (m_newData)
+    {
+        Serial.print(0);
+        Serial.print(m_data[0]);
+    }
+    **/
+    
+    if (m_newData)
     {
         if (m_currentOrder == none) // No current order being processed
         {
-            if (Serial.available() == 1) // Awaiting 1 order byte
+            if (m_dataBytes == 1) // Awaiting 1 order byte
             {
-                m_currentMessage = Serial.read(); // Read the incoming byte
+                m_currentMessage = m_data[0]; // Read the incoming byte
 
-                if (m_currentMessage == ruthere || m_currentMessage == ruready || m_currentMessage == read || 
+                if (m_currentMessage == ruthere || m_currentMessage == ruready || m_currentMessage == read ||
                 m_currentMessage == write || m_currentMessage == end) // Filter know orders only
                 {
                     m_currentOrder = m_currentMessage; // Set the current order
@@ -29,101 +70,82 @@ void Programmer::processSerialInput()
 
                 else // Invalid order received, trigger an error
                 {
-                    Serial.println(nok);
-                    Serial.println("Unknown order received : " + m_currentMessage);
+                    Serial.print(nok);
 
                     m_error = true;
-                }                
+                }
             }
 
             else // Invalid message received, trigger an error
             {
-                Serial.println(nok);
-                Serial.println("Expected an order byte, received : " + Serial.readString());
+                Serial.print(nok);
 
                 m_error = true;
-            }            
+            }
         }
-
+        
         else // There is a current order being processed
         {
-            if ((m_currentOrder == read && ! m_addressReceived) || // Read order but no address set
-            (m_currentOrder == write && ! m_addressReceived)) // Write order but no address set
+            if ((m_currentOrder == read && ! m_addressSet) || // Read order but no address set
+            (m_currentOrder == write && ! m_addressSet)) // Write order but no address set
             {
-                if (Serial.available() == 2) // Awaiting 2 address byte
+                if (m_dataBytes == 2) // Awaiting 2 address byte
                 {
-                    uint8_t highByte = Serial.read(); // Receive HB
-                    uint8_t lowByte = Serial.read(); // Receive LB
+                    uint8_t highByte = m_data[0]; // Receive HB
+                    uint8_t lowByte = m_data[1]; // Receive LB
                     m_address = (highByte << 8) + lowByte; // Form the address
 
+                    m_addressSet = true; // Set the trigger
                     m_addressReceived = true; // Set the trigger
                 }
 
                 else // Invalid message received, trigger an error
                 {
-                    Serial.println(nok);
-                    Serial.println("Expected two address byte, received : " + Serial.readString());
-
+                    Serial.print(nok);
                     m_error = true;
-                }   
+                }
             }
-
-            else if (m_currentOrder == write && m_addressReceived && ! m_dataReceived) // Write order, address set but no data received
+            
+            else if (m_currentOrder == write && m_addressSet && ! m_dataReceived) // Write order, address set but no data received
             {
-                if (Serial.available() <= MAX_PAGE_LENGTH) // Watch for overflows
+                if (m_dataBytes == 1) // Only 1 byte available is an end write order
                 {
-                    if (Serial.available() == 1) // Only 1 byte available is an end write order
+                    m_currentMessage = Serial.read(); // Read the message
+
+                    if (m_currentMessage == end) // End write message
                     {
-                        m_currentMessage = Serial.read(); // Read the message
-
-                        if (m_currentMessage == end) // End write message
-                        {
-                            m_currentOrder = m_currentMessage; // Save the current oder
-                            m_newOrder = true; // Set the trigger
-                        }
-
-                        else // Unexpected message, trigger an error
-                        {
-                            Serial.println(nok);
-                            Serial.println("Expected end write byte, received : " + m_currentMessage);
-
-                            m_error = true;
-                        }                        
+                        m_currentOrder = m_currentMessage; // Save the current oder
+                        m_newOrder = true; // Set the trigger
                     }
 
-                    else // More than 1 byte available, data to write
+                    else // Unexpected message, trigger an error
                     {
-                        resetBuffer(); // Reset the data buffer
-                        uint8_t length = Serial.available(); // Get the byte count
-                        
-                        for (uint8_t i; i < length; i++) // Buffer the data
-                        {
-                            m_data[i] = Serial.read();
-                        }
+                        Serial.println(nok);
 
-                        m_dataReceived = true; // Set the write trigger
+                        m_error = true;
                     }
                 }
 
-                else // Overflow, triger an error
+                else if (m_dataBytes == 32) // Page to write
+                {
+                    m_dataReceived = true; // Set the write trigger
+                }
+
+                else // Unexpected message, trigger an error
                 {
                     Serial.println(nok);
-                    Serial.println("Overflow : " + Serial.println());
 
                     m_error = true;
                 }
             }
 
-            else if (m_currentOrder == read && m_addressReceived)
+            else if (m_currentOrder == read && m_addressSet)
             {
                 
             }
+        }
 
-            else
-            {
-                Serial.println("Incoherent status ???"); // WTF case
-            }
-        }        
+        m_newData = false;
     }
 }
 
@@ -162,8 +184,8 @@ void Programmer::executeOrder()
         else if (m_currentOrder == end)
         {
             Serial.print(ok); // Answer
-            m_addressReceived = false; // Reset the trigger
-            m_dataReceived = false; // Reset the trigger
+            m_address = 0;
+            m_addressSet = false; // Reset the trigger
         }
 
         else
@@ -174,13 +196,14 @@ void Programmer::executeOrder()
         m_newOrder = false; // Reset the trigger
     }
 
-    else if ((m_currentOrder == write && m_addressReceived) || // Write order and address set
-    (m_currentOrder == read && m_addressReceived)) // Read order and address set
+    if ((m_currentOrder == write && m_addressSet && m_addressReceived) || // Write order and address set
+    (m_currentOrder == read && m_addressSet && m_addressReceived)) // Read order and address set
     {
         Serial.print(ok); // Answer
+        m_addressReceived = false;
     }
 
-    else if (m_currentOrder == write && m_addressReceived && m_dataReceived) // Everything set, trigger the write order
+    if (m_currentOrder == write && m_addressSet && m_dataReceived) // Everything set, trigger the write order
     {
         while (eeprom0.eepromBusy()) { } // Wait for the previous write to complete
 
@@ -194,19 +217,22 @@ void Programmer::executeOrder()
         else // Write failed
         {
             Serial.println(nok);
-            Serial.println("Error writing to the eeprom : " + result);
 
             m_error = true;
-        }        
+        }
+
+        m_dataReceived = false;
     }
 
     if (m_error) // Protocol error, reset everything
     {
         m_currentOrder = none;
         m_newOrder = false;
+        m_addressSet = false;
         m_addressReceived = false;
         m_dataReceived = false;
         resetBuffer();
+        m_dataBytes = 0;
 
         m_error = false;
     }
@@ -214,8 +240,14 @@ void Programmer::executeOrder()
 
 void Programmer::resetBuffer()
 {
-    for (uint8_t i = 0; sizeof(m_data); i++)
+    for (uint8_t i = 0; i < sizeof(m_data); i++)
     {
         m_data[i] = 0;
     }
+
+    m_newData = false;
+    m_receiveInProgress = false;
+    m_index = 0;
+    m_dataBytes = 0;
+    m_currentChar = 0;
 }

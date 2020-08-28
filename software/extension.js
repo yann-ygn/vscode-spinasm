@@ -1,6 +1,5 @@
 const vscode = require('vscode');
 const path = require("path");
-const SerialPort = require('serialport');
 const util = require('util');
 const exec = util.promisify(require('child_process').exec);
 
@@ -19,7 +18,7 @@ const project = new Project(rootFolderPath);
 const config = new Config(project.iniFilePath);
 
 // Programmer object
-const prog = new Programmer(config.readSerialPort(), project.outputFolder);
+const prog = new Programmer(config.readSerialPort());
 
 // Output log
 const outputConsole = vscode.window.createOutputChannel("SPIN");
@@ -95,6 +94,49 @@ function compileProgramsToHex(compilerCommand) {
 			runCompiler(command);
 		}
 	});
+}
+
+async function test(data, address) {
+	// Get the serial port to use from the config
+	const port = config.readSerialPort();
+	outputConsole.appendLine('Serial port : ' + port);
+
+	outputConsole.appendLine("Connecting to programmer on port : " + port);	
+
+	for (let i = 0; i < 512; i++) {
+		outputConsole.append(data[i].toString());
+		outputConsole.append(',');
+	}
+
+	outputConsole.appendLine(' ');
+
+	let buffer = Buffer.alloc(32);
+	data.copy(buffer,0, 0, 32)
+
+	for (let i = 0; i < 32; i++) {
+		outputConsole.append(buffer[i].toString());
+		outputConsole.append(',');
+	}
+
+	if (await prog.connectProgrammer()) {
+		outputConsole.appendLine("Programmer connected");
+		
+		outputConsole.appendLine(' ');/*
+
+		outputConsole.appendLine("Sending write order");
+
+		if (await prog.sendWriteOrder()) {
+			outputConsole.appendLine("Write order successfull");
+
+			outputConsole.appendLine("Sending write address");
+			if (await prog.sendWriteAddress(address)) {
+				outputConsole.appendLine("Write address successfull");
+			}
+		}*/
+	}
+	else {
+		outputConsole.appendLine("Programmer not connected");
+	}	
 }
 
 ///////
@@ -177,173 +219,25 @@ function activate(context) {
 		}),
 		
 		vscode.commands.registerCommand('spinasm.test', function () {
-			let test = prog.readIntelHexData(path.join(project.outputFolder, "output_0.hex"));
-			outputConsole.appendLine(test.toString());
-			outputConsole.appendLine(test.length.toString());
+			let data = prog.readIntelHexData(path.join(project.outputFolder, "output_0.hex"));
+			
+			test(data.data, data.address);
 		}),
 		
 		vscode.commands.registerCommand('spinasm.testserial', function () {
 			
-			// Get the serial port to use from the config
-			const port = "COM6";
-			outputConsole.appendLine('Serial port : ' + port);
-
-			/**
-			 * @brief Create the serial port object
-			 */
-			var sp = new SerialPort(port, {
-				baudRate: 115200
-			});
-
-			// Callbacks
-			sp.on('error', (err) => {
-				outputConsole.appendLine(err);
-			});
-
-			/**
-			 * @brief Open the serial port
-			 * @param {*} port SerialPort object
-			 */
-			async function openSerialPort (port) {
-				let promise = new Promise((resolve, reject) => {					
-					outputConsole.appendLine("Opening serial port : " + port.path);
-					port.once('open', (response) => {
-						resolve();
-					});
-			
-					port.once('error', (err) => {
-						reject(err);
-					});
-				});
-
-				await promise;
-
-				if (port.isOpen) {
-					outputConsole.appendLine("Port opened");
-					return true;
-				}
-				else {
-					outputConsole.appendLine("Port closed");
-					return false;
-				}
+			try {
+				test();
 			}
-
-			/**
-			 * @brief Close the serial port
-			 * @param {*} port SerialPort object
-			 */
-			async function closeSerialPort(port) {
-				let promise = new Promise((resolve, reject) => {					
-					outputConsole.appendLine("Closing serial port : " + port.path);
-					port.close();
-					port.once('close', (response) => {
-						resolve();
-					});
-			
-					port.once('error', (err) => {
-						reject(err);
-					});
-				});
-
-				await promise;
-
-				if (port.isOpen) {
-					outputConsole.appendLine("Port opened");
-					return true;
-				}
-				else {
-					outputConsole.appendLine("Port closed");
-					return false;
-				}
+			catch (error) {
+				outputConsole.appendLine("Error : " + error);
 			}
-
-			/**
-			 * @brief Poll the programmer, send 0x01 (ruthere), expect 0x63 (ok -> return true) or no response (return false)
-			 * 
-			 * @param {*} port SerialPort object
-			 */
-			async function checkProgrammerPresent (port) {
-				let data = [0x01]; //ruthere
-
-				let promise = new Promise((resolve, reject) => {					
-					outputConsole.appendLine("Sending ruthere order");
-					port.write(data);
-					port.once('data', (response) => {
-						resolve(response.toString());
-					});
-			
-					port.once('error', (err) => {
-						reject(err);
-					});
-				});
-
-				let returnData = await promise;
-				outputConsole.appendLine('Response : ' + returnData);
-				
-				if (returnData == '99') {
-					outputConsole.appendLine("Programmer present");
-					return true;
-				}
-				else {
-					outputConsole.appendLine("Programmer not present");
-					return false;
-				}
-			}
-
-			async function checkProgrammerReady (port) {
-				let data = [0x02]; // ruready
-
-				let promise = new Promise((resolve, reject) => {					
-					outputConsole.appendLine("Sending rudeady order");
-					port.write(data);
-					port.once('data', (response) => {
-						resolve(response.toString());
-					});
-			
-					port.once('error', (err) => {
-						reject(err);
-					});
-				});
-
-				let returnData = await promise;
-				outputConsole.appendLine('Response : ' + returnData);
-				
-				if (returnData == '99') {
-					outputConsole.appendLine("Programmer ready");
-					return true;
-				}
-				else {
-					outputConsole.appendLine("Programmer not ready");
-					return false;
-				}
-			}
-
-			(async () => {
-				if (await openSerialPort(sp)) { // Serial port open
-					if (await checkProgrammerPresent(sp)) { // Programmer present
-						if (await checkProgrammerReady(sp)) { // Programmer ready
-
-						}
-						else { // Programmer not ready
-
-						}
-					}					
-					else { // Programmer not present
-
-					}
-				}
-				else { // Serial port not open
-
-				}
-
-				await closeSerialPort(sp);
-			})();
 		})
 	);
 }
 exports.activate = activate;
 
-// this method is called when your extension is deactivated
+// prog method is called when your extension is deactivated
 function deactivate() {}
 
 module.exports = {

@@ -22,12 +22,22 @@ class Programmer
         bool m_newOrder = false;
         uint8_t m_currentOrder = 0; // Current order being processed
         uint8_t m_currentMessage = 0; // Current serial message to process
+        bool m_addressSet = false;
         bool m_addressReceived = false;
         uint16_t m_address = 0; // Read/Write address
         bool m_dataReceived = false;
         uint8_t m_length = 0;
-        uint8_t m_data[32];
         bool m_error = false;
+
+
+        bool m_receiveInProgress = false;
+        uint8_t m_startMarker = 60;
+        uint8_t m_endMarker = 62;
+        uint8_t m_currentChar = 0;
+        uint8_t m_data[32];
+        uint8_t m_index = 0;
+        uint8_t m_dataBytes = 0;
+        bool m_newData = false;
 
         void resetBuffer();
 
