@@ -98,30 +98,12 @@ function compileProgramsToHex(compilerCommand) {
 
 async function test(data, address) {
 	// Get the serial port to use from the config
-	const port = config.readSerialPort();
+	/*const port = config.readSerialPort();
 	outputConsole.appendLine('Serial port : ' + port);
 
 	outputConsole.appendLine("Connecting to programmer on port : " + port);	
-
-	for (let i = 0; i < 512; i++) {
-		outputConsole.append(data[i].toString());
-		outputConsole.append(',');
-	}
-
-	outputConsole.appendLine(' ');
-
-	let buffer = Buffer.alloc(32);
-	data.copy(buffer,0, 0, 32)
-
-	for (let i = 0; i < 32; i++) {
-		outputConsole.append(buffer[i].toString());
-		outputConsole.append(',');
-	}
-
 	if (await prog.connectProgrammer()) {
 		outputConsole.appendLine("Programmer connected");
-		
-		outputConsole.appendLine(' ');/*
 
 		outputConsole.appendLine("Sending write order");
 
@@ -129,14 +111,16 @@ async function test(data, address) {
 			outputConsole.appendLine("Write order successfull");
 
 			outputConsole.appendLine("Sending write address");
-			if (await prog.sendWriteAddress(address)) {
+			if (await prog.sendAddress(address)) {
 				outputConsole.appendLine("Write address successfull");
 			}
-		}*/
+		}
 	}
 	else {
 		outputConsole.appendLine("Programmer not connected");
-	}	
+	}*/
+
+	await prog.writeProgram(0, data);
 }
 
 ///////

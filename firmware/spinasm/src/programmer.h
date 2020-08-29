@@ -27,6 +27,7 @@ class Programmer
         uint16_t m_address = 0; // Read/Write address
         bool m_dataReceived = false;
         uint8_t m_length = 0;
+        bool m_dataExpected = false;
         bool m_error = false;
 
 
