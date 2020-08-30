@@ -46,14 +46,14 @@ port = COM6
                     fs.mkdirSync(folder) // Bank folder
                 }
                 catch (err) {
-                    throw 'Error creating ' + folder + ' : ' + err.message;
+                    throw new Error('Could not create ' + folder + ' : ' + err.message);
                 }
                 
                 try {
                     fs.writeFileSync(file, programContent) // Blank program file
                 }
                 catch (err) {
-                    throw 'Error creating ' + file + ' : ' + err.message;
+                    throw new Error('Could not create ' + file + ' : ' + err.message);
                 }
             }
             else { // Folder exists
@@ -64,7 +64,7 @@ port = COM6
                         fs.writeFileSync(file, programContent) // Blank program file
                     }
                     catch (err) {
-                        throw 'Error creating ' + file + ' : ' + err.message;
+                        throw new Error('Could not create ' + file + ' : ' + err.message);
                     }
                 }
             }
@@ -75,7 +75,7 @@ port = COM6
                 fs.mkdirSync(this.outputFolder) // Create output folder folder
             }
             catch (err) {
-                throw 'Error creating ' + this.outputFolder + ' : ' + err.message;
+                throw new Error('Could not create ' + this.outputFolder + ' : ' + err.message);
             }
         }
 
@@ -84,7 +84,7 @@ port = COM6
             try {
                 fs.writeFileSync(this.iniFilePath, iniFileContent) // Create blank ini file
             } catch (err) {
-                throw 'Error creating ' + this.iniFilePath + ' : ' + err.message;
+                throw new Error('Could not create ' + this.iniFilePath + ' : ' + err.message);
             }
         }
     }
@@ -126,7 +126,7 @@ port = COM6
                     fs.unlinkSync(file);
                 }
                 catch(err) {
-                    throw 'Error removing ' + file + ' : ' + err.message;
+                    throw new Error('Could not remove ' + file + ' : ' + err.message);
                 }
             }
         }
@@ -146,7 +146,7 @@ port = COM6
                 fs.unlinkSync(file);
             }
             catch(err) {
-                throw 'Error removing ' + file + ' : ' + err.message;
+                throw new Error('Could not remove ' + file + ' : ' + err.message);
             }
         }
     }
@@ -163,7 +163,7 @@ port = COM6
                 fs.unlinkSync(file);
             }
             catch(err) {
-                throw 'Error removing ' + file + ' : ' + err.message;
+                throw new Error('Could not remove ' + file + ' : ' + err.message);
             }
         }
     }
