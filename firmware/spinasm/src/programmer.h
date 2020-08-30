@@ -36,6 +36,7 @@ class Programmer
         uint8_t m_endMarker = 62;
         uint8_t m_currentChar = 0;
         uint8_t m_data[32];
+        uint8_t m_response[1];
         uint8_t m_index = 0;
         uint8_t m_dataBytes = 0;
         bool m_newData = false;

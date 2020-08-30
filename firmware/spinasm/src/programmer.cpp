@@ -18,21 +18,17 @@ void Programmer::processSerialInput()
     {
         delay(1);
         m_currentChar = Serial.read();
-        //Serial.print(m_currentChar);
 
         if (m_receiveInProgress)
         {
             if (m_currentChar != m_endMarker) // Data to bufffer
             {
                 m_data[m_index] = m_currentChar;
-                //Serial.print(1);
                 m_index ++;
                 m_dataBytes = m_index;
-                //Serial.print(m_dataBytes);
             }
             else // End received
-            {   
-                //Serial.print(0);
+            {
                 m_newData = true;
                 m_receiveInProgress = false;
             }
@@ -41,7 +37,6 @@ void Programmer::processSerialInput()
         else if (m_currentChar == m_startMarker) // Start received
         {
             m_receiveInProgress = true;
-            //Serial.print(2);
         }
     }
 
@@ -62,7 +57,8 @@ void Programmer::processSerialInput()
 
                 else // Invalid order received, trigger an error
                 {
-                    Serial.print(nok);
+                    m_response[0] = nok;
+                    Serial.write(m_response, 1);
 
                     m_error = true;
                 }
@@ -70,7 +66,8 @@ void Programmer::processSerialInput()
 
             else // Invalid message received, trigger an error
             {
-                Serial.print(nok);
+                m_response[0] = nok;
+                Serial.write(m_response, 1);
 
                 m_error = true;
             }
@@ -87,7 +84,9 @@ void Programmer::processSerialInput()
 
                 else // Invalid message received, trigger an error
                 {
-                    Serial.print(nok);
+                    m_response[0] = nok;
+                    Serial.write(m_response, 1);
+
                     m_error = true;
                 }
             }
@@ -106,7 +105,8 @@ void Programmer::processSerialInput()
 
                     else // Unexpected message, trigger an error
                     {
-                        Serial.println(nok);
+                        m_response[0] = nok;
+                        Serial.write(m_response, 1);
 
                         m_error = true;
                     }
@@ -126,7 +126,8 @@ void Programmer::processSerialInput()
 
                 else // Unexpected message, trigger an error
                 {
-                    Serial.println(nok);
+                    m_response[0] = nok;
+                    Serial.write(m_response, 1);
 
                     m_error = true;
                 }
@@ -151,7 +152,8 @@ void Programmer::processSerialInput()
 
                     else // Unexpected message, trigger an error
                     {
-                        Serial.println(nok);
+                        m_response[0] = nok;
+                        Serial.write(m_response, 1);
 
                         m_error = true;
                     }
@@ -159,7 +161,9 @@ void Programmer::processSerialInput()
 
                 else // Invalid message received, trigger an error
                 {
-                    Serial.print(nok);
+                    m_response[0] = nok;
+                    Serial.write(m_response, 1);
+
                     m_error = true;
                 }
             }
@@ -177,12 +181,14 @@ void Programmer::executeOrder()
         {
             if (eeprom0.eepromAvailable()) // Eeprom available
             {
-                Serial.print(ok); 
+                m_response[0] = ok;
+                Serial.write(m_response, 1);
             }
 
             else // Eeprom unavailable
             {
-                Serial.println(nok);
+                m_response[0] = nok;
+                Serial.write(m_response, 1);
 
                 m_error = true;
             }
@@ -192,7 +198,9 @@ void Programmer::executeOrder()
 
         else if (m_currentOrder == read)
         {
-            Serial.print(ok); // Answer
+            m_response[0] = ok;
+            Serial.write(m_response, 1);
+
             m_addressReceived = false;
             m_addressSet = false;
             m_dataExpected = false;
@@ -200,7 +208,9 @@ void Programmer::executeOrder()
 
         else if (m_currentOrder == write)
         {
-            Serial.print(ok); // Answer
+            m_response[0] = ok;
+            Serial.write(m_response, 1);
+
             m_addressReceived = false;
             m_addressSet = false;
             m_dataReceived = false;
@@ -208,7 +218,8 @@ void Programmer::executeOrder()
 
         else if (m_currentOrder == end)
         {
-            Serial.print(ok); // Answer
+            m_response[0] = ok;
+            Serial.write(m_response, 1);
 
             m_currentOrder = none; // Reset the current order
             m_address = 0;
@@ -231,7 +242,8 @@ void Programmer::executeOrder()
 
         m_addressSet = true; // Set the trigger
 
-        Serial.print(ok); // Answer
+        m_response[0] = ok;
+        Serial.write(m_response, 1);
         m_addressReceived = false;
     }
 
@@ -245,12 +257,14 @@ void Programmer::executeOrder()
 
         if (result == 0) // Write ok
         {
-            Serial.print(ok);
+            m_response[0] = ok;
+            Serial.write(m_response, 1);
         }
         
         else // Write failed
         {
-            Serial.print(nok);
+            m_response[0] = nok;
+            Serial.write(m_response, 1);
 
             m_error = true;
         }
@@ -266,7 +280,6 @@ void Programmer::executeOrder()
 
         m_addressSet = true; // Set the trigger
         
-        //Serial.print(ok); // Answer
         m_addressReceived = false;
     }
 
@@ -278,13 +291,7 @@ void Programmer::executeOrder()
 
         eeprom0.readArray(m_address, m_data, m_length);
 
-        for (uint8_t i = 0; i < m_length; i++)
-        {
-            Serial.print(m_data[i]);
-            Serial.print(',');
-        }
-
-        //Serial.print(ok);
+        Serial.write(m_data, m_length);
 
         m_addressSet = false;
     }
@@ -311,9 +318,15 @@ void Programmer::resetBuffer()
         m_data[i] = 0;
     }
 
+    for (uint8_t i = 0; i < sizeof(m_response); i++)
+    {
+        m_response[i] = 0;
+    }
+
     m_newData = false;
     m_receiveInProgress = false;
     m_index = 0;
     m_dataBytes = 0;
     m_currentChar = 0;
+    m_length = 0;
 }
