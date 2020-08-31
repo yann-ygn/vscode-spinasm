@@ -136,10 +136,28 @@ function activate(context) {
 
 		vscode.commands.registerCommand('spinasm.compileprogram1', function () {
 
+			try {
+				config.readConfigFile();
+				project.buildSetup(config.readCompilerCommand(), config.readCompilerArgs());
+				
+				project.compileProgramToHex(1);				
+			} 
+			catch (error) {
+				Logs.log(1, error.message);
+			}
 		}),
 
 		vscode.commands.registerCommand('spinasm.compileprogram2', function () {
 
+			try {
+				config.readConfigFile();
+				project.buildSetup(config.readCompilerCommand(), config.readCompilerArgs());
+				
+				project.compileProgramToHex(2);				
+			} 
+			catch (error) {
+				Logs.log(1, error.message);
+			}
 		}),
 
 		vscode.commands.registerCommand('spinasm.compileprogram3', function () {
