@@ -21,71 +21,6 @@ const config = new Config(project.iniFilePath);
 // Programmer object
 const prog = new Programmer(config.readSerialPort());
 
-// Helper functions
-
-function buildSetup() {
-	try {
-		Logs.log(0, "Reading config file : " + project.iniFilePath);
-		config.readConfigFile();
-		let compiler = config.readCompilerCommand()
-		Logs.log(0, "Compiler : " + compiler);
-
-		Logs.log(0, "Getting available programs");
-		project.getAvailablePrograms();
-
-		Logs.log(0, "Available programs :");
-		project.programs.forEach(program => {
-			Logs.log(0, "Program " + project.programs.indexOf(program) + " : " + program);
-		});
-
-		return compiler;
-	}
-	catch (error) {
-		Logs.log(1, error.message);
-	}
-}
-
-function buildProgram(program) {
-	try {
-		let compiler = buildSetup();
-		Logs.log(0, "Removing existing program " + program + " output file");
-		project.removeHexProgram(0);
-
-		Logs.log(0, "Compiling program : " + program);
-		project.compileProgramToHex(compiler, program);
-	}
-	catch (error) {
-		Logs.log(1, error.message);
-	}
-}
-
-function buildAllPrograms() {
-	try {
-		let compiler = buildSetup();
-		Logs.log(0, "Removing hex programs output file");
-		project.removeHexPrograms();
-
-		Logs.log(0, "Compiling all programs");
-		project.compileProgramsToHex(compiler);
-	}
-	catch (error) {
-		Logs.log(0, error.message);
-	}
-}
-
-function buildAllProgramsToBin() {
-	try {
-		let compiler = buildSetup();
-		Logs.log(0, "Removing bin programs output file");
-		project.removeBinPrograms();
-
-		Logs.log(0, "Compiling all programs");
-		project.compileProgramsToBin(compiler);
-	} 
-	catch (error) {
-		Logs.log(0, error.message);
-	}
-}
 
 async function uploadProgram(program, address, data) {
 	try {
@@ -96,19 +31,28 @@ async function uploadProgram(program, address, data) {
 		if (await prog.connectProgrammer()) {
 			Logs.log(0, "Programmer connected");
 
-			/*
-			Logs.log(0, "Writing program : 0");
-			if (await prog.writeProgram(0, data)) {
-				Logs.log(0, "Writing successfull");
-			}*/
+			Logs.log(0, "Writing program : " + program);
+			if (await prog.writeProgram(data, address)) {
+				Logs.log(0, "Write successfull");
 
-			Logs.log(0, "Reading program : 0");
-			let resultBuffer = Buffer.alloc(512);
-			resultBuffer = await prog.readProgram(0);
+				Logs.log(0, "Reading program : " + program);
+				let resultBuffer = Buffer.alloc(512);
+				resultBuffer = await prog.readProgram(0);
 
-			let result = Buffer.compare(data, resultBuffer);
+				let result = Buffer.compare(data, resultBuffer);
 
-			Logs.log(0, "Comparison : " + result);
+				Logs.log(0, "Verifying...");
+				if (result == 0) {
+					Logs.log(0, "Verification sucess");
+				}
+				else {
+					Logs.log(1, "Verification failed");
+				}
+			}
+			else {
+				Logs.log(1, "Write failed");
+			}
+
 
 			Logs.log(0, "Disconnecting programmer on port : " + port);
 			if (await prog.disconnectProgrammer()) {
@@ -179,6 +123,15 @@ function activate(context) {
 	
 		vscode.commands.registerCommand('spinasm.compileprogram0', function () {
 
+			try {
+				config.readConfigFile();
+				project.buildSetup(config.readCompilerCommand(), config.readCompilerArgs());
+				
+				project.compileProgramToHex(0);				
+			} 
+			catch (error) {
+				Logs.log(1, error.message);
+			}
 		}),
 
 		vscode.commands.registerCommand('spinasm.compileprogram1', function () {

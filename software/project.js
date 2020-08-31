@@ -1,15 +1,16 @@
 const fs = require("fs");
 const path = require("path");
-const util = require('util');
-const exec = util.promisify(require('child_process').exec);
+const cp = require('child_process');
+
 const Logs = require('./logs.js');
-const Utils = require('./utils.js');
 
 class Project {
     constructor(folder) {
         this.rootFolder = folder;
         this.outputFolder = path.join(this.rootFolder, "output");
         this.iniFilePath = path.join(this.rootFolder, 'settings.ini');
+        this.compiler = '';
+        this.compilerArguments = [];
         this.programs = [];
     }
 
@@ -96,16 +97,16 @@ port = COM6
         // Iterate thu the 8 programs folders to find the programs
         for (var i = 0; i < 8; i++) {
             // Get the current folder
-            let currentProgramFolder = path.join(this.rootFolder, 'bank_' + i.toString());
+            let currentProgramFolder = path.join(this.rootFolder, 'bank_' + i);
 
             // Look for a program file in the current folder
-            let programFile = fs.readdirSync(currentProgramFolder).filter(str => str.match("^[0-7].*\.spn")).toString();
+            let programFile = fs.readdirSync(currentProgramFolder).filter(str => str.match("^[0-7].*\.spn"));
 
             // Add it to the array if it exists
             if (programFile) {					
-                let strProg = path.join(currentProgramFolder, programFile).toString();
+                let strProg = path.join(currentProgramFolder, programFile.toString());
 
-                this.programs[i] = Utils.sanitizePath(strProg);
+                this.programs[i] = strProg;
             }
             else {
                 this.programs[i] = null;
@@ -123,6 +124,7 @@ port = COM6
 
             if (fs.existsSync(file)) {
                 try {
+                    Logs.log(0, "Removing file : " + file)
                     fs.unlinkSync(file);
                 }
                 catch(err) {
@@ -143,6 +145,7 @@ port = COM6
 
         if (fs.existsSync(file)) {
             try {
+                Logs.log(0, "Removing file : " + file)
                 fs.unlinkSync(file);
             }
             catch(err) {
@@ -160,6 +163,7 @@ port = COM6
 
         if (fs.existsSync(file)) {
             try {
+                Logs.log(0, "Removing file : " + file)
                 fs.unlinkSync(file);
             }
             catch(err) {
@@ -168,11 +172,87 @@ port = COM6
         }
     }
 
+    buildSetup(compiler, compilerArgs) {
+
+        this.compilerArguments = []; // Reset the arg array
+        this.compiler = compiler; // Read the compiler command line
+        this.compilerArguments = compilerArgs; // Read the args
+
+        Logs.log(0, "Compiler : " + compiler);
+        Logs.log(0, "Compiler args : " + compilerArgs.toString());
+
+        Logs.log(0, "Getting available programs");
+        this.getAvailablePrograms();
+
+        Logs.log(0, "Available programs :");
+        this.programs.forEach(program => {
+            Logs.log(0, "Program " + this.programs.indexOf(program) + " : " + program);
+        });
+
+        Logs.log(0, "Compiler ready");
+    }
+    
+    runCompiler () {
+
+        try {
+            let output = cp.spawnSync(this.compiler, this.compilerArguments, {encoding: 'utf8'});
+            
+            Logs.log(0, "asfv1 return code : " + output.status)
+
+            if (output.stdout) {
+                Logs.log(0, "asfv1 stdout : " + output.stdout)
+            }
+
+            if (output.stderr) {
+                Logs.log(0, "asfv1 stderr : " + output.stderr)
+            }
+
+            return output.status;
+        }
+        catch (error) {
+            throw new Error(error.message);
+        }
+    }
+
+    compileProgramToHex(program) {
+
+        try {
+            this.removeHexProgram(program);
+
+            if (this.programs[program]) {
+                this.compilerArguments.push('-p');
+                this.compilerArguments.push(program);
+                this.compilerArguments.push(this.programs[program].toString());
+                this.compilerArguments.push(path.join(this.outputFolder, "program_" + program + ".hex").toString());
+
+                let result = this.runCompiler();
+
+                if (result == 0) {
+                    Logs.log(0, "Compile succeeded");
+                }
+
+                if (result == 1) {
+                    Logs.log(0, "Compile failed");
+                }
+
+                if (result == 2) {
+                    Logs.log(0, "Wrong arguments");
+                }
+
+                return result;
+            }
+        } 
+        catch (error) {
+            
+        }
+    }
+
+    /*
     async runCompiler(command) {
 
         try {
             const { stdout, stderr } = await exec(command);
-    
+
             if (stderr) {
                 Logs.log(0, "asfv1 stderr : " + stderr);
             }
@@ -197,7 +277,7 @@ port = COM6
             }
         });
     }
-    
+
     compileProgramToHex(compilerCommand, program) {
 
         if (this.programs[program])
@@ -208,9 +288,9 @@ port = COM6
             this.runCompiler(command);
         }
     }
-    
+
     compileProgramsToHex(compilerCommand) {
-    
+
         this.programs.forEach(program => {
             if (program)
             {
@@ -220,7 +300,7 @@ port = COM6
                 this.runCompiler(command);
             }
         });
-    }
+    }*/
 }
 
 module.exports = Project;

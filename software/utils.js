@@ -11,6 +11,7 @@ class Utils {
         let returnPath;
 
         if (os.type() == "Windows_NT") {
+
             if (path.includes(" ") && path.charAt(0) != '"' && path.charAt(path.length -1) != '"') { // Path includes spaces and no quotes
                 returnPath = '"' + path + '"'; // Add quotes		
             }
