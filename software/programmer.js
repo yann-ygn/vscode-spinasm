@@ -72,9 +72,9 @@ class Programmer {
                 data[0] = 0x3C; // Start marker
                 data[1] = 0x04; // write
                 data[2] = 0x3E; // End marker
-    
+
                 result = await this.writeBufferReadBuffer1(data);
-    
+
                 if (result[0] == 99) {
                     return true;
                 }
@@ -102,9 +102,9 @@ class Programmer {
                 data[0] = 0x3C; // Start marker
                 data[1] = 0x03; // read
                 data[2] = 0x3E; // End marker
-    
+
                 result = await this.writeBufferReadBuffer1(data);
-    
+
                 if (result[0] == 99) {
                     return true;
                 }
@@ -218,14 +218,11 @@ class Programmer {
 
                 if (await this.sendWriteOrder()) {
                     for (let i = address; i < (address + 512); i = (i + 32)) { // Process by page of 32 bytes
-                        console.log("page : " + i);
 
                         if (await this.sendAddress(i)) { // The address was transmitted successfuly
 
-                            console.log("writing page");
-
                             buffer[0] = 0x3C; // Start marker
-                            data.copy(buffer, 1, i, i + 32); // Buffer a page
+                            data.copy(buffer, 1, i - address, (i - address) + 32); // Buffer a page
                             buffer[33] = 0x3E; // End marker
 
                             result = await this.writeBufferReadBuffer1(buffer); // Write it
@@ -268,7 +265,7 @@ class Programmer {
 
                 let data = Buffer.alloc(32); // Temp buffer
                 data = await this.triggerReadPage(i);
-                data.copy(buffer, i, 0, 32);
+                data.copy(buffer, i - address, 0, 32);
             }
 
             if (await this.sendEndOrder()) {
@@ -280,6 +277,50 @@ class Programmer {
         }
         else {
             throw new Error("Error sendig the read order");
+        }
+    }
+
+    async uploadProgram(program, address, data) {
+        try {
+            Logs.log(0, 'Serial port : ' + this.serialPort.path);
+
+            Logs.log(0, "Connecting to programmer on port : " + this.serialPort.path);	
+            if (await this.connectProgrammer()) {
+                Logs.log(0, "Programmer connected");
+
+                Logs.log(0, "Writing program : " + program);
+                if (await this.writeProgram(data, address)) {
+                    Logs.log(0, "Write successfull");
+
+                    Logs.log(0, "Reading program : " + program);
+                    let resultBuffer = Buffer.alloc(512);
+                    resultBuffer = await this.readProgram(address);
+
+                    let result = Buffer.compare(data, resultBuffer);
+
+                    Logs.log(0, "Verifying...");
+                    if (result == 0) {
+                        Logs.log(0, "Verification sucess");
+                    }
+                    else {
+                        throw new Error("Verification failed");
+                    }
+                }
+                else {
+                    throw new Error("Write failed");
+                }
+
+                Logs.log(0, "Disconnecting programmer on port : " + this.serialPort.path);
+                if (await this.disconnectProgrammer()) {
+                    Logs.log(0, "Programmer disconnected");
+                }
+            }
+            else {
+                throw new Error("Programmer not connected");
+            }
+        }
+        catch (error) {
+            Logs.log(0, error.message);
         }
     }
 
@@ -308,7 +349,7 @@ class Programmer {
             this.serialPort.on('close', () => {
                 resolve();
             });
-    
+
             this.serialPort.on('error', (err) => {
                 reject(err);
             });
@@ -321,7 +362,7 @@ class Programmer {
             this.serialPort.once('data', (response) => {
                 resolve(response.toString());
             });
-    
+
             this.serialPort.once('error', (err) => {
                 reject(err);
             });
@@ -340,7 +381,7 @@ class Programmer {
             parser.on('data', (response) => {
                 resolve(response);
             });
-    
+
             this.serialPort.once('error', (err) => {
                 reject(err);
             });
@@ -361,7 +402,7 @@ class Programmer {
                 //console.log(response.toString());
                 resolve(response);
             });
-    
+
             this.serialPort.once('error', (err) => {
                 reject(err);
             });
@@ -378,7 +419,7 @@ class Programmer {
 
                 let lines = data.split(/\r\n|\r|\n/);
                 let returnObject = {
-                    address: 0,
+                    address: parseInt(lines[0].substr(3, 4), 16),
                     offset: 0,
                     data: Buffer.alloc(512)
                 }
@@ -387,14 +428,9 @@ class Programmer {
                     let startCode = line.substr(0, 1);
                     let byteCount = parseInt(line.substr(1, 2), 16);
                     let recordType = parseInt(line.substr(7, 2), 16);
-                    //let checksum = parseInt(line.substr(17, 2), 16);
-                    
-                    if (startCode == ':' && byteCount == 0 && recordType == 1) { // Address offset record
-                        returnObject.address = parseInt(line.substr(3, 4), 16);
-                    }
 
                     if (startCode == ':' && byteCount == 4 && recordType == 0) { // Data record
-                        for (let i = 9; i < 9 + (byteCount * 2); i = i + 2) {
+                        for (let i = 9; i < 9 + (byteCount * 2); i = i + 2) { // 4 bytes by data record, one byte is 2 character (base 16)
                             returnObject.data[returnObject.offset] = parseInt(line.substr(i, 2), 16);
 
                             returnObject.offset ++;

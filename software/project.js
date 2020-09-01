@@ -223,27 +223,59 @@ port = COM6
                 this.compilerArguments.push('-p');
                 this.compilerArguments.push(program);
                 this.compilerArguments.push(this.programs[program].toString());
-                this.compilerArguments.push(path.join(this.outputFolder, "program_" + program + ".hex").toString());
+                this.compilerArguments.push(path.join(this.outputFolder, "output_" + program + ".hex").toString());
+
+                let result = this.runCompiler();
+
+                if (result == 0) {
+                    Logs.log(0, "Compile succeeded");
+
+                    return result;
+                }
+                else if (result == 1) {
+                    throw new Error("Compile failed");
+                }
+                else if (result == 2) {
+                    throw new Error("Error parsing the args");
+                }
+                else {
+                    throw new Error("Unknown return code : " + result);
+                }
+            }
+        } 
+        catch (error) {
+            throw new Error(error.message);
+        }
+    }
+
+    compileProgramtoBin(program) {
+        try {
+
+            if (this.programs[program]) {
+
+                this.compilerArguments.push('-p');
+                this.compilerArguments.push(this.programs.indexOf(program));
+                this.compilerArguments.push(this.programs[program].toString());
+                this.compilerArguments.push(path.join(this.outputFolder, "output.bin").toString());
 
                 let result = this.runCompiler();
 
                 if (result == 0) {
                     Logs.log(0, "Compile succeeded");
                 }
-
-                if (result == 1) {
-                    Logs.log(0, "Compile failed");
+                else if (result == 1) {
+                    throw new Error("Compile failed");
                 }
-
-                if (result == 2) {
-                    Logs.log(0, "Wrong arguments");
+                else if (result == 2) {
+                    throw new Error("Error parsing the args");
                 }
-
-                return result;
+                else {
+                    throw new Error("Unknown return code : " + result);
+                }
             }
-        } 
+        }
         catch (error) {
-            
+            throw new Error(error.message);
         }
     }
 

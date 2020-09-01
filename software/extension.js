@@ -21,92 +21,6 @@ const config = new Config(project.iniFilePath);
 // Programmer object
 const prog = new Programmer(config.readSerialPort());
 
-
-async function uploadProgram(program, address, data) {
-	try {
-		const port = config.readSerialPort();
-		Logs.log(0, 'Serial port : ' + port);
-
-		Logs.log(0, "Connecting to programmer on port : " + port);	
-		if (await prog.connectProgrammer()) {
-			Logs.log(0, "Programmer connected");
-
-			Logs.log(0, "Writing program : " + program);
-			if (await prog.writeProgram(data, address)) {
-				Logs.log(0, "Write successfull");
-
-				Logs.log(0, "Reading program : " + program);
-				let resultBuffer = Buffer.alloc(512);
-				resultBuffer = await prog.readProgram(0);
-
-				let result = Buffer.compare(data, resultBuffer);
-
-				Logs.log(0, "Verifying...");
-				if (result == 0) {
-					Logs.log(0, "Verification sucess");
-				}
-				else {
-					Logs.log(1, "Verification failed");
-				}
-			}
-			else {
-				Logs.log(1, "Write failed");
-			}
-
-
-			Logs.log(0, "Disconnecting programmer on port : " + port);
-			if (await prog.disconnectProgrammer()) {
-				Logs.log(0, "Programmer disconnected");
-			}
-		}
-		else {
-			Logs.log(1, "Programmer not connected");
-		}
-	}
-	catch (error) {
-		Logs.log(0, error.message);
-	}
-}
-
-async function test(data, address) {
-	try {
-		// Get the serial port to use from the config
-		const port = config.readSerialPort();
-		Logs.log(0, 'Serial port : ' + port);
-
-		Logs.log(0, "Connecting to programmer on port : " + port);	
-		if (await prog.connectProgrammer()) {
-			Logs.log(0, "Programmer connected");
-
-			/*
-			Logs.log(0, "Writing program : 0");
-			if (await prog.writeProgram(0, data)) {
-				Logs.log(0, "Writing successfull");
-			}*/
-
-			Logs.log(0, "Reading program : 0");
-			let resultBuffer = Buffer.alloc(512);
-			resultBuffer = await prog.readProgram(0);
-
-			let result = Buffer.compare(data, resultBuffer);
-
-			Logs.log(0, "Comparison : " + result);
-
-			Logs.log(0, "Disconnecting programmer on port : " + port);
-			if (await prog.disconnectProgrammer()) {
-				Logs.log(0, "Programmer disconnected");
-			}
-		}
-		else {
-			Logs.log(1, "Programmer not connected");
-		}
-	} catch (error) {
-		throw error.message;
-	}
-}
-
-///////
-
 function activate(context) {
 	context.subscriptions.push(
 		vscode.commands.registerCommand('spinasm.createproject', function () {
@@ -162,45 +76,221 @@ function activate(context) {
 
 		vscode.commands.registerCommand('spinasm.compileprogram3', function () {
 
+			try {
+				config.readConfigFile();
+				project.buildSetup(config.readCompilerCommand(), config.readCompilerArgs());
+				
+				project.compileProgramToHex(3);				
+			} 
+			catch (error) {
+				Logs.log(1, error.message);
+			}
 		}),
 
 		vscode.commands.registerCommand('spinasm.compileprogram4', function () {
 
+			try {
+				config.readConfigFile();
+				project.buildSetup(config.readCompilerCommand(), config.readCompilerArgs());
+				
+				project.compileProgramToHex(4);				
+			} 
+			catch (error) {
+				Logs.log(1, error.message);
+			}
 		}),
 
 		vscode.commands.registerCommand('spinasm.compileprogram5', function () {
+
+			try {
+				config.readConfigFile();
+				project.buildSetup(config.readCompilerCommand(), config.readCompilerArgs());
+				
+				project.compileProgramToHex(5);				
+			} 
+			catch (error) {
+				Logs.log(1, error.message);
+			}
 
 		}),
 
 		vscode.commands.registerCommand('spinasm.compileprogram6', function () {
 
+			try {
+				config.readConfigFile();
+				project.buildSetup(config.readCompilerCommand(), config.readCompilerArgs());
+				
+				project.compileProgramToHex(6);				
+			} 
+			catch (error) {
+				Logs.log(1, error.message);
+			}
 		}),
 
 		vscode.commands.registerCommand('spinasm.compileprogram7', function () {
 
+			try {
+				config.readConfigFile();
+				project.buildSetup(config.readCompilerCommand(), config.readCompilerArgs());
+				
+				project.compileProgramToHex(7);				
+			} 
+			catch (error) {
+				Logs.log(1, error.message);
+			}
 		}),
 
 		vscode.commands.registerCommand('spinasm.compileallprograms', function () {
 
+			try {
+				config.readConfigFile();
+				project.buildSetup(config.readCompilerCommand(), config.readCompilerArgs());
+
+				project.programs.forEach(program => {
+					project.compileProgramToHex(project.programs.indexOf[program]);
+				});
+			} 
+			catch (error) {
+				Logs.log(1, error.message);
+			}
 		}),
 
 		vscode.commands.registerCommand('spinasm.compileallprogramstobin', function () {
 
-		}),
-		
-		vscode.commands.registerCommand('spinasm.test', function () {
-			let data = prog.readIntelHexData(path.join(project.outputFolder, "output_0.hex"));
-			
-			test(data.data, data.address);
-		}),
-		
-		vscode.commands.registerCommand('spinasm.testserial', function () {
-			
 			try {
-				test();
-			}
+				config.readConfigFile();
+				project.buildSetup(config.readCompilerCommand(), config.readCompilerArgs());
+				project.removeBinPrograms();
+
+				project.programs.forEach(program => {
+					project.compileProgramtoBin(project.programs.indexOf[program]);
+				});
+			} 
 			catch (error) {
-				Logs.log(0, "Error : " + error);
+				
+			}
+		}),
+
+		vscode.commands.registerCommand('spinasm.uploadprogram0', function () {
+
+			try {
+				config.readConfigFile();
+				let programData = prog.readIntelHexData(path.join(project.outputFolder, "output_0.hex"));
+
+				prog.uploadProgram(0, programData.address, programData.data);
+			} 
+			catch (error) {
+				
+			}
+		}),
+
+		vscode.commands.registerCommand('spinasm.uploadprogram1', function () {
+
+			try {
+				config.readConfigFile();
+				let programData = prog.readIntelHexData(path.join(project.outputFolder, "output_1.hex"));
+
+				prog.uploadProgram(1, programData.address, programData.data);
+			} 
+			catch (error) {
+				
+			}
+		}),
+
+		vscode.commands.registerCommand('spinasm.uploadprogram2', function () {
+
+			try {
+				config.readConfigFile();
+				let programData = prog.readIntelHexData(path.join(project.outputFolder, "output_2.hex"));
+
+				Logs.log(0, programData.address);
+
+				prog.uploadProgram(2, programData.address, programData.data);
+			} 
+			catch (error) {
+				
+			}
+		}),
+
+		vscode.commands.registerCommand('spinasm.uploadprogram3', function () {
+
+			try {
+				config.readConfigFile();
+				let programData = prog.readIntelHexData(path.join(project.outputFolder, "output_3.hex"));
+
+				prog.uploadProgram(3, programData.address, programData.data);
+			} 
+			catch (error) {
+				
+			}
+		}),
+
+		vscode.commands.registerCommand('spinasm.uploadprogram4', function () {
+
+			try {
+				config.readConfigFile();
+				let programData = prog.readIntelHexData(path.join(project.outputFolder, "output_4.hex"));
+
+				prog.uploadProgram(4, programData.address, programData.data);
+			} 
+			catch (error) {
+				
+			}
+		}),
+
+		vscode.commands.registerCommand('spinasm.uploadprogram5', function () {
+
+			try {
+				config.readConfigFile();
+				let programData = prog.readIntelHexData(path.join(project.outputFolder, "output_5.hex"));
+
+				prog.uploadProgram(5, programData.address, programData.data);
+			} 
+			catch (error) {
+				
+			}
+		}),
+
+		vscode.commands.registerCommand('spinasm.uploadprogram6', function () {
+
+			try {
+				config.readConfigFile();
+				let programData = prog.readIntelHexData(path.join(project.outputFolder, "output_6.hex"));
+
+				prog.uploadProgram(6, programData.address, programData.data);
+			} 
+			catch (error) {
+				
+			}
+		}),
+
+		vscode.commands.registerCommand('spinasm.uploadprogram7', function () {
+
+			try {
+				config.readConfigFile();
+				let programData = prog.readIntelHexData(path.join(project.outputFolder, "output_7.hex"));
+
+				prog.uploadProgram(7, programData.address, programData.data);
+			} 
+			catch (error) {
+				
+			}
+		}),
+
+		vscode.commands.registerCommand('spinasm.compileanduploadprogram0', function () {
+
+			try {
+				config.readConfigFile();
+				project.buildSetup(config.readCompilerCommand(), config.readCompilerArgs());
+
+				project.compileProgramToHex(0);
+
+				let programData = prog.readIntelHexData(path.join(project.outputFolder, "output_0.hex"));
+
+				prog.uploadProgram(0, programData.address, programData.data);
+			} 
+			catch (error) {
+				
 			}
 		})
 	);
