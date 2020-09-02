@@ -152,7 +152,7 @@ class Programmer {
     }
 
     /**
-     * @brief Send the address to read to and process the answer
+     * @brief Send the address to read to and process the answer 
      */
     async sendAddress(address) {
         try {
