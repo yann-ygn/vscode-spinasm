@@ -5,7 +5,6 @@ Programmer prog0;
 
 void setup() 
 {
-    Serial.begin(115200);
     prog0.programmerSetup();
 }
 
