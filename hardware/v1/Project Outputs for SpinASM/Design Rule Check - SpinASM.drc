@@ -1,7 +1,7 @@
 Protel Design System Design Rule Check
 PCB File : C:\_dev\05 - Spinsemi\vscode-spinasm\hardware\SpinASM.PcbDoc
-Date     : 9/12/2020
-Time     : 4:35:42 PM
+Date     : 9/6/2020
+Time     : 8:06:42 PM
 
 Processing Rule : Clearance Constraint (Gap=0.152mm) (All),(All)
 Rule Violations :0
@@ -46,18 +46,16 @@ Processing Rule : Net Antennae (Tolerance=0mm) (All)
 Rule Violations :0
 
 Processing Rule : Board Clearance Constraint (Gap=0mm) (All)
-Rule Violations :0
+   Violation between Board Outline Clearance(Outline Edge): (Collision < 0.2mm) Between Board Edge And Text "J1" (2.067mm,17.2mm) on Top Overlay 
+   Violation between Board Outline Clearance(Outline Edge): (Collision < 0.2mm) Between Board Edge And Track (-0.025mm,16mm)(3.725mm,16mm) on Top Overlay 
+   Violation between Board Outline Clearance(Outline Edge): (Collision < 0.2mm) Between Board Edge And Track (-0.025mm,4mm)(-0.025mm,16mm) on Top Overlay 
+   Violation between Board Outline Clearance(Outline Edge): (Collision < 0.2mm) Between Board Edge And Track (-0.025mm,4mm)(3.725mm,4mm) on Top Overlay 
+Rule Violations :4
 
 Processing Rule : Height Constraint (Min=0mm) (Max=1816.048mm) (Prefered=12.7mm) (All)
 Rule Violations :0
 
-Waived Violations Of Rule : Board Clearance Constraint (Gap=0mm) (All)
-   Waived Violation between Board Outline Clearance(Outline Edge): (Collision < 0.2mm) Between Board Edge And Track (-0.025mm,16mm)(3.725mm,16mm) on Top Overlay Waived by  at 9/12/2020 1:44:19 PM
-   Waived Violation between Board Outline Clearance(Outline Edge): (Collision < 0.2mm) Between Board Edge And Track (-0.025mm,4mm)(-0.025mm,16mm) on Top Overlay Waived by  at 9/12/2020 1:44:19 PM
-   Waived Violation between Board Outline Clearance(Outline Edge): (Collision < 0.2mm) Between Board Edge And Track (-0.025mm,4mm)(3.725mm,4mm) on Top Overlay Waived by  at 9/12/2020 1:44:19 PM
-Waived Violations :3
 
-
-Violations Detected : 0
-Waived Violations : 3
+Violations Detected : 4
+Waived Violations : 0
 Time Elapsed        : 00:00:01

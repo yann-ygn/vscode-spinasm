@@ -49,7 +49,7 @@ void Programmer::processSerialInput()
                 m_currentMessage = m_data[0]; // Read the incoming byte
 
                 if (m_currentMessage == ruthere || m_currentMessage == ruready || m_currentMessage == read ||
-                m_currentMessage == write || m_currentMessage == end) // Filter know orders only
+                m_currentMessage == write || m_currentMessage == end) // Filter known orders only
                 {
                     m_currentOrder = m_currentMessage; // Set the current order
                     m_newOrder = true; // Set the trigger

@@ -30,7 +30,6 @@ class Programmer
         bool m_dataExpected = false;
         bool m_error = false;
 
-
         bool m_receiveInProgress = false;
         uint8_t m_startMarker = 60;
         uint8_t m_endMarker = 62;
