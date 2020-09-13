@@ -1,2 +1,7 @@
 # Auto detect text files and perform LF normalization
 * text=auto
+
+# Linguist
+*.html linguist-detectable=false
+*.htm linguist-detectable=false
+*.html linguist-vendored
