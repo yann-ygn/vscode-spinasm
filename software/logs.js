@@ -9,6 +9,11 @@ class Logs {
         this.logChannel = vscode.window.createOutputChannel("SPIN");
     }
 
+    /**
+     * @brief Log a message
+     * @param {*} type 0 = INFO, 1 = ERROR
+     * @param {*} message Message to log
+     */
     static log(type, message) {
         if (type == 0) {
             this.logChannel.appendLine(new Date().toISOString() + ' INFO : ' + message);

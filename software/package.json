@@ -19,6 +19,7 @@
 		"onCommand:spinasm.compileprogram5",
 		"onCommand:spinasm.compileprogram6",
 		"onCommand:spinasm.compileprogram7",
+		"onCommand:spinasm.compilecurrentprogram",
 		"onCommand:spinasm.compileallprograms",
 		"onCommand:spinasm.compileallprogramstobin",
 		"onCommand:spinasm.uploadprogram0",
@@ -29,6 +30,7 @@
 		"onCommand:spinasm.uploadprogram5",
 		"onCommand:spinasm.uploadprogram6",
 		"onCommand:spinasm.uploadprogram7",
+		"onCommand:spinasm.uploadcurrentprogram",
 		"onCommand:spinasm.compileanduploadprogram0",
 		"onCommand:spinasm.compileanduploadprogram1",
 		"onCommand:spinasm.compileanduploadprogram2",
@@ -36,7 +38,8 @@
 		"onCommand:spinasm.compileanduploadprogram4",
 		"onCommand:spinasm.compileanduploadprogram5",
 		"onCommand:spinasm.compileanduploadprogram6",
-		"onCommand:spinasm.compileanduploadprogram7"
+		"onCommand:spinasm.compileanduploadprogram7",
+		"onCommand:spinasm.compileanduploadcurrentprogram"
 	],
 	"main": "./extension.js",
 	"contributes": {
@@ -76,6 +79,10 @@
 			{
 				"command": "spinasm.compileprogram7",
 				"title": "SpinASM : Compile program 7"
+			},
+			{
+				"command": "spinasm.compilecurrentprogram",
+				"title": "SpinASM : Compile current program"
 			},
 			{
 				"command": "spinasm.compileallprograms",
@@ -118,6 +125,10 @@
 				"title": "SpinASM : Upload program 7"
 			},
 			{
+				"command": "spinasm.uploadcurrentprogram",
+				"title": "SpinASM : Upload current program"
+			},
+			{
 				"command": "spinasm.compileanduploadprogram0",
 				"title": "SpinASM : Compile & Upload program 0"
 			},
@@ -148,6 +159,10 @@
 			{
 				"command": "spinasm.compileanduploadprogram7",
 				"title": "SpinASM : Compile & Upload program 7"
+			},
+			{
+				"command": "spinasm.compileanduploadcurrentprogram",
+				"title": "SpinASM : Compile & Upload current program"
 			}
 		],
 		"languages": [

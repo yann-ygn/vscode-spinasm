@@ -4,22 +4,30 @@ const cp = require('child_process');
 
 const Logs = require('./logs.js');
 
+/**
+ * @brief A project is an ensemble of program files that can be compiled into output files ready to be programmed into an eeprom
+ */
 class Project {
     constructor(folder) {
-        this.rootFolder = folder;
-        this.outputFolder = path.join(this.rootFolder, "output");
-        this.iniFilePath = path.join(this.rootFolder, 'settings.ini');
-        this.compiler = '';
-        this.compilerArguments = [];
-        this.programs = [];
+        this.rootFolder = folder; // Root folder of the project
+        this.outputFolder = path.join(this.rootFolder, "output"); // Output folder for the compiled programs
+        this.iniFilePath = path.join(this.rootFolder, 'settings.ini'); // Settings file
+        this.outputBinFile = path.join(this.outputFolder, "output.bin"); // Output file in .bin format, static name
+        this.compiler = ''; // Compiler command line
+        this.compilerArguments = []; // Compiler command line arguments
+        this.programs = []; // Programs array
+        this.outputs = []; // Output files array
     }
 
+    /**
+     * @brief Initialize a blank project in the current directory
+     */
     createProjectStructure() {
         
-        // Program content
+        // Blank program content
         const programContent = ";Blank program";
 
-        // .ini file
+        // Basic .ini file content
         const iniFileContent = 
 `;Project config file
 
@@ -37,7 +45,7 @@ options = -s
 ;Serial port for the programmer
 port = COM6
 `
-
+        // A blank project is 7 banks
         for (let i = 0; i < 8; i++) {
             let folder = path.join(this.rootFolder, "bank_" + i);
             let file = path.join(folder, i + "_programName.spn");
@@ -49,7 +57,7 @@ port = COM6
                 catch (err) {
                     throw new Error('Could not create ' + folder + ' : ' + err.message);
                 }
-                
+
                 try {
                     fs.writeFileSync(file, programContent) // Blank program file
                 }
@@ -90,6 +98,9 @@ port = COM6
         }
     }
 
+    /**
+     * @brief Iterate thru the banks folder to find valid program files
+     */
     getAvailablePrograms() {
         // Reset the program array
         this.programs = [];
@@ -105,8 +116,10 @@ port = COM6
             // Add it to the array if it exists
             if (programFile) {					
                 let strProg = path.join(currentProgramFolder, programFile.toString());
+                let strOut = path.join(this.outputFolder, path.parse(programFile[0]).name.toString() + '.hex');
 
                 this.programs[i] = strProg;
+                this.outputs[i] = strOut;
             }
             else {
                 this.programs[i] = null;
@@ -119,19 +132,17 @@ port = COM6
      */
     removeHexPrograms() {
 
-        for (let i = 0; i < 8; i++) {
-            let file = path.join(this.outputFolder, "output_" + i + ".hex")
-
-            if (fs.existsSync(file)) {
+        this.outputs.forEach(output => {
+            if (fs.existsSync(output)) {
                 try {
-                    Logs.log(0, "Removing file : " + file)
-                    fs.unlinkSync(file);
+                    Logs.log(0, "Removing file : " + output)
+                    fs.unlinkSync(output);
                 }
                 catch(err) {
-                    throw new Error('Could not remove ' + file + ' : ' + err.message);
+                    throw new Error('Could not remove ' + output + ' : ' + err.message);
                 }
             }
-        }
+        });
     }
 
     /**
@@ -141,7 +152,7 @@ port = COM6
      */
     removeHexProgram(program) {
 
-        let file = path.join(this.outputFolder, "output_" + program + ".hex");
+        let file = this.outputs[program];
 
         if (fs.existsSync(file)) {
             try {
@@ -159,19 +170,22 @@ port = COM6
      */
     removeBinPrograms() {
 
-        let file = path.join(this.outputFolder, "output.bin");
-
-        if (fs.existsSync(file)) {
+        if (fs.existsSync(this.outputBinFile)) {
             try {
-                Logs.log(0, "Removing file : " + file)
-                fs.unlinkSync(file);
+                Logs.log(0, "Removing file : " + this.outputBinFile)
+                fs.unlinkSync(this.outputBinFile);
             }
             catch(err) {
-                throw new Error('Could not remove ' + file + ' : ' + err.message);
+                throw new Error('Could not remove ' + this.outputBinFile + ' : ' + err.message);
             }
         }
     }
 
+    /**
+     * @brief Initialize the compiler
+     * @param {*} compiler Compiler command line
+     * @param {Array} compilerArgs Args array
+     */
     buildSetup(compiler, compilerArgs) {
 
         this.compilerArguments = []; // Reset the arg array
@@ -189,13 +203,20 @@ port = COM6
             Logs.log(0, "Program " + this.programs.indexOf(program) + " : " + program);
         });
 
+        this.outputs.forEach(output => {
+            Logs.log(0, "Output " + this.outputs.indexOf(output) + " : " + output);
+        });
+
         Logs.log(0, "Compiler ready");
     }
     
+    /**
+     * @brief Run the compiler used the stored command and args
+     */
     runCompiler () {
 
         try {
-            let output = cp.spawnSync(this.compiler, this.compilerArguments, {encoding: 'utf8'});
+            let output = cp.spawnSync(this.compiler, this.compilerArguments, {encoding: 'utf8'}); // Sync exec
             
             Logs.log(0, "asfv1 return code : " + output.status)
 
@@ -214,6 +235,10 @@ port = COM6
         }
     }
 
+    /**
+     * @brief Compile a program to hex
+     * @param {Number} program Program #
+     */
     compileProgramToHex(program) {
 
         try {
@@ -223,7 +248,7 @@ port = COM6
                 this.compilerArguments.push('-p');
                 this.compilerArguments.push(program);
                 this.compilerArguments.push(this.programs[program].toString());
-                this.compilerArguments.push(path.join(this.outputFolder, "output_" + program + ".hex").toString());
+                this.compilerArguments.push(this.outputs[program].toString());
 
                 let result = this.runCompiler();
 
@@ -248,15 +273,18 @@ port = COM6
         }
     }
 
+    /**
+     * @brief Compile a program to bin
+     * @param {Number} program 
+     */
     compileProgramtoBin(program) {
         try {
-
             if (this.programs[program]) {
 
                 this.compilerArguments.push('-p');
                 this.compilerArguments.push(this.programs.indexOf(program));
                 this.compilerArguments.push(this.programs[program].toString());
-                this.compilerArguments.push(path.join(this.outputFolder, "output.bin").toString());
+                this.compilerArguments.push(this.outputBinFile.toString());
 
                 let result = this.runCompiler();
 
@@ -278,61 +306,6 @@ port = COM6
             throw new Error(error.message);
         }
     }
-
-    /*
-    async runCompiler(command) {
-
-        try {
-            const { stdout, stderr } = await exec(command);
-
-            if (stderr) {
-                Logs.log(0, "asfv1 stderr : " + stderr);
-            }
-            if (stdout) {
-                Logs.log(0, "asfv1 stdout : " + stdout);
-            }
-        } 
-        catch (err) {
-            Logs.log(0, "asfv1 returned an error : " + err.code + err.message);
-        }
-    }
-
-    compileProgramsToBin(compilerCommand) {
-
-        this.programs.forEach(program => {
-            if (program)
-            {
-                let command =  compilerCommand + ' -p ' + this.programs.indexOf(program) + ' ' + program + ' ' + Utils.sanitizePath(path.join(this.outputFolder, "output.bin"));
-                Logs.log(0, "Compiler command : " + command);
-
-                this.runCompiler(command);
-            }
-        });
-    }
-
-    compileProgramToHex(compilerCommand, program) {
-
-        if (this.programs[program])
-        {
-            let command =  compilerCommand + ' -p ' + program + ' ' + this.programs[program] + ' ' + Utils.sanitizePath(path.join(this.outputFolder, "output_" + program + ".hex"));
-            Logs.log(0, "Compiler command : " + command);
-
-            this.runCompiler(command);
-        }
-    }
-
-    compileProgramsToHex(compilerCommand) {
-
-        this.programs.forEach(program => {
-            if (program)
-            {
-                let command =  compilerCommand + ' -p ' + this.programs.indexOf(program) + ' ' + program + ' ' + Utils.sanitizePath(path.join(this.outputFolder, "output_" + this.programs.indexOf(program) + ".hex"));
-                Logs.log(0, "Compiler command : " + command);
-
-                this.runCompiler(command);
-            }
-        });
-    }*/
 }
 
 module.exports = Project;
