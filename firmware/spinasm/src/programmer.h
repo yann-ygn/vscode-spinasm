@@ -18,7 +18,6 @@ enum orders
 class Programmer
 {
     private:
-        bool m_busy = false; // Is the programmer busy
         bool m_newOrder = false;
         uint8_t m_currentOrder = 0; // Current order being processed
         uint8_t m_currentMessage = 0; // Current serial message to process
@@ -29,6 +28,9 @@ class Programmer
         uint8_t m_length = 0;
         bool m_dataExpected = false;
         bool m_error = false;
+
+        uint32_t m_now = 0;
+        uint32_t m_lastDataTime = 0;
 
         bool m_receiveInProgress = false;
         uint8_t m_startMarker = 60;

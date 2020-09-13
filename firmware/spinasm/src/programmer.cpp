@@ -19,6 +19,8 @@ void Programmer::processSerialInput()
         delay(1);
         m_currentChar = Serial.read();
 
+        m_now = millis();
+
         if (m_receiveInProgress)
         {
             if (m_currentChar != m_endMarker) // Data to bufffer
@@ -26,17 +28,45 @@ void Programmer::processSerialInput()
                 m_data[m_index] = m_currentChar;
                 m_index ++;
                 m_dataBytes = m_index;
+
+                m_lastDataTime = m_now;
             }
             else // End received
             {
                 m_newData = true;
                 m_receiveInProgress = false;
             }
+
+            if ((m_now - m_lastDataTime) > 1000) // There's a receive in progress but no new data for a second, trigger an error
+            {
+                m_response[0] = nok;
+                Serial.write(m_response, 1);
+
+                m_error = true;
+            }
         }
 
         else if (m_currentChar == m_startMarker) // Start received
         {
             m_receiveInProgress = true;
+
+            m_lastDataTime = m_now;
+        }
+
+        else if ((m_now - m_lastDataTime) > 1000) // Timeout
+        {
+            m_response[0] = nok;
+            Serial.write(m_response, 1);
+
+            m_error = true;
+        }
+
+        else // WTF case, data received makes no sense
+        {
+            m_response[0] = nok;
+            Serial.write(m_response, 1);
+
+            m_error = true;
         }
     }
 
