@@ -35,15 +35,15 @@ function activate(context) {
 				Logs.log(1, error.message);
 			}
 		}),
-	
+
 		vscode.commands.registerCommand('spinasm.compileprogram0', function () {
 
 			try {
 				config.readConfigFile();
 				project.buildSetup(config.readCompilerCommand(), config.readCompilerArgs());
-				
-				project.compileProgramToHex(0);				
-			} 
+
+				project.compileProgramToHex(0);
+			}
 			catch (error) {
 				Logs.log(1, error.message);
 			}
@@ -54,9 +54,9 @@ function activate(context) {
 			try {
 				config.readConfigFile();
 				project.buildSetup(config.readCompilerCommand(), config.readCompilerArgs());
-				
-				project.compileProgramToHex(1);				
-			} 
+
+				project.compileProgramToHex(1);
+			}
 			catch (error) {
 				Logs.log(1, error.message);
 			}
@@ -67,9 +67,9 @@ function activate(context) {
 			try {
 				config.readConfigFile();
 				project.buildSetup(config.readCompilerCommand(), config.readCompilerArgs());
-				
-				project.compileProgramToHex(2);				
-			} 
+
+				project.compileProgramToHex(2);
+			}
 			catch (error) {
 				Logs.log(1, error.message);
 			}
@@ -80,9 +80,9 @@ function activate(context) {
 			try {
 				config.readConfigFile();
 				project.buildSetup(config.readCompilerCommand(), config.readCompilerArgs());
-				
-				project.compileProgramToHex(3);				
-			} 
+
+				project.compileProgramToHex(3);
+			}
 			catch (error) {
 				Logs.log(1, error.message);
 			}
@@ -93,9 +93,9 @@ function activate(context) {
 			try {
 				config.readConfigFile();
 				project.buildSetup(config.readCompilerCommand(), config.readCompilerArgs());
-				
-				project.compileProgramToHex(4);				
-			} 
+
+				project.compileProgramToHex(4);
+			}
 			catch (error) {
 				Logs.log(1, error.message);
 			}
@@ -106,9 +106,9 @@ function activate(context) {
 			try {
 				config.readConfigFile();
 				project.buildSetup(config.readCompilerCommand(), config.readCompilerArgs());
-				
-				project.compileProgramToHex(5);				
-			} 
+
+				project.compileProgramToHex(5);
+			}
 			catch (error) {
 				Logs.log(1, error.message);
 			}
@@ -120,9 +120,9 @@ function activate(context) {
 			try {
 				config.readConfigFile();
 				project.buildSetup(config.readCompilerCommand(), config.readCompilerArgs());
-				
-				project.compileProgramToHex(6);				
-			} 
+
+				project.compileProgramToHex(6);
+			}
 			catch (error) {
 				Logs.log(1, error.message);
 			}
@@ -133,9 +133,9 @@ function activate(context) {
 			try {
 				config.readConfigFile();
 				project.buildSetup(config.readCompilerCommand(), config.readCompilerArgs());
-				
-				project.compileProgramToHex(7);				
-			} 
+
+				project.compileProgramToHex(7);
+			}
 			catch (error) {
 				Logs.log(1, error.message);
 			}
@@ -149,8 +149,8 @@ function activate(context) {
 
 				let currentProgram = project.programs.indexOf(vscode.window.activeTextEditor.document.uri.fsPath.toString()); // Get the program # of the current opened document
 
-				project.compileProgramToHex(currentProgram);				
-			} 
+				project.compileProgramToHex(currentProgram);
+			}
 			catch (error) {
 				Logs.log(1, error.message);
 			}
@@ -165,7 +165,7 @@ function activate(context) {
 				project.programs.forEach(program => {
 					project.compileProgramToHex(project.programs.indexOf[program]);
 				});
-			} 
+			}
 			catch (error) {
 				Logs.log(1, error.message);
 			}
@@ -181,7 +181,7 @@ function activate(context) {
 				project.programs.forEach(program => {
 					project.compileProgramtoBin(project.programs.indexOf[program]);
 				});
-			} 
+			}
 			catch (error) {
 				Logs.log(1, error.message);
 			}
@@ -194,7 +194,7 @@ function activate(context) {
 				let programData = prog.readIntelHexData(project.outputs[0]);
 
 				prog.uploadProgram(0, programData.address, programData.data);
-			} 
+			}
 			catch (error) {
 				Logs.log(1, error.message);
 			}
@@ -207,7 +207,7 @@ function activate(context) {
 				let programData = prog.readIntelHexData(project.outputs[1]);
 
 				prog.uploadProgram(1, programData.address, programData.data);
-			} 
+			}
 			catch (error) {
 				Logs.log(1, error.message);
 			}
@@ -222,7 +222,7 @@ function activate(context) {
 				Logs.log(0, programData.address);
 
 				prog.uploadProgram(2, programData.address, programData.data);
-			} 
+			}
 			catch (error) {
 				Logs.log(1, error.message);
 			}
@@ -235,7 +235,7 @@ function activate(context) {
 				let programData = prog.readIntelHexData(project.outputs[3]);
 
 				prog.uploadProgram(3, programData.address, programData.data);
-			} 
+			}
 			catch (error) {
 				Logs.log(1, error.message);
 			}
@@ -248,7 +248,7 @@ function activate(context) {
 				let programData = prog.readIntelHexData(project.outputs[4]);
 
 				prog.uploadProgram(4, programData.address, programData.data);
-			} 
+			}
 			catch (error) {
 				Logs.log(1, error.message);
 			}
@@ -261,7 +261,7 @@ function activate(context) {
 				let programData = prog.readIntelHexData(project.outputs[5]);
 
 				prog.uploadProgram(5, programData.address, programData.data);
-			} 
+			}
 			catch (error) {
 				Logs.log(1, error.message);
 			}
@@ -274,7 +274,7 @@ function activate(context) {
 				let programData = prog.readIntelHexData(project.outputs[6]);
 
 				prog.uploadProgram(6, programData.address, programData.data);
-			} 
+			}
 			catch (error) {
 				Logs.log(1, error.message);
 			}
@@ -287,7 +287,7 @@ function activate(context) {
 				let programData = prog.readIntelHexData(project.outputs[7]);
 
 				prog.uploadProgram(7, programData.address, programData.data);
-			} 
+			}
 			catch (error) {
 				Logs.log(1, error.message);
 			}
@@ -304,7 +304,7 @@ function activate(context) {
 				let programData = prog.readIntelHexData(project.outputs[0]);
 
 				prog.uploadProgram(0, programData.address, programData.data);
-			} 
+			}
 			catch (error) {
 				Logs.log(1, error.message);
 			}
@@ -321,7 +321,7 @@ function activate(context) {
 				let programData = prog.readIntelHexData(project.outputs[1]);
 
 				prog.uploadProgram(1, programData.address, programData.data);
-			} 
+			}
 			catch (error) {
 				Logs.log(1, error.message);
 			}
@@ -338,7 +338,7 @@ function activate(context) {
 				let programData = prog.readIntelHexData(project.outputs[2]);
 
 				prog.uploadProgram(2, programData.address, programData.data);
-			} 
+			}
 			catch (error) {
 				Logs.log(1, error.message);
 			}
@@ -355,7 +355,7 @@ function activate(context) {
 				let programData = prog.readIntelHexData(project.outputs[3]);
 
 				prog.uploadProgram(3, programData.address, programData.data);
-			} 
+			}
 			catch (error) {
 				Logs.log(1, error.message);
 			}
@@ -372,7 +372,7 @@ function activate(context) {
 				let programData = prog.readIntelHexData(project.outputs[4]);
 
 				prog.uploadProgram(4, programData.address, programData.data);
-			} 
+			}
 			catch (error) {
 				Logs.log(1, error.message);
 			}
@@ -389,7 +389,7 @@ function activate(context) {
 				let programData = prog.readIntelHexData(project.outputs[5]);
 
 				prog.uploadProgram(5, programData.address, programData.data);
-			} 
+			}
 			catch (error) {
 				Logs.log(1, error.message);
 			}
@@ -406,7 +406,7 @@ function activate(context) {
 				let programData = prog.readIntelHexData(project.outputs[6]);
 
 				prog.uploadProgram(6, programData.address, programData.data);
-			} 
+			}
 			catch (error) {
 				Logs.log(1, error.message);
 			}
@@ -423,7 +423,7 @@ function activate(context) {
 				let programData = prog.readIntelHexData(project.outputs[7]);
 
 				prog.uploadProgram(7, programData.address, programData.data);
-			} 
+			}
 			catch (error) {
 				Logs.log(1, error.message);
 			}

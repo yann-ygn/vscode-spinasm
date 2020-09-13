@@ -91,7 +91,7 @@ class Programmer {
         }
         catch (error) {
             throw error.message;
-        }        
+        }
     }
 
     /**
@@ -121,7 +121,7 @@ class Programmer {
         } 
         catch (error) {
             throw error.message;
-        }        
+        }
     }
 
     /**
@@ -269,7 +269,7 @@ class Programmer {
      * @param {Number} address Offset address
      */
     async readProgram(address) {
-        
+
         let buffer = Buffer.alloc(512); // Data buffer to return
 
         if (await this.sendReadOrder()) {

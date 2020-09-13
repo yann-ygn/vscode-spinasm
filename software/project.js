@@ -209,7 +209,7 @@ port = COM6
 
         Logs.log(0, "Compiler ready");
     }
-    
+
     /**
      * @brief Run the compiler used the stored command and args
      */
