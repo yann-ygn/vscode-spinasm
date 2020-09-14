@@ -9,5 +9,5 @@ This repository is divided into the following folders :
 * [software](https://github.com/effectspcbs/vscode-spinasm/tree/master/software) : The VSCode module.
 * [hardware](https://github.com/effectspcbs/vscode-spinasm/tree/master/hardware) : Altium sources for the programmer's PCB.
 * [firmware](https://github.com/effectspcbs/vscode-spinasm/tree/master/firmware/spinasm) : C++ sources for the programmer's firmware.
-* [assembly](https://github.com/effectspcbs/vscode-spinasm/tree/master/assembly) : A 3D render of the completed programmer.
+* [assembly](https://github.com/effectspcbs/vscode-spinasm/tree/master/assembly) : Programmer assembly resources.
 
