@@ -45,6 +45,7 @@ options = -s
 ;Serial port for the programmer
 port = COM6
 `
+console.log('prout');
         // A blank project is 7 banks
         for (let i = 0; i < 8; i++) {
             let folder = path.join(this.rootFolder, "bank_" + i);

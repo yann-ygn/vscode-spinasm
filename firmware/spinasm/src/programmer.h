@@ -29,8 +29,8 @@ class Programmer
         bool m_dataExpected = false;
         bool m_error = false;
 
-        uint32_t m_now = 0;
-        uint32_t m_lastDataTime = 0;
+        //uint32_t m_now = 0;
+        //uint32_t m_lastDataTime = 0;
 
         bool m_receiveInProgress = false;
         uint8_t m_startMarker = 60;

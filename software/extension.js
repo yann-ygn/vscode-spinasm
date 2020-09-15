@@ -293,6 +293,22 @@ function activate(context) {
 			}
 		}),
 
+		vscode.commands.registerCommand('spinasm.uploadcurrentprogram', function () {
+
+			try {
+				config.readConfigFile();
+
+				let currentProgram = project.programs.indexOf(vscode.window.activeTextEditor.document.uri.fsPath.toString()); // Get the program # of the current opened document
+				
+				let programData = prog.readIntelHexData(project.outputs[currentProgram]);
+
+				prog.uploadProgram(currentProgram, programData.address, programData.data);
+			}
+			catch (error) {
+				Logs.log(1, error.message);
+			}
+		}),
+
 		vscode.commands.registerCommand('spinasm.compileanduploadprogram0', function () {
 
 			try {
@@ -412,7 +428,7 @@ function activate(context) {
 			}
 		}),
 
-		vscode.commands.registerCommand('spinasm.compileanduploadprogram1', function () {
+		vscode.commands.registerCommand('spinasm.compileanduploadprogram7', function () {
 
 			try {
 				config.readConfigFile();
@@ -427,7 +443,26 @@ function activate(context) {
 			catch (error) {
 				Logs.log(1, error.message);
 			}
-		})
+		}),
+
+		vscode.commands.registerCommand('spinasm.compileanduploadcurrentprogram', function () {
+
+			try {
+				config.readConfigFile();
+				project.buildSetup(config.readCompilerCommand(), config.readCompilerArgs());
+
+				let currentProgram = project.programs.indexOf(vscode.window.activeTextEditor.document.uri.fsPath.toString()); // Get the program # of the current opened document
+
+				project.compileProgramToHex(currentProgram);
+
+				let programData = prog.readIntelHexData(project.outputs[currentProgram]);
+
+				prog.uploadProgram(currentProgram, programData.address, programData.data);
+			}
+			catch (error) {
+				Logs.log(1, error.message);
+			}
+		})		
 	);
 }
 exports.activate = activate;
