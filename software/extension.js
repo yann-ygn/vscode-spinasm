@@ -15,11 +15,17 @@ const rootFolderPath = vscode.workspace.rootPath.toString();
 // Project object
 const project = new Project(rootFolderPath);
 
-// Config object
-const config = new Config(project.iniFilePath);
+// unitialized object
+let config = undefined;
+let prog = undefined;
 
-// Programmer object
-const prog = new Programmer(config.readSerialPort());
+if (! project.emptyProject()) {
+	// Config object
+	config = new Config(project.iniFilePath);
+
+	// Programmer object
+	prog = new Programmer(config.readSerialPort());
+}
 
 function activate(context) {
 	context.subscriptions.push(
@@ -29,6 +35,8 @@ function activate(context) {
 			try {
 				Logs.log(0, "Creating project structure in folder : " + project.rootFolder);
 				project.createProjectStructure();
+				config = new Config(project.iniFilePath);
+				prog = new Programmer(config.readSerialPort());
 				Logs.log(0, "Project structure created");
 			}
 			catch (error) {

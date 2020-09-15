@@ -20,6 +20,18 @@ class Project {
     }
 
     /**
+     * @brief 
+     */
+    emptyProject() {
+        if (fs.existsSync(this.iniFilePath)) {
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
+
+    /**
      * @brief Initialize a blank project in the current directory
      */
     createProjectStructure() {
@@ -45,7 +57,7 @@ options = -s
 ;Serial port for the programmer
 port = COM6
 `
-console.log('prout');
+
         // A blank project is 7 banks
         for (let i = 0; i < 8; i++) {
             let folder = path.join(this.rootFolder, "bank_" + i);
