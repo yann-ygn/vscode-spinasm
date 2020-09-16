@@ -19,7 +19,7 @@ void Programmer::processSerialInput()
         delay(1);
         m_currentChar = Serial.read();
 
-        //m_now = millis();
+        m_now = millis();
 
         if (m_receiveInProgress)
         {
@@ -29,14 +29,14 @@ void Programmer::processSerialInput()
                 m_index ++;
                 m_dataBytes = m_index;
 
-                //m_lastDataTime = m_now;
+                m_lastDataTime = m_now;
             }
             else // End received
             {
                 m_newData = true;
                 m_receiveInProgress = false;
             }
-/**
+
             if ((m_now - m_lastDataTime) > 1000) // There's a receive in progress but no new data for a second, trigger an error
             {
                 m_response[0] = nok;
@@ -44,16 +44,15 @@ void Programmer::processSerialInput()
 
                 m_error = true;
             }
-**/
         }
 
         else if (m_currentChar == m_startMarker) // Start received
         {
             m_receiveInProgress = true;
 
-            //m_lastDataTime = m_now;
+            m_lastDataTime = m_now;
         }
-/**
+
         else if ((m_now - m_lastDataTime) > 1000) // Timeout
         {
             m_response[0] = nok;
@@ -69,7 +68,6 @@ void Programmer::processSerialInput()
 
             m_error = true;
         }
-**/
     }
 
     if (m_newData)
