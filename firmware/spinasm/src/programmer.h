@@ -33,8 +33,8 @@ class Programmer
         uint32_t m_lastDataTime = 0;
 
         bool m_receiveInProgress = false;
-        uint8_t m_startMarker = 60;
-        uint8_t m_endMarker = 62;
+        const uint8_t m_startMarker = 250;
+        const uint8_t m_endMarker = 251;
         uint8_t m_currentChar = 0;
         uint8_t m_data[32];
         uint8_t m_response[1];

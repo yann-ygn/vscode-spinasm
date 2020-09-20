@@ -12,6 +12,8 @@ class Programmer {
             baudRate: 57600,
             autoOpen: false
         });
+        this.startMarker = 0xFA;
+        this.endMarker = 0xFB;
     }
 
     /**
@@ -24,9 +26,9 @@ class Programmer {
             if (this.serialPort.isOpen) {
                 let data = Buffer.alloc(3); // Order buffer
                 let result = Buffer.alloc(1); // Response buffer
-                data[0] = 0x3C; // Start marker
+                data[0] = this.startMarker; // Start marker
                 data[1] = 0x01; // ruthere
-                data[2] = 0x3E; // End marker
+                data[2] = this.endMarker; // End marker
 
                 result = await this.writeBufferReadBuffer1(data); // Write data and await 1 byte answer
 
@@ -72,9 +74,9 @@ class Programmer {
             if (this.serialPort.isOpen) {
                 let data = Buffer.alloc(3); // Order buffer
                 let result = Buffer.alloc(1); // Response buffer
-                data[0] = 0x3C; // Start marker
+                data[0] = this.startMarker; // Start marker
                 data[1] = 0x04; // write
-                data[2] = 0x3E; // End marker
+                data[2] = this.endMarker; // End marker
 
                 result = await this.writeBufferReadBuffer1(data); // Write data and await 1 byte answer
 
@@ -102,9 +104,9 @@ class Programmer {
             if (this.serialPort.isOpen) {
                 let data = Buffer.alloc(3); // Order buffer
                 let result = Buffer.alloc(1); // Response buffer
-                data[0] = 0x3C; // Start marker
+                data[0] = this.startMarker; // Start marker
                 data[1] = 0x03; // read
-                data[2] = 0x3E; // End marker
+                data[2] = this.endMarker; // End marker
 
                 result = await this.writeBufferReadBuffer1(data); // Write data and await 1 byte answer
 
@@ -132,9 +134,9 @@ class Programmer {
             if (this.serialPort.isOpen) {
                 let data = Buffer.alloc(3); // Order buffer
                 let result = Buffer.alloc(1); // Response buffer
-                data[0] = 0x3C; // Start marker
+                data[0] = this.startMarker; // Start marker
                 data[1] = 0x05; // end
-                data[2] = 0x3E; // End marker
+                data[2] = this.endMarker; // End marker
 
                 result = await this.writeBufferReadBuffer1(data); // Write data and await 1 byte answer
 
@@ -162,10 +164,10 @@ class Programmer {
             if (this.serialPort.isOpen) {
                 let data = Buffer.alloc(4); // Order buffer
                 let result = Buffer.alloc(1); // Response buffer
-                data[0] = 0x3C; // Start marker
+                data[0] = this.startMarker; // Start marker
                 data[1] = (address >> 8) & 0xFF; // Address HB
                 data[2] = address & 0xFF; // Address LB
-                data[3] = 0x3E; // End marker
+                data[3] = this.endMarker; // End marker
 
                 result = await this.writeBufferReadBuffer1(data); // Write data and await 1 byte answer
 
@@ -192,10 +194,10 @@ class Programmer {
         try {
             if (this.serialPort.isOpen) {
                 let data = Buffer.alloc(4); // Order buffer
-                data[0] = 0x3C; // Start marker
+                data[0] = this.startMarker; // Start marker
                 data[1] = (address >> 8) & 0xFF; // Address HB
                 data[2] = address & 0xFF; // Address LB
-                data[3] = 0x3E; // End marker
+                data[3] = this.endMarker; // End marker
 
                 let result = Buffer.alloc(32); // Respose buffer
 
@@ -229,9 +231,9 @@ class Programmer {
 
                         if (await this.sendAddress(i)) { // The address was transmitted successfuly
 
-                            buffer[0] = 0x3C; // Start marker
+                            buffer[0] = this.startMarker; // Start marker
                             data.copy(buffer, 1, i - address, (i - address) + 32); // Buffer a page
-                            buffer[33] = 0x3E; // End marker
+                            buffer[33] = this.endMarker; // End marker
 
                             result = await this.writeBufferReadBuffer1(buffer); // Write it
 
