@@ -6,7 +6,7 @@ Eeprom eeprom0(0x50);
 
 void Programmer::programmerSetup()
 {
-    Serial.begin(57600);
+    Serial.begin(19200);
     eeprom0.eepromSetup();
 }
 

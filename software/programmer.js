@@ -2,6 +2,8 @@ const fs = require("fs");
 const sp = require('serialport');
 const bl = require('@serialport/parser-byte-length')
 const Logs = require('./logs.js');
+const { resolve } = require("path");
+const { rejects } = require("assert");
 
 /**
  * @brief A programmer can read compiled program files and send the data to the eeprom via an usb adapter
@@ -9,7 +11,7 @@ const Logs = require('./logs.js');
 class Programmer {
     constructor(port) {
         this.serialPort = new sp(port, {
-            baudRate: 57600,
+            baudRate: 19200,
             autoOpen: false
         });
         this.startMarker = 0xFA;
@@ -323,6 +325,7 @@ class Programmer {
                         Logs.log(0, "Verification sucess");
                     }
                     else {
+                        this.closeSerialPort();
                         throw new Error("Verification failed");
                     }
                 }
@@ -382,7 +385,15 @@ class Programmer {
      */
     writeBufferReadBuffer1(data) {
         const parser = this.serialPort.pipe(new bl({length: 1}))
-        return new Promise((resolve, reject) => {
+
+        const timeout = new Promise((resolve, reject) => {
+            const tm = setTimeout(() => {
+                clearTimeout(tm);
+                reject('Timeout');
+            }, 500);
+        });
+
+        const returnData = new Promise((resolve, reject) => {
             this.serialPort.write(data);
             parser.on('data', (response) => {
                 resolve(response);
@@ -392,6 +403,8 @@ class Programmer {
                 reject(err);
             });
         });
+
+        return Promise.race([returnData, timeout]);
     }
 
     /**
