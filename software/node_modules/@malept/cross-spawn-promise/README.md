@@ -1,6 +1,6 @@
 # `@malept/cross-spawn-promise`
 
-> A promisified version of `cross-spawn` with slightly different behavior & extra options.
+> A promisified version of [`cross-spawn`](https://npm.im/cross-spawn) with slightly different behavior & extra options.
 
 [![CI](https://github.com/malept/cross-spawn-promise/workflows/CI/badge.svg)](https://github.com/malept/cross-spawn-promise/actions?query=workflow%3ACI)
 [![NPM package](https://img.shields.io/npm/v/@malept/cross-spawn-promise.svg)](https://www.npmjs.com/package/@malept/cross-spawn-promise)
