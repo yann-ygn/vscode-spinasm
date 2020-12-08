@@ -20,7 +20,7 @@ class Project {
     }
 
     /**
-     * @brief 
+     * @brief Check if there is a settings.ini file in the current folder that would indicate it is a valid project folder
      */
     emptyProject() {
         if (fs.existsSync(this.iniFilePath)) {
@@ -57,8 +57,7 @@ options = -s
 ;Serial port for the programmer
 port = COM6
 `
-
-        // A blank project is 7 banks
+        // Create the 7 banks folders and blank program files
         for (let i = 0; i < 8; i++) {
             let folder = path.join(this.rootFolder, "bank_" + i);
             let file = path.join(folder, i + "_programName.spn");
@@ -67,15 +66,15 @@ port = COM6
                 try {
                     fs.mkdirSync(folder) // Bank folder
                 }
-                catch (err) {
-                    throw new Error('Could not create ' + folder + ' : ' + err.message);
+                catch (error) {
+                    throw new Error('Could not create ' + folder + ' : ' + error.message);
                 }
 
                 try {
                     fs.writeFileSync(file, programContent) // Blank program file
                 }
-                catch (err) {
-                    throw new Error('Could not create ' + file + ' : ' + err.message);
+                catch (error) {
+                    throw new Error('Could not create ' + file + ' : ' + error.message);
                 }
             }
             else { // Folder exists
@@ -85,34 +84,36 @@ port = COM6
                     try {
                         fs.writeFileSync(file, programContent) // Blank program file
                     }
-                    catch (err) {
-                        throw new Error('Could not create ' + file + ' : ' + err.message);
+                    catch (error) {
+                        throw new Error('Could not create ' + file + ' : ' + error.message);
                     }
                 }
             }
         }
 
+        // Create the output folder
         if (! fs.existsSync(this.outputFolder)) { // Output folder doesn't exist
             try {
                 fs.mkdirSync(this.outputFolder) // Create output folder folder
             }
-            catch (err) {
-                throw new Error('Could not create ' + this.outputFolder + ' : ' + err.message);
+            catch (error) {
+                throw new Error('Could not create ' + this.outputFolder + ' : ' + error.message);
             }
         }
 
-        if(! fs.existsSync(this.iniFilePath)) // Init file doesn't exist
+        // Create the ini file
+        if (! fs.existsSync(this.iniFilePath)) // Ini file doesn't exist
         {
             try {
                 fs.writeFileSync(this.iniFilePath, iniFileContent) // Create blank ini file
-            } catch (err) {
-                throw new Error('Could not create ' + this.iniFilePath + ' : ' + err.message);
+            } catch (error) {
+                throw new Error('Could not create ' + this.iniFilePath + ' : ' + error.message);
             }
         }
     }
 
     /**
-     * @brief Iterate thru the banks folder to find valid program files
+     * @brief Iterate thru the banks folder to find valid program files, a valid programfile being "x_programName.spn" where x is a number between 0 and 7
      */
     getAvailablePrograms() {
         // Reset the program array
@@ -144,15 +145,14 @@ port = COM6
      * @brief Delete the .hex programs from the fs
      */
     removeHexPrograms() {
-
         this.outputs.forEach(output => {
             if (fs.existsSync(output)) {
                 try {
                     Logs.log(0, "Removing file : " + output)
                     fs.unlinkSync(output);
                 }
-                catch(err) {
-                    throw new Error('Could not remove ' + output + ' : ' + err.message);
+                catch(error) {
+                    throw new Error('Could not remove ' + output + ' : ' + error.message);
                 }
             }
         });
@@ -164,7 +164,6 @@ port = COM6
      * @param {*} program 
      */
     removeHexProgram(program) {
-
         let file = this.outputs[program];
 
         if (fs.existsSync(file)) {
@@ -172,8 +171,8 @@ port = COM6
                 Logs.log(0, "Removing file : " + file)
                 fs.unlinkSync(file);
             }
-            catch(err) {
-                throw new Error('Could not remove ' + file + ' : ' + err.message);
+            catch(error) {
+                throw new Error('Could not remove ' + file + ' : ' + error.message);
             }
         }
     }
@@ -182,14 +181,13 @@ port = COM6
      * @brief Remove the .bin programs from the fs
      */
     removeBinPrograms() {
-
         if (fs.existsSync(this.outputBinFile)) {
             try {
                 Logs.log(0, "Removing file : " + this.outputBinFile)
                 fs.unlinkSync(this.outputBinFile);
             }
-            catch(err) {
-                throw new Error('Could not remove ' + this.outputBinFile + ' : ' + err.message);
+            catch(error) {
+                throw new Error('Could not remove ' + this.outputBinFile + ' : ' + error.message);
             }
         }
     }
@@ -200,7 +198,6 @@ port = COM6
      * @param {Array} compilerArgs Args array
      */
     buildSetup(compiler, compilerArgs) {
-
         this.compilerArguments = []; // Reset the arg array
         this.compiler = compiler; // Read the compiler command line
         this.compilerArguments = compilerArgs; // Read the args
@@ -227,7 +224,6 @@ port = COM6
      * @brief Run the compiler used the stored command and args
      */
     runCompiler () {
-
         try {
             let output = cp.spawnSync(this.compiler, this.compilerArguments, {encoding: 'utf8'}); // Sync exec
             
@@ -253,7 +249,6 @@ port = COM6
      * @param {Number} program Program #
      */
     compileProgramToHex(program) {
-
         try {
             this.removeHexProgram(program);
 

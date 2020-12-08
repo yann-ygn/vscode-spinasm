@@ -12,7 +12,6 @@ class Config {
      * @brief Read the config file passed to the constructor and return an ini object
      */
     readConfigFile() {
-
         try {
             if (fs.existsSync(this.iniFile)) { // Check if the file exists
                 this.config = ini.parse(fs.readFileSync(this.iniFile, 'utf-8')); // Parse the file
@@ -30,7 +29,6 @@ class Config {
      * @brief Return a sanitized compiler path from the config object
      */
     readCompilerCommand() {
-
         try {
             this.readConfigFile();
     
@@ -56,22 +54,15 @@ class Config {
      * @brief Return an array containing the compiler options
      */
     readCompilerArgs() {
+        let strCompOpt = this.config.asfv1.options.trim(); // Read the compiler options
+        if (strCompOpt && strCompOpt.match("(\ ?(-q|-c|-s))*")) { // Check if it's valid and save it
+            let compilerOptions = strCompOpt.split(' ');  // Form the array
 
-        try {
-            let strCompOpt = this.config.asfv1.options.trim(); // Read the compiler options
-            if (strCompOpt && strCompOpt.match("(\ ?(-q|-c|-s))*")) { // Check if it's valid and save it
-                let compilerOptions = strCompOpt.split(' ');  // Form the array
-
-                return compilerOptions;
-            }
-        }
-        catch {
-
+            return compilerOptions;
         }
     }
 
     readSerialPort() {
-
         this.readConfigFile();
 
         let port = (this.config.serial.port.trim());
