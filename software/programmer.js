@@ -2,8 +2,6 @@ const fs = require("fs");
 const sp = require('serialport');
 const bl = require('@serialport/parser-byte-length')
 const Logs = require('./logs.js');
-const { resolve } = require("path");
-const { rejects } = require("assert");
 
 /**
  * @brief A programmer can read compiled program files and send the data to the eeprom via an usb adapter
@@ -23,7 +21,7 @@ class Programmer {
      */
     async connectProgrammer() {
         try {
-            await this.openSerialPort();
+            await this.openSerialPort().catch(error => { throw new Error(error.message) });
 
             if (this.serialPort.isOpen) {
                 let data = Buffer.alloc(3); // Order buffer
@@ -38,7 +36,8 @@ class Programmer {
                     return true;
                 }
                 else {
-                    return false;
+                    this.disconnectProgrammer();
+                    throw new Error("Programmer connected but cannot access EEPROM");
                 }
             }
             else {
@@ -46,7 +45,7 @@ class Programmer {
             }
         } 
         catch (error) {
-            throw error.message;
+            throw new Error(error.message);
         }
     }
 
@@ -56,8 +55,9 @@ class Programmer {
     async disconnectProgrammer() {
         try {
             if (this.serialPort.isOpen) {
-                await this.closeSerialPort();
-                return true;
+                await this.closeSerialPort().catch(error => { throw new Error(error.message) });;
+                Logs.log(0, "Disconnecting programmer on port : " + this.serialPort.path);
+                Logs.log(0, "Programmer disconnected");
             }
             else {
                 throw new Error("Port already closed")
@@ -332,18 +332,12 @@ class Programmer {
                 else {
                     throw new Error("Write failed");
                 }
-
-                Logs.log(0, "Disconnecting programmer on port : " + this.serialPort.path);
-                if (await this.disconnectProgrammer()) {
-                    Logs.log(0, "Programmer disconnected");
-                }
-            }
-            else {
-                throw new Error("Programmer not connected");
+                
+                await this.disconnectProgrammer()
             }
         }
         catch (error) {
-            Logs.log(0, error.message);
+            Logs.log(1, error.message);
         }
     }
 

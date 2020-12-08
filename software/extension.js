@@ -319,7 +319,6 @@ function activate(context) {
 
 		vscode.commands.registerCommand('spinasm.compileanduploadprogram0', function () {
 
-			try {
 				config.readConfigFile();
 				project.buildSetup(config.readCompilerCommand(), config.readCompilerArgs());
 
@@ -328,10 +327,6 @@ function activate(context) {
 				let programData = prog.readIntelHexData(project.outputs[0]);
 
 				prog.uploadProgram(0, programData.address, programData.data);
-			}
-			catch (error) {
-				Logs.log(1, error.message);
-			}
 		}),
 
 		vscode.commands.registerCommand('spinasm.compileanduploadprogram1', function () {

@@ -11,16 +11,22 @@ class Logs {
 
     /**
      * @brief Log a message
-     * @param {*} type 0 = INFO, 1 = ERROR
-     * @param {*} message Message to log
+     * @param {Number} type 0 = INFO, 1 = ERROR
+     * @param {String} message Message to log
      */
     static log(type, message) {
-        if (type == 0) {
-            this.logChannel.appendLine(new Date().toISOString() + ' INFO : ' + message);
-        }
 
-        if (type == 1) {
-            this.logChannel.appendLine(new Date().toISOString() + ' ERROR : ' + message);
+        switch (type) {
+            case 0:
+                this.logChannel.appendLine(new Date().toISOString() + ' INFO : ' + message);
+                break;
+
+            case 1:
+                this.logChannel.appendLine(new Date().toISOString() + ' ERROR : ' + message);
+                break;
+
+            default:
+                break;
         }
     }
 }
