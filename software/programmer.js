@@ -37,7 +37,7 @@ class Programmer {
                 }
                 else {
                     this.disconnectProgrammer();
-                    throw new Error("Programmer connected but cannot access EEPROM");
+                    throw new Error("Programmer connected but EEPROM not ready");
                 }
             }
             else {
