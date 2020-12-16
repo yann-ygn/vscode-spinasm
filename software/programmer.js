@@ -9,7 +9,7 @@ const Logs = require('./logs.js');
 class Programmer {
     constructor(port) {
         this.serialPort = new sp(port, {
-            baudRate: 19200,
+            baudRate: 57600,
             autoOpen: false
         });
         this.startMarker = 0xFA;
