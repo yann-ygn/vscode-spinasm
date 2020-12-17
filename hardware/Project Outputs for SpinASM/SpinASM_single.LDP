@@ -1,0 +1,3 @@
+Layer Pairs Export File for PCB: C:\_dev\05 - Spinsemi\vscode-spinasm\hardware\SpinASM_single.PcbDoc
+LayersSetName=Top_Bot_Thru_Holes|DrillFile=spinasm_single-roundholes.txt|DrillLayers=gtl,gbl
+LayersSetName=Top_Bot_Slot_Holes|DrillFile=spinasm_single-slotholes.txt|DrillLayers=gtl,gbl
