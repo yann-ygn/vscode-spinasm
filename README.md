@@ -1,13 +1,27 @@
-# vscode-spimasm
+[![Contributors][contributors-shield]][contributors-url]
+[![Forks][forks-shield]][forks-url]
+[![Stargazers][stars-shield]][stars-url]
+[![Issues][issues-shield]][issues-url]
+[![MIT License][license-shield]][license-url]
 
-A suite of tools that aim to allow the writing of programs for the Spin Semicondutor's FV1 chip and their programming into an in-circuit EEPROM directly from VSCode. The idea being able to move completely from the SpinASM IDE to a modern cross-platform editor.
+<br />
+<p align="center">
+  <a href="https://github.com/othneildrew/Best-README-Template">
+    <img src="images/logo.png" alt="Logo" width="80" height="80">
+  </a>
 
-The cross-platform compilation is made possible by the alternate [asfv1](https://github.com/ndf-zz/asfv1) compiler. The programs are then sent to an in-circuit EEPROM by a custom arduino based programmer.
+  <h3 align="center">Best-README-Template</h3>
 
-This repository is divided into the following folders :
-
-* [software](https://github.com/effectspcbs/vscode-spinasm/tree/master/software) : The VSCode module.
-* [hardware](https://github.com/effectspcbs/vscode-spinasm/tree/master/hardware) : Altium sources for the programmer's PCB.
-* [firmware](https://github.com/effectspcbs/vscode-spinasm/tree/master/firmware/spinasm) : C++ sources for the programmer's firmware.
-* [assembly](https://github.com/effectspcbs/vscode-spinasm/tree/master/assembly) : Programmer assembly resources.
-
+  <p align="center">
+    An awesome README template to jumpstart your projects!
+    <br />
+    <a href="https://github.com/othneildrew/Best-README-Template"><strong>Explore the docs »</strong></a>
+    <br />
+    <br />
+    <a href="https://github.com/othneildrew/Best-README-Template">View Demo</a>
+    ·
+    <a href="https://github.com/othneildrew/Best-README-Template/issues">Report Bug</a>
+    ·
+    <a href="https://github.com/othneildrew/Best-README-Template/issues">Request Feature</a>
+  </p>
+</p>

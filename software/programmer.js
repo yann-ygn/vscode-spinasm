@@ -7,9 +7,9 @@ const Logs = require('./logs.js');
  * @brief A programmer can read compiled program files and send the data to the eeprom via an usb adapter
  */
 class Programmer {
-    constructor(port) {
+    constructor(port, baud) {
         this.serialPort = new sp(port, {
-            baudRate: 57600,
+            baudRate: baud,
             autoOpen: false
         });
         this.startMarker = 0xFA;

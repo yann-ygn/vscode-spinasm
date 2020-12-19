@@ -74,6 +74,19 @@ class Config {
             throw new Error("Invalid serial port set");
         }
     }
+
+    readBaudRate() {
+        this.readConfigFile();
+
+        let rate = (this.config.serial.baudrate.trim());
+
+        if (rate) {
+            return rate;
+        }
+        else {
+            throw new Error("Invalid serial port set");
+        }
+    }
 }
 
 module.exports = Config;
