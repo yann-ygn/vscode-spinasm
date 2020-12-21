@@ -1,27 +1,52 @@
-[![Contributors][contributors-shield]][contributors-url]
-[![Forks][forks-shield]][forks-url]
-[![Stargazers][stars-shield]][stars-url]
-[![Issues][issues-shield]][issues-url]
-[![MIT License][license-shield]][license-url]
-
 <br />
 <p align="center">
-  <a href="https://github.com/othneildrew/Best-README-Template">
-    <img src="images/logo.png" alt="Logo" width="80" height="80">
+  <a href="https://github.com/effectspcbs/vscode-spinasm">
+    <img src="_images/icon.png" alt="Logo" width="80" height="80">
   </a>
 
-  <h3 align="center">Best-README-Template</h3>
+  <h3 align="center">VSCode-SpinASM</h3>
 
   <p align="center">
-    An awesome README template to jumpstart your projects!
+    A set of tools to work with the Spinsemi FV-1 chip from VSCode.
     <br />
-    <a href="https://github.com/othneildrew/Best-README-Template"><strong>Explore the docs »</strong></a>
-    <br />
-    <br />
-    <a href="https://github.com/othneildrew/Best-README-Template">View Demo</a>
+    <a href="https://github.com/effectspcbs/vscode-spinasm/tree/master/software">VSCode module</a>
     ·
-    <a href="https://github.com/othneildrew/Best-README-Template/issues">Report Bug</a>
+    <a href="https://github.com/effectspcbs/vscode-spinasm/tree/master/hardware">Programmer</a>
     ·
-    <a href="https://github.com/othneildrew/Best-README-Template/issues">Request Feature</a>
+    <a href="https://github.com/effectspcbs/vscode-spinasm/tree/master/firmware/spinasm">Programmer's firmware</a>
+    ·
+    <a href="https://github.com/effectspcbs/vscode-spinasm/tree/master/assembly">Assembly resources</a>
   </p>
 </p>
+<br />
+
+---
+
+### Table of content
+
+- [About](#about)
+- [Building a programmer](#building-a-programmer)
+    - [From a PCB](#from-a-pcb)
+    - [From an Arduino board](#from-an-arduino-board)
+- [Using the VSCode module](#using-the-vscode-module)
+- [Links](#links)
+
+---
+
+## About
+
+---
+
+## Building a programmer
+
+### From a PCB
+
+### From an Arduino board
+
+---
+
+## Using the VSCode module
+
+---
+
+## Links
