@@ -83,7 +83,7 @@ The PCB use the [SOICbite](https://github.com/SimonMerrett/SOICbite) footprint a
 Which out of my SOIC clamp translates to :
 
 <br />
-<img align="left" src="_images/iscp_female.jpg" width="278" height="306">
+<img align="left" src="_images/iscp_female.jpg" width="347" height="382">
 
 Pin | ICSP pin
 --- | --- 
@@ -96,7 +96,6 @@ Pin | ICSP pin
 7 | MOSI
 8 | GND
 
-<br />
 <br />
 
 ### From an Arduino board
