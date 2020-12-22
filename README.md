@@ -30,6 +30,7 @@
     - [From an Arduino board](#from-an-arduino-board)
 - [Using the VSCode module](#using-the-vscode-module)
     - [Installation](#from-a-pcb)
+    - [Usage](#from-an-arduino-board)
     - [Commands](#from-an-arduino-board)
 - [Links](#links)
 
@@ -81,13 +82,19 @@ The PCB use the [SOICbite](https://github.com/SimonMerrett/SOICbite) footprint a
 
 Which out of my SOIC clamp translates to :
 
+<br />
 <img align="left" src="_images/iscp_female.jpg">
 
 Pin | ICSP pin
 --- | --- 
-Test | Test2
-
-
+1 | RST
+2 | +3.3V
+3 | SCK
+4 | *NC*
+5 | MISO
+6 | *NC*
+7 | MOSI
+8 | GND
 
 ### From an Arduino board
 
