@@ -48,7 +48,7 @@ To get started, all you need is to install the module and build a programmer.
 
 ### From a PCB
 
-You can find the current version gerber files [here](https://github.com/effectspcbs/vscode-spinasm/tree/master/assembly/Gerbers), there are two available :
+You can find the current gerber files [here](https://github.com/effectspcbs/vscode-spinasm/tree/master/assembly/Gerbers), there are two versions available :
 
 * Panel
 
