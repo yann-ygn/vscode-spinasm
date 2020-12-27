@@ -148,7 +148,6 @@ And finally upload the firmware :
 
 `platformio run --target program`
 
-<br />
 
 ### From an Arduino board
 
