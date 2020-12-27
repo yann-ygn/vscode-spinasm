@@ -67,10 +67,8 @@ You can find the current gerber files [here](https://github.com/effectspcbs/vsco
 A 150x100mm panel with mounting holes meant to be built using a stencil and this [support tool](https://github.com/effectspcbs/Parts/blob/master/Stencil%20support/support_2.STL).
 
 <p align="center">
-  <br />
   <img align="center" src="_images/panel.png">
 </p>
-<br />
 
 * Single
 
