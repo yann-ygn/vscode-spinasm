@@ -154,11 +154,59 @@ And finally upload the firmware :
 
 As there are many flavors of Arduino boards i will use two examples : the extremelly common Arduino Uno that we probably all have laying around and what i suppose would the ideal board for that purpose, the Arduino Pro Mini running at 3.3V.
 
-#### Bard setup
+<br />
+
+#### Board setup
+
+<br />
 
 #### Arduino Uno
 
-The Arduino Uno is not the ideal candidate for that very specific purpose as in most incarnation it will run off a 5V power supply while the target EEPROM will run at 3.3V. But it has to be the most common Arduino board out there so why not use it, all we need to make it talk the EEPROM are simple level shifters.
+The Arduino Uno is not the ideal candidate for that very specific purpose as in most incarnation it will run off a 5V power supply while the target EEPROM will run at 3.3V. But it has to be the most common Arduino board out there so why not use it, all we need to make it talk the EEPROM are simple level shifters. They are available as pre-made board but are really simple circuits :
+
+<p align="center">
+  <br />
+  <img src="_images/levelshift.png">
+</p>
+<br />
+
+Then the following are used to program the target circuit :
+
+<p align="center">
+  <br />
+  <img src="_images/uno.png">
+</p>
+<br />
+
+#### Arduino Pro Mini
+
+<br />
+
+#### Firmware upload
+
+Simply setup the platformio.ini as follows, for the Uno :
+
+```ini
+[env:uno]
+platform = atmelavr
+framework = arduino
+board = uno
+```
+
+Pro Mini :
+
+```ini
+[env:pro8MHzatmega328]
+platform = atmelavr
+framework = arduino
+board = pro8MHzatmega328
+```
+
+And upload the firmware :
+
+`platformio.exe run --target upload`
+
+<br />
 
 ---
 
