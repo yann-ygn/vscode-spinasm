@@ -75,38 +75,30 @@ A 150x100mm panel with mounting holes meant to be built using a stencil and this
 A single board to hand solder.
 
 <p align="center">
-  <br />
   <img src="_images/single.png">
 </p>
-<br />
 
 It is a very simple circuit that is basically a slimmed-down arduino board composed of a FTDI USB to UART chip and an AVR microcontroller, you can find the BOM [here](https://github.com/effectspcbs/vscode-spinasm/blob/master/assembly/BOM/BOM.xlsx).
 
-<br />
 
 #### FTDI chip setup
 
 The board is powered by the target circuit so you need to set the correct CBUS bits for the *VBUS_SENSE* pin and the RX/TX LEDs if you choose to include them in your build. This is done using the FT_PROG utility from FTDI. it's pretty straightforward to use : power the board, connect it to a computer via USB and set the correct bits :
 
 <p align="center">
-  <br />
   <img src="_images/ftprog.png">
 </p>
-<br />
 
 #### Firmware upload
 
 The PCB uses the [SOICbite](https://github.com/SimonMerrett/SOICbite) footprint as an ICSP header, the pinout on the board is as follow :
 
 <p align="center">
-  <br />
   <img src="_images/icsp.png">
 </p>
-<br />
 
 Which out of my SOIC clamp translates to :
 
-<br />
 <img align="left" src="_images/iscp_female.jpg" width="347" height="382">
 
 Pin | ICSP pin
@@ -151,33 +143,26 @@ And finally upload the firmware :
 
 As there are many flavors of Arduino boards i will use two examples : the extremelly common Arduino Uno that we probably all have laying around and what i suppose would the ideal board for that purpose, the Arduino Pro Mini running at 3.3V.
 
-<br />
 
 #### Board setup
 
-<br />
 
 #### Arduino Uno
 
 The Arduino Uno is not the ideal candidate for that very specific purpose as in most incarnation it will run off a 5V power supply while the target EEPROM will run at 3.3V. But it has to be the most common Arduino board out there so why not use it, all we need to make it talk the EEPROM are simple level shifters. They are available as pre-made board but are really simple circuits :
 
 <p align="center">
-  <br />
   <img src="_images/levelshift.png">
 </p>
-<br />
 
 Then the following are used to program the target circuit :
 
 <p align="center">
-  <br />
   <img src="_images/uno.png">
 </p>
-<br />
 
 #### Arduino Pro Mini
 
-<br />
 
 #### Firmware upload
 
@@ -203,7 +188,6 @@ And upload the firmware :
 
 `platformio.exe run --target upload`
 
-<br />
 
 ---
 
