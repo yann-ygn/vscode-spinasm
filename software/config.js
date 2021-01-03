@@ -81,7 +81,7 @@ class Config {
         let rate = (this.config.serial.baudrate.trim());
 
         if (rate) {
-            return rate;
+            return parseInt(rate, 10);
         }
         else {
             throw new Error("Invalid serial port set");
