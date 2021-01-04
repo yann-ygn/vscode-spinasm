@@ -428,7 +428,8 @@ function activate(context) {
 		})
 	);
 }
-exports.activate = activate;
+
+// exports.activate = activate;
 
 // prog method is called when your extension is deactivated
 function deactivate() {}
