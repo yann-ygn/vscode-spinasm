@@ -4,7 +4,7 @@
 
 void Eeprom::eepromSetup()
 {
-    Wire.setClock(100000);
+    Wire.setClock(10000);
     Wire.begin();
 }
 
