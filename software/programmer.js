@@ -320,6 +320,9 @@ class Programmer {
 
                     let result = Buffer.compare(data, resultBuffer); // Comparison result
 
+                    console.log(data.toString('hex'));
+                    console.log(resultBuffer.toString('hex'));
+
                     Logs.log(0, "Verifying...");
                     if (result == 0) { // 0 -> OK
                         Logs.log(0, "Verification sucess");
