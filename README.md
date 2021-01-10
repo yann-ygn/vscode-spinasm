@@ -166,7 +166,13 @@ Then the following are used to program the target circuit :
 
 #### Firmware upload
 
-Simply setup the platformio.ini as follows, for the Uno :
+The code requires a change in the base Arduino I2C library as the default buffer size is limited to 30 bytes, simply change the following value in the twi.h file:
+
+```cpp
+  #define TWI_BUFFER_LENGTH 34
+```
+
+After that, simply setup the platformio.ini as follows, for the Uno :
 
 ```ini
 [env:uno]
