@@ -155,7 +155,7 @@ The Arduino Uno is not the ideal candidate for that very specific purpose as in 
   <img src="_images/levelshift.png">
 </p>
 
-Then the following are used to program the target circuit :
+Then the following pins are used to program the target circuit :
 
 <p align="center">
   <img src="_images/uno.png">
@@ -163,10 +163,15 @@ Then the following are used to program the target circuit :
 
 #### Arduino Pro Mini
 
+The Arduino Pro Mini is pretty much what's inside the custom programmer minus the FTDI chip but any cheap USB to UART adapter will do as long as it can work at 3.3V. It is recommended to power the Arduino board from the target using the following pins:
+
+<p align="center">
+  <img src="_images/promini.png">
+</p>
 
 #### Firmware upload
 
-The code requires a change in the base Arduino I2C library as the default buffer size is limited to 30 bytes, simply change the following value in the twi.h file:
+The code requires a change in the base Arduino I2C library as the default buffer size is limited to 30 bytes, simply change the following value in the `twi.h` file:
 
 ```cpp
   #define TWI_BUFFER_LENGTH 34
@@ -193,6 +198,11 @@ board = pro8MHzatmega328
 And upload the firmware :
 
 `platformio.exe run --target upload`
+
+### Programmer wiring
+
+The target circuit should look like this:
+
 
 
 ---
