@@ -163,7 +163,7 @@ Then the following pins are used to program the target circuit :
 
 #### Arduino Pro Mini
 
-The Arduino Pro Mini is pretty much what's inside the custom programmer minus the FTDI chip but any cheap USB to UART adapter will do as long as it can work at 3.3V. It is recommended to power the Arduino board from the target using the following pins:
+The Arduino Pro Mini is pretty much what's inside the custom programmer minus the FTDI chip but any USB to UART adapter will do as long as it can work at 3.3V. It is recommended to power the Arduino board from the target using the following pinout:
 
 <p align="center">
   <img src="_images/promini.png">
@@ -177,7 +177,7 @@ The code requires a change in the base Arduino I2C library as the default buffer
   #define TWI_BUFFER_LENGTH 34
 ```
 
-After that, simply setup the platformio.ini as follows, for the Uno :
+After that, simply setup the platformio.ini file as follows, for the Uno :
 
 ```ini
 [env:uno]
