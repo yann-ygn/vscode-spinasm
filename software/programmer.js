@@ -12,8 +12,8 @@ class Programmer {
             baudRate: baud,
             autoOpen: false
         });
-        this.startMarker = 0xFA;
-        this.endMarker = 0xFB;
+        this.startMarker = 0x1E;
+        this.endMarker = 0x1F;
     }
 
     /**
@@ -80,7 +80,7 @@ class Programmer {
                 data[1] = 0x04; // write
                 data[2] = this.endMarker; // End marker
 
-                result = await this.writeBufferReadBuffer1(data); // Write data and await 1 byte answer
+                result = await this.writeBufferReadBuffer1(data).catch(error => { throw new Error(error.message) }); // Write data and await 1 byte answer
 
                 if (result[0] == 99) { // 99 -> OK
                     return true;
@@ -110,7 +110,7 @@ class Programmer {
                 data[1] = 0x03; // read
                 data[2] = this.endMarker; // End marker
 
-                result = await this.writeBufferReadBuffer1(data); // Write data and await 1 byte answer
+                result = await this.writeBufferReadBuffer1(data).catch(error => { throw new Error(error.message) }); // Write data and await 1 byte answer
 
                 if (result[0] == 99) { // 99 -> OK
                     return true;
@@ -140,7 +140,7 @@ class Programmer {
                 data[1] = 0x05; // end
                 data[2] = this.endMarker; // End marker
 
-                result = await this.writeBufferReadBuffer1(data); // Write data and await 1 byte answer
+                result = await this.writeBufferReadBuffer1(data).catch(error => { throw new Error(error.message) }); // Write data and await 1 byte answer
 
                 if (result[0] == 99) { // 99 -> OK
                     return true;
@@ -171,7 +171,7 @@ class Programmer {
                 data[2] = address & 0xFF; // Address LB
                 data[3] = this.endMarker; // End marker
 
-                result = await this.writeBufferReadBuffer1(data); // Write data and await 1 byte answer
+                result = await this.writeBufferReadBuffer1(data).catch(error => { throw new Error(error.message) }); // Write data and await 1 byte answer
 
                 if (result[0] == 99) {  // 99 -> OK
                     return true;
@@ -237,7 +237,7 @@ class Programmer {
                             data.copy(buffer, 1, i - address, (i - address) + 32); // Buffer a page
                             buffer[33] = this.endMarker; // End marker
 
-                            result = await this.writeBufferReadBuffer1(buffer); // Write it
+                            result = await this.writeBufferReadBuffer1(buffer).catch(error => { throw new Error(error.message) }); // Write it
 
                             if (result[0] == 98) { // Error writing
                                 throw new Error("Error writing page : " + i);

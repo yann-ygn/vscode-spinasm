@@ -174,7 +174,7 @@ The Arduino Pro Mini is pretty much what's inside the custom programmer minus th
 The code requires a change in the base Arduino I2C library as the default buffer size is limited to 30 bytes, simply change the following value in the `twi.h` file:
 
 ```cpp
-  #define TWI_BUFFER_LENGTH 34
+#define TWI_BUFFER_LENGTH 34
 ```
 
 After that, simply setup the platformio.ini file as follows, for the Uno :

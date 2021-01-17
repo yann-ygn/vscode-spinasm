@@ -370,7 +370,7 @@ function activate(context) {
 			config.readConfigFile();
 			project.buildSetup(config.readCompilerCommand(), config.readCompilerArgs());
 
-			project.compileProgramToHex(1);
+			project.compileProgramToHex(4);
 
 			let programData = prog.readIntelHexData(project.outputs[4]);
 
