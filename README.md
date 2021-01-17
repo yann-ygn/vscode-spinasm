@@ -83,7 +83,7 @@ It is a very simple circuit that is basically a slimmed-down arduino board compo
 
 #### FTDI chip setup
 
-The board is powered by the target circuit so you need to set the correct CBUS bits for the *VBUS_SENSE* pin and the RX/TX LEDs if you choose to include them in your build. This is done using the FT_PROG utility from FTDI. it's pretty straightforward to use : power the board, connect it to a computer via USB and set the correct bits :
+The board is powered by the target circuit so you need to set the correct CBUS bits for the *VBUS_SENSE* pin and the RX/TX LEDs if you choose to include them in your build. This is done using the FT_PROG utility from FTDI. it's pretty straightforward to use: power the board, connect it to a computer via USB and set the correct bits.
 
 <p align="center">
   <img src="_images/ftprog.png">
@@ -91,7 +91,7 @@ The board is powered by the target circuit so you need to set the correct CBUS b
 
 #### Firmware upload
 
-The PCB uses the [SOICbite](https://github.com/SimonMerrett/SOICbite) footprint as an ICSP header, the pinout on the board is as follow :
+The PCB uses the [SOICbite](https://github.com/SimonMerrett/SOICbite) footprint as an ICSP header, the pinout on the board is as follow:
 
 <p align="center">
   <img src="_images/icsp.png">
@@ -113,6 +113,7 @@ Pin | ICSP pin
 8 | GND
 
 <br />
+<br />
 
 The project uses VSCode and the PlatformIO module as a development environment, the repository is setup to upload the firmware via a generic AVRISP MKII programmer and target an ATMEGA328PB running at 12Mhz from an external crystal :
 
@@ -125,10 +126,8 @@ board_build.mcu = ATmega328PB
 board_build.f_cpu = 12000000L
 board_hardware.oscillator = external
 board_upload.speed = 57600
-
 upload_protocol = stk500v2
-upload_flags =
-    -Pusb
+upload_flags = -Pusb
 ```
 The next step is to set the fuse bits :
 
@@ -149,7 +148,7 @@ As there are many flavors of Arduino boards i will use two examples : the extrem
 
 #### Arduino Uno
 
-The Arduino Uno is not the ideal candidate for that very specific purpose as in most incarnation it will run off a 5V power supply while the target EEPROM will run at 3.3V. But it has to be the most common Arduino board out there so why not use it, all we need to make it talk the EEPROM are simple level shifters. They are available as pre-made board but are really simple circuits :
+The Arduino Uno is not the ideal candidate for that very specific purpose as in most incarnation it will run off a 5V power supply while the target EEPROM will run at 3.3V. But it has to be the most common Arduino board out there so why not use it, all that is needed to make it talk the EEPROM are simple level shifters. They are available as pre-made board but are really simple circuits :
 
 <p align="center">
   <img src="_images/levelshift.png">
@@ -163,7 +162,7 @@ Then the following pins are used to program the target circuit :
 
 #### Arduino Pro Mini
 
-The Arduino Pro Mini is pretty much what's inside the custom programmer minus the FTDI chip but any USB to UART adapter will do as long as it can work at 3.3V. It is recommended to power the Arduino board from the target using the following pinout:
+The Arduino Pro Mini is pretty much what's inside the custom programmer minus the FTDI chip but any USB to UART adapter will do as long as it can work at 3.3V. It is recommended to power the Arduino board from the target circuit using the following pinout:
 
 <p align="center">
   <img src="_images/promini.png">
