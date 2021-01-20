@@ -37,9 +37,9 @@
         - [Firmware upload](#firmware-upload)
     - [Programmer wiring](#programmer-wiring)
 - [Using the VSCode module](#using-the-vscode-module)
-    - [Installation](#from-a-pcb)
-    - [Usage](#from-an-arduino-board)
-    - [Commands](#from-an-arduino-board)
+    - [Installation](#installation)
+    - [Usage](#usage)
+    - [Commands](#commands)
 - [Links](#links)
 
 ---
