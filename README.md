@@ -200,7 +200,11 @@ And upload the firmware :
 
 ### Programmer wiring
 
-The target circuit should look like this:
+The target circuit should look like this and expose the following pins via some kind of header:
+
+<p align="center">
+  <img src="_images/schem.png">
+</p>
 
 
 
