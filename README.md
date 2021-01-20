@@ -206,11 +206,16 @@ The target circuit should look like this and expose the following pins via some 
   <img src="_images/schem.png">
 </p>
 
-
-
 ---
 
 ## Using the VSCode module
+
+### Installation
+
+As of right now the module is only available as standalone installer, you will find it at the root of the <a href="https://github.com/effectspcbs/vscode-spinasm/tree/master/software">source code</a> folder.
+
+### Usage
+
 
 ---
 
