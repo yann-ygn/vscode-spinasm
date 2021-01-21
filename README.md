@@ -38,7 +38,10 @@
     - [Programmer wiring](#programmer-wiring)
 - [Using the VSCode module](#using-the-vscode-module)
     - [Installation](#installation)
+      - [Prerequisites](#prerequisites)
     - [Usage](#usage)
+      - [Projects](#projects)
+      - [Settings](#settings)
     - [Commands](#commands)
 - [Links](#links)
 
@@ -214,7 +217,13 @@ The target circuit should look like this and expose the following pins via some 
 
 As of right now the module is only available as a standalone installer, you will find it at the root of the <a href="https://github.com/effectspcbs/vscode-spinasm/tree/master/software">source code</a> folder.
 
+#### Prerequisites
+
+The module depends on the asfv1 compiler, it is avaialble on the Python Package Index. You can find the installation instrutions on the [project's GitHub](https://github.com/ndf-zz/asfv1#system-specific-installation).
+
 ### Usage
+
+#### Projects
 
 The module follows the same logic as the SpinAsm IDE and is centered around a project of 8 banks and programs:
 
@@ -252,7 +261,32 @@ project/
 ├── settings.ini
 ```
 
+The folder should not be renamed but the *programName* part of the file can be changed.
 
+#### Settings
+
+The settings.ini file holds a few parameters you need to adjust to tell the module where the compiler is located and the programmer's path and baud rate. The default file is as follow :
+
+```ini
+;Project config file
+
+[asfv1]
+;Path of the executable
+path = C:\\path\\to\\asfv1.exe
+
+;Compiler options separated by a space :
+; -c 	clamp out of range values without error
+; -s 	read literals 2,1 as float (SpinASM compatibility)
+; -q 	suppress warnings
+options = -s
+
+[serial]
+;Serial port for the programmer
+port = COM6
+baudrate = 57600
+```
+
+The settings.ini file is read every time a project is compiled or uploaded.
 
 ---
 

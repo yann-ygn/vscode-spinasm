@@ -45,7 +45,7 @@ class Project {
 
 [asfv1]
 ;Path of the executable
-path = C:\\Users\\Yann\\.platformio\\python37\\Scripts\\asfv1.exe
+path = C:\\path\\to\\asfv1.exe
 
 ;Compiler options separated by a space :
 ; -c 	clamp out of range values without error
@@ -56,6 +56,7 @@ options = -s
 [serial]
 ;Serial port for the programmer
 port = COM6
+baudrate = 57600
 `
         // Create the 7 banks folders and blank program files
         for (let i = 0; i < 8; i++) {
