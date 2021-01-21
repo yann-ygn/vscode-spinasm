@@ -212,9 +212,46 @@ The target circuit should look like this and expose the following pins via some 
 
 ### Installation
 
-As of right now the module is only available as standalone installer, you will find it at the root of the <a href="https://github.com/effectspcbs/vscode-spinasm/tree/master/software">source code</a> folder.
+As of right now the module is only available as a standalone installer, you will find it at the root of the <a href="https://github.com/effectspcbs/vscode-spinasm/tree/master/software">source code</a> folder.
 
 ### Usage
+
+The module follows the same logic as the SpinAsm IDE and is centered around a project of 8 banks and programs:
+
+<p align="center">
+  <img src="_images/spinasm.png">
+</p>
+
+The first thing you should do is to create a blank project by opening an empty folder and using the Create project structure command:
+
+<p align="center">
+  <img src="_images/spinasm_create.png">
+</p>
+
+A blank project structure will look like this:
+
+```bash
+project/
+├── bank_0/
+│   ├── 0_programName.spn
+├── bank_1/
+│   ├── 1_programName.spn
+├── bank_2/
+│   ├── 2_programName.spn
+├── bank_3/
+│   ├── 3_programName.spn
+├── bank_4/
+│   ├── 4_programName.spn
+├── bank_5/
+│   ├── 5_programName.spn
+├── bank_6/
+│   ├── 6_programName.spn
+├── bank_7/
+│   ├── 7_programName.spn
+├── output/
+├── settings.ini
+```
+
 
 
 ---
