@@ -10,7 +10,7 @@ const Logs = require('./logs.js');
 Logs.createChannel();
 
 // Current folder path
-const rootFolderPath = vscode.workspace.rootPath.toString();
+const rootFolderPath = vscode.workspace.workspaceFolders[0].uri.fsPath;
 
 // Project object
 const project = new Project(rootFolderPath);
