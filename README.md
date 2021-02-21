@@ -94,7 +94,7 @@ The board is powered by the target circuit so you need to set the correct CBUS b
 
 #### Firmware upload
 
-The PCB uses the [SOICbite](https://github.com/SimonMerrett/SOICbite) footprint as an ICSP header, the pinout on the board is as follow:
+The PCB uses the [SOICbite](https://github.com/SimonMerrett/SOICbite) footprint as an ICSP header, the pinout on the board is as follows:
 
 <p align="center">
   <img src="_images/icsp.png">
@@ -143,7 +143,7 @@ And finally upload the firmware :
 
 ### From an Arduino board
 
-As there are many flavors of Arduino boards i will use two examples : the extremelly common Arduino Uno that we probably all have laying around and what i suppose would the ideal board for that purpose, the Arduino Pro Mini running at 3.3V.
+As there are many flavors of Arduino boards i will use two examples : the extremely common Arduino Uno that we probably all have laying around and what i suppose would the ideal board for that purpose, the Arduino Pro Mini running at 3.3V.
 
 
 #### Board setup
@@ -151,7 +151,7 @@ As there are many flavors of Arduino boards i will use two examples : the extrem
 
 #### Arduino Uno
 
-The Arduino Uno is not the ideal candidate for that very specific purpose as in most incarnation it will run off a 5V power supply while the target EEPROM will run at 3.3V. But it has to be the most common Arduino board out there so why not use it, all that is needed to make it talk the EEPROM are simple level shifters. They are available as pre-made board but are really simple circuits :
+The Arduino Uno is not the ideal candidate for that very specific purpose as in most incarnation it will run off a 5V power supply while the target EEPROM will run at 3.3V. But it has to be the most common Arduino board out there so why not use it, all that is needed to make it talk the EEPROM are simple level shifters. They are available as pre-made boards but are really simple circuits :
 
 <p align="center">
   <img src="_images/levelshift.png">
