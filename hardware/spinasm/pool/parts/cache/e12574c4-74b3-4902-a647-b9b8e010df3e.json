@@ -1,0 +1,57 @@
+{
+    "MPN": [
+        false,
+        "KUSBX-SMT2AP5S-W"
+    ],
+    "datasheet": [
+        false,
+        ""
+    ],
+    "description": [
+        false,
+        "USB CONNECTOR TYPE A  MALE SMD"
+    ],
+    "entity": "3392e559-5779-41ad-99f4-65f5c6331d33",
+    "inherit_model": false,
+    "inherit_tags": false,
+    "manufacturer": [
+        false,
+        "Kycon"
+    ],
+    "model": "5f151346-5d36-4aec-9fa5-dd0b3eb19115",
+    "package": "73a681f1-702a-4b78-8b85-a0e6864f6c8f",
+    "pad_map": {
+        "31c7178b-1ef4-47bb-bc23-08462187c5b5": {
+            "gate": "0b636446-ea2f-4c83-bb33-6d9b6e98f3c7",
+            "pin": "e1c08a2c-87ee-4936-8479-2605b41b585e"
+        },
+        "3e02f9b8-5441-461c-b49d-2b5f23c71a7b": {
+            "gate": "0b636446-ea2f-4c83-bb33-6d9b6e98f3c7",
+            "pin": "fd433aba-0137-4732-86e1-73360cbe90a0"
+        },
+        "86e090b9-7782-44a5-9fd1-7a8cb5ece8d2": {
+            "gate": "0b636446-ea2f-4c83-bb33-6d9b6e98f3c7",
+            "pin": "dd6691e0-3656-4675-93ac-c95b57e936cc"
+        },
+        "8837b53e-b95c-4443-acc5-7906c17926e0": {
+            "gate": "0b636446-ea2f-4c83-bb33-6d9b6e98f3c7",
+            "pin": "61b23ee4-b70b-4129-a6a2-15dd652576b8"
+        },
+        "d5b3413d-dbf4-4d84-9e90-5dc66660765b": {
+            "gate": "0b636446-ea2f-4c83-bb33-6d9b6e98f3c7",
+            "pin": "61b23ee4-b70b-4129-a6a2-15dd652576b8"
+        },
+        "dcd85d3d-bef8-40fd-b6d6-4739f7b9d614": {
+            "gate": "0b636446-ea2f-4c83-bb33-6d9b6e98f3c7",
+            "pin": "73704103-b8e9-496a-85b5-6a8f4d0b801c"
+        }
+    },
+    "parametric": {},
+    "tags": [],
+    "type": "part",
+    "uuid": "e12574c4-74b3-4902-a647-b9b8e010df3e",
+    "value": [
+        false,
+        ""
+    ]
+}

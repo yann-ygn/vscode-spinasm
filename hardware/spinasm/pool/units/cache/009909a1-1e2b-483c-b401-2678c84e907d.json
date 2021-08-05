@@ -1,0 +1,38 @@
+{
+    "manufacturer": "",
+    "name": "Connector USB",
+    "pins": {
+        "61b23ee4-b70b-4129-a6a2-15dd652576b8": {
+            "direction": "power_input",
+            "names": [],
+            "primary_name": "SHIELD",
+            "swap_group": 0
+        },
+        "73704103-b8e9-496a-85b5-6a8f4d0b801c": {
+            "direction": "bidirectional",
+            "names": [],
+            "primary_name": "D+",
+            "swap_group": 0
+        },
+        "dd6691e0-3656-4675-93ac-c95b57e936cc": {
+            "direction": "power_input",
+            "names": [],
+            "primary_name": "VCC",
+            "swap_group": 0
+        },
+        "e1c08a2c-87ee-4936-8479-2605b41b585e": {
+            "direction": "power_input",
+            "names": [],
+            "primary_name": "GND",
+            "swap_group": 0
+        },
+        "fd433aba-0137-4732-86e1-73360cbe90a0": {
+            "direction": "bidirectional",
+            "names": [],
+            "primary_name": "D-",
+            "swap_group": 0
+        }
+    },
+    "type": "unit",
+    "uuid": "009909a1-1e2b-483c-b401-2678c84e907d"
+}

@@ -1,0 +1,19 @@
+{
+    "gates": {
+        "0b636446-ea2f-4c83-bb33-6d9b6e98f3c7": {
+            "name": "Main",
+            "suffix": "",
+            "swap_group": 0,
+            "unit": "009909a1-1e2b-483c-b401-2678c84e907d"
+        }
+    },
+    "manufacturer": "",
+    "name": "Connector USB",
+    "prefix": "J",
+    "tags": [
+        "connector",
+        "usb"
+    ],
+    "type": "entity",
+    "uuid": "3392e559-5779-41ad-99f4-65f5c6331d33"
+}

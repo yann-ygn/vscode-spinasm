@@ -1,0 +1,104 @@
+{
+    "manufacturer": "FTDI",
+    "name": "FT230X",
+    "pins": {
+        "0650bd86-fc3e-4cb0-9573-de8d7bccdd71": {
+            "direction": "input",
+            "names": [],
+            "primary_name": "RXD",
+            "swap_group": 0
+        },
+        "2bf414f1-66e1-419f-8331-4d7051ae7f02": {
+            "direction": "input",
+            "names": [],
+            "primary_name": "USBDM",
+            "swap_group": 0
+        },
+        "5406f8a0-b2bb-4aaa-ae34-9218ce26075d": {
+            "direction": "power_output",
+            "names": [],
+            "primary_name": "3V3OUT",
+            "swap_group": 0
+        },
+        "6844091b-30b8-4ee9-91ae-faee58120f89": {
+            "direction": "power_input",
+            "names": [],
+            "primary_name": "VCCIO",
+            "swap_group": 0
+        },
+        "70422cbe-d192-4590-b774-f94cc2b4d872": {
+            "direction": "power_input",
+            "names": [],
+            "primary_name": "GND",
+            "swap_group": 0
+        },
+        "8fca166a-7a76-4a9b-9372-9a16dd218f5b": {
+            "direction": "input",
+            "names": [],
+            "primary_name": "RTS#",
+            "swap_group": 0
+        },
+        "92f59186-5b56-4123-ae08-adbb7f50e3f9": {
+            "direction": "input",
+            "names": [],
+            "primary_name": "USBDP",
+            "swap_group": 0
+        },
+        "9b21a69b-d2a8-4053-91c0-a3d742e8b176": {
+            "direction": "bidirectional",
+            "names": [],
+            "primary_name": "CBUS3",
+            "swap_group": 0
+        },
+        "a66fd327-a300-42f3-8fda-655842ff3b9c": {
+            "direction": "input",
+            "names": [],
+            "primary_name": "CTS#",
+            "swap_group": 0
+        },
+        "aebf689d-0414-40fc-8532-6c1694a25422": {
+            "direction": "bidirectional",
+            "names": [],
+            "primary_name": "CBUS1",
+            "swap_group": 0
+        },
+        "e1d34dc8-8aa5-4a13-a135-7f9e48ac4b39": {
+            "direction": "input",
+            "names": [],
+            "primary_name": "RESET#",
+            "swap_group": 0
+        },
+        "e6053f43-23f4-4c2c-b2dd-8e489c627564": {
+            "direction": "output",
+            "names": [],
+            "primary_name": "TXD",
+            "swap_group": 0
+        },
+        "e76d9271-b818-490d-9246-d563e0ffa86a": {
+            "direction": "bidirectional",
+            "names": [],
+            "primary_name": "CBUS0",
+            "swap_group": 0
+        },
+        "eebeb10d-d78e-4ddf-9275-fafbf00efa39": {
+            "direction": "bidirectional",
+            "names": [],
+            "primary_name": "CBUS2",
+            "swap_group": 0
+        },
+        "f4d8f633-c451-4eec-a314-3d692629be06": {
+            "direction": "power_input",
+            "names": [],
+            "primary_name": "GND2",
+            "swap_group": 0
+        },
+        "fb32be89-7b10-4c00-b4e5-47107f085dc6": {
+            "direction": "power_input",
+            "names": [],
+            "primary_name": "VCC",
+            "swap_group": 0
+        }
+    },
+    "type": "unit",
+    "uuid": "dd14b95b-256d-4408-bad5-c7a04f342a11"
+}

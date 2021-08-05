@@ -1,0 +1,38 @@
+{
+    "manufacturer": "",
+    "name": "Connector 5 pins",
+    "pins": {
+        "16a79d56-e950-454b-9bff-aa0d1129cb8b": {
+            "direction": "passive",
+            "names": [],
+            "primary_name": "4",
+            "swap_group": 0
+        },
+        "2a06a1a9-979f-4f1f-a291-6d1113af5b78": {
+            "direction": "passive",
+            "names": [],
+            "primary_name": "1",
+            "swap_group": 0
+        },
+        "92d94d53-3683-4066-9248-4ebc5881506c": {
+            "direction": "passive",
+            "names": [],
+            "primary_name": "2",
+            "swap_group": 0
+        },
+        "9b5c16c0-6572-4220-af61-aae1ede741cb": {
+            "direction": "passive",
+            "names": [],
+            "primary_name": "5",
+            "swap_group": 0
+        },
+        "a3af5efa-c012-435f-a176-a0bc87b6bbca": {
+            "direction": "passive",
+            "names": [],
+            "primary_name": "3",
+            "swap_group": 0
+        }
+    },
+    "type": "unit",
+    "uuid": "23ffd250-f292-4d2d-8580-da538d6e2407"
+}

@@ -1,0 +1,100 @@
+{
+    "MPN": [
+        false,
+        "FT230XS-R"
+    ],
+    "datasheet": [
+        false,
+        ""
+    ],
+    "description": [
+        false,
+        "USB-to-UART 1-CH 512byte FIFO 5V 16-Pin SSOP"
+    ],
+    "entity": "d5d3497a-871d-4b9d-aeec-007f177a54c1",
+    "inherit_model": false,
+    "inherit_tags": false,
+    "manufacturer": [
+        false,
+        "FTDI"
+    ],
+    "model": "9c552533-faf7-4f72-8e4c-19cf4b01f0ce",
+    "package": "01de1b38-0ceb-49b9-892a-665e9373683c",
+    "pad_map": {
+        "03daa1e2-184d-4c6d-a157-8ec41af62f8a": {
+            "gate": "4c7a4965-229c-49e5-b300-a941283d5b69",
+            "pin": "f4d8f633-c451-4eec-a314-3d692629be06"
+        },
+        "1003ff97-9063-4f1c-93d8-b446d6690072": {
+            "gate": "4c7a4965-229c-49e5-b300-a941283d5b69",
+            "pin": "2bf414f1-66e1-419f-8331-4d7051ae7f02"
+        },
+        "2275cf5d-857d-4833-a118-1630c96fca49": {
+            "gate": "4c7a4965-229c-49e5-b300-a941283d5b69",
+            "pin": "fb32be89-7b10-4c00-b4e5-47107f085dc6"
+        },
+        "3c926324-48a7-429d-84f3-e0a02ca6dc99": {
+            "gate": "4c7a4965-229c-49e5-b300-a941283d5b69",
+            "pin": "e6053f43-23f4-4c2c-b2dd-8e489c627564"
+        },
+        "3e23be7d-bdbd-4082-9852-a66c796a4520": {
+            "gate": "4c7a4965-229c-49e5-b300-a941283d5b69",
+            "pin": "5406f8a0-b2bb-4aaa-ae34-9218ce26075d"
+        },
+        "41f69969-1992-4657-8e22-0ba4f7ac95ce": {
+            "gate": "4c7a4965-229c-49e5-b300-a941283d5b69",
+            "pin": "92f59186-5b56-4123-ae08-adbb7f50e3f9"
+        },
+        "4a75b260-522e-41cb-aa48-92d6e03c2c66": {
+            "gate": "4c7a4965-229c-49e5-b300-a941283d5b69",
+            "pin": "8fca166a-7a76-4a9b-9372-9a16dd218f5b"
+        },
+        "579cf06a-01f4-4baf-83c1-53df796ddf91": {
+            "gate": "4c7a4965-229c-49e5-b300-a941283d5b69",
+            "pin": "6844091b-30b8-4ee9-91ae-faee58120f89"
+        },
+        "7d80c0d4-4fdd-472b-a9dc-d8c561146178": {
+            "gate": "4c7a4965-229c-49e5-b300-a941283d5b69",
+            "pin": "0650bd86-fc3e-4cb0-9573-de8d7bccdd71"
+        },
+        "87f61828-4686-43a3-a162-359dc4786f60": {
+            "gate": "4c7a4965-229c-49e5-b300-a941283d5b69",
+            "pin": "a66fd327-a300-42f3-8fda-655842ff3b9c"
+        },
+        "8c145b0a-f656-496f-bc56-72cb54ec92a8": {
+            "gate": "4c7a4965-229c-49e5-b300-a941283d5b69",
+            "pin": "9b21a69b-d2a8-4053-91c0-a3d742e8b176"
+        },
+        "93049e36-7733-4cf1-aed4-f212ddbd2055": {
+            "gate": "4c7a4965-229c-49e5-b300-a941283d5b69",
+            "pin": "e76d9271-b818-490d-9246-d563e0ffa86a"
+        },
+        "a35648a6-fd27-4137-a047-0690085614f3": {
+            "gate": "4c7a4965-229c-49e5-b300-a941283d5b69",
+            "pin": "aebf689d-0414-40fc-8532-6c1694a25422"
+        },
+        "a70e2df2-50d5-4b4b-9e60-32c8f5110f9b": {
+            "gate": "4c7a4965-229c-49e5-b300-a941283d5b69",
+            "pin": "e1d34dc8-8aa5-4a13-a135-7f9e48ac4b39"
+        },
+        "ac47ccd4-4db3-468a-83fc-6573968e789d": {
+            "gate": "4c7a4965-229c-49e5-b300-a941283d5b69",
+            "pin": "70422cbe-d192-4590-b774-f94cc2b4d872"
+        },
+        "eef02ddc-2da6-47f2-9f1b-4c40f6b6c16b": {
+            "gate": "4c7a4965-229c-49e5-b300-a941283d5b69",
+            "pin": "eebeb10d-d78e-4ddf-9275-fafbf00efa39"
+        }
+    },
+    "parametric": {
+        "price": "1.81",
+        "table": "general"
+    },
+    "tags": [],
+    "type": "part",
+    "uuid": "f8b1e13c-7795-467b-ba9e-38f34aefff1a",
+    "value": [
+        false,
+        "FT230X"
+    ]
+}

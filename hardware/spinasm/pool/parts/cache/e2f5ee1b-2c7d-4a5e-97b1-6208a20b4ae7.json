@@ -1,0 +1,52 @@
+{
+    "MPN": [
+        false,
+        "ABM10-166-12.000MHZ-T3"
+    ],
+    "datasheet": [
+        false,
+        ""
+    ],
+    "description": [
+        false,
+        "CRYSTAL 12 MHz SMD 28 pF 10 ppm"
+    ],
+    "entity": "358662d6-c10c-43c7-b6b0-0f887df6324f",
+    "inherit_model": false,
+    "inherit_tags": false,
+    "manufacturer": [
+        false,
+        "Abracon"
+    ],
+    "model": "2ebd149d-6ef8-4a9d-aa4b-cfa520f7961e",
+    "package": "193b5dfc-fdba-4a6a-b4a4-66c5936d0a96",
+    "pad_map": {
+        "2ddc1474-0d11-435c-a7d4-2bb35251934c": {
+            "gate": "9a4ced6d-3c66-48d2-8e63-7dc900408da3",
+            "pin": "aab1cca8-f6a4-4c1d-844e-0c9ffa0e2175"
+        },
+        "4634c68d-aa18-4778-afe1-11d541b084ee": {
+            "gate": "9a4ced6d-3c66-48d2-8e63-7dc900408da3",
+            "pin": "d6cee013-5620-4200-834f-d1d81b3b1f31"
+        },
+        "6fa283a4-7189-4471-96ba-825853fd4c7f": {
+            "gate": "9a4ced6d-3c66-48d2-8e63-7dc900408da3",
+            "pin": "542da35a-c76f-4b3e-92d4-fbce459f726f"
+        },
+        "d236a8a5-26d7-40dc-8a2d-6066aceb0415": {
+            "gate": "9a4ced6d-3c66-48d2-8e63-7dc900408da3",
+            "pin": "3f97f5ae-f2bf-4df6-9d6d-52dbb94eac6e"
+        }
+    },
+    "parametric": {
+        "price": "0.382",
+        "table": "general"
+    },
+    "tags": [],
+    "type": "part",
+    "uuid": "e2f5ee1b-2c7d-4a5e-97b1-6208a20b4ae7",
+    "value": [
+        false,
+        ""
+    ]
+}

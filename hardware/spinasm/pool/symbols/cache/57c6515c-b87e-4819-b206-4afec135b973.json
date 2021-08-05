@@ -1,0 +1,153 @@
+{
+    "arcs": {},
+    "can_expand": false,
+    "junctions": {
+        "1a42e2d4-03d6-4332-b974-e1aeb1d2d1fa": {
+            "position": [
+                -750000,
+                -2000000
+            ]
+        },
+        "652faf30-39df-423f-a167-0128f98b10af": {
+            "position": [
+                -750000,
+                2000000
+            ]
+        },
+        "95467ccb-a623-4eec-8d48-d82f58da9613": {
+            "position": [
+                1250000,
+                1500000
+            ]
+        },
+        "a9f5bd3a-2935-4eb9-ad63-68ebb3d39ef5": {
+            "position": [
+                750000,
+                -2000000
+            ]
+        },
+        "b39dc39a-08e4-48e7-b1e8-5e7e6ce7c0be": {
+            "position": [
+                750000,
+                2000000
+            ]
+        },
+        "b8256d6d-754b-468a-b159-868537b6559c": {
+            "position": [
+                -1250000,
+                1500000
+            ]
+        },
+        "ee38d0b0-2838-49d0-8ef1-17245f5211bd": {
+            "position": [
+                1250000,
+                -1500000
+            ]
+        },
+        "fad80aa7-6db3-40c8-b262-4d5ca5d4a721": {
+            "position": [
+                -1250000,
+                -1500000
+            ]
+        }
+    },
+    "lines": {
+        "09c39c8d-41b4-49c5-bbb9-55610816fd26": {
+            "from": "b39dc39a-08e4-48e7-b1e8-5e7e6ce7c0be",
+            "layer": 0,
+            "to": "a9f5bd3a-2935-4eb9-ad63-68ebb3d39ef5",
+            "width": 0
+        },
+        "10c0c08b-557f-400b-881f-663840013e8c": {
+            "from": "b8256d6d-754b-468a-b159-868537b6559c",
+            "layer": 0,
+            "to": "fad80aa7-6db3-40c8-b262-4d5ca5d4a721",
+            "width": 0
+        },
+        "21253e19-669f-4365-b297-09cff807f992": {
+            "from": "652faf30-39df-423f-a167-0128f98b10af",
+            "layer": 0,
+            "to": "1a42e2d4-03d6-4332-b974-e1aeb1d2d1fa",
+            "width": 0
+        },
+        "5a2b858b-03d9-4ca4-a9bd-de57fe78656b": {
+            "from": "1a42e2d4-03d6-4332-b974-e1aeb1d2d1fa",
+            "layer": 0,
+            "to": "a9f5bd3a-2935-4eb9-ad63-68ebb3d39ef5",
+            "width": 0
+        },
+        "d5af9c4b-a654-4745-933b-417342a30308": {
+            "from": "652faf30-39df-423f-a167-0128f98b10af",
+            "layer": 0,
+            "to": "b39dc39a-08e4-48e7-b1e8-5e7e6ce7c0be",
+            "width": 0
+        },
+        "fa8a60d3-00a9-4371-bfe5-a6e7f49e0f8d": {
+            "from": "95467ccb-a623-4eec-8d48-d82f58da9613",
+            "layer": 0,
+            "to": "ee38d0b0-2838-49d0-8ef1-17245f5211bd",
+            "width": 0
+        }
+    },
+    "name": "Crystal 4 pins",
+    "pins": {
+        "3f97f5ae-f2bf-4df6-9d6d-52dbb94eac6e": {
+            "decoration": {
+                "clock": false,
+                "dot": false,
+                "driver": "default",
+                "schmitt": false
+            },
+            "length": 2500000,
+            "name_orientation": "in_line",
+            "name_visible": false,
+            "orientation": "left",
+            "pad_visible": false,
+            "position": [
+                -3750000,
+                0
+            ]
+        },
+        "542da35a-c76f-4b3e-92d4-fbce459f726f": {
+            "decoration": {
+                "clock": false,
+                "dot": false,
+                "driver": "default",
+                "schmitt": false
+            },
+            "length": 2500000,
+            "name_orientation": "in_line",
+            "name_visible": false,
+            "orientation": "right",
+            "pad_visible": false,
+            "position": [
+                3750000,
+                0
+            ]
+        }
+    },
+    "polygons": {},
+    "text_placements": {},
+    "texts": {
+        "52dcf016-9005-4b67-8aee-b527aba668a0": {
+            "font": "simplex",
+            "from_smash": false,
+            "layer": 0,
+            "origin": "center",
+            "placement": {
+                "angle": 0,
+                "mirror": false,
+                "shift": [
+                    -3750000,
+                    3750000
+                ]
+            },
+            "size": 1500000,
+            "text": "$REFDES",
+            "width": 0
+        }
+    },
+    "type": "symbol",
+    "unit": "748be984-6167-4f15-87a1-98ff9f5fe0dc",
+    "uuid": "57c6515c-b87e-4819-b206-4afec135b973"
+}

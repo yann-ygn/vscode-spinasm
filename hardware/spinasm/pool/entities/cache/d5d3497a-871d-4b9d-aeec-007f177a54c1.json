@@ -1,0 +1,19 @@
+{
+    "gates": {
+        "4c7a4965-229c-49e5-b300-a941283d5b69": {
+            "name": "Main",
+            "suffix": "",
+            "swap_group": 0,
+            "unit": "dd14b95b-256d-4408-bad5-c7a04f342a11"
+        }
+    },
+    "manufacturer": "FTDI",
+    "name": "FT230X",
+    "prefix": "IC",
+    "tags": [
+        "ic",
+        "serial"
+    ],
+    "type": "entity",
+    "uuid": "d5d3497a-871d-4b9d-aeec-007f177a54c1"
+}

@@ -1,0 +1,44 @@
+{
+    "MPN": [
+        false,
+        "APT1608EC"
+    ],
+    "datasheet": [
+        false,
+        ""
+    ],
+    "description": [
+        false,
+        "LED RED CLEAR CHIP SMD 0603"
+    ],
+    "entity": "57b3b8de-1335-4ddf-8edd-8130574b2c97",
+    "inherit_model": false,
+    "inherit_tags": false,
+    "manufacturer": [
+        false,
+        "Kingbright"
+    ],
+    "model": "8d6f47e1-f3fc-4445-aaf7-7b9675332d8d",
+    "package": "b3e8c4c6-59b0-4b47-930b-4a8818254dbc",
+    "pad_map": {
+        "9446aeaf-23b9-43a9-a1f3-d0e5de6a2184": {
+            "gate": "ddca9e35-cd2a-4594-b14a-842ce655b7e3",
+            "pin": "da62449c-1c9b-4d92-b968-41d17eb71605"
+        },
+        "bcb94158-5b64-4d66-bba1-0f46e710ce8b": {
+            "gate": "ddca9e35-cd2a-4594-b14a-842ce655b7e3",
+            "pin": "09552127-78eb-44b7-b6eb-38cc164badb5"
+        }
+    },
+    "parametric": {
+        "price": "0.058",
+        "table": "general"
+    },
+    "tags": [],
+    "type": "part",
+    "uuid": "5e0cb67b-06c0-48ba-ac6d-c0d7a20e2978",
+    "value": [
+        false,
+        ""
+    ]
+}

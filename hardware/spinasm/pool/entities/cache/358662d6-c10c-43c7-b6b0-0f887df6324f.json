@@ -1,0 +1,18 @@
+{
+    "gates": {
+        "9a4ced6d-3c66-48d2-8e63-7dc900408da3": {
+            "name": "Main",
+            "suffix": "",
+            "swap_group": 0,
+            "unit": "748be984-6167-4f15-87a1-98ff9f5fe0dc"
+        }
+    },
+    "manufacturer": "",
+    "name": "Crystal 4 pins",
+    "prefix": "X",
+    "tags": [
+        "crystal"
+    ],
+    "type": "entity",
+    "uuid": "358662d6-c10c-43c7-b6b0-0f887df6324f"
+}

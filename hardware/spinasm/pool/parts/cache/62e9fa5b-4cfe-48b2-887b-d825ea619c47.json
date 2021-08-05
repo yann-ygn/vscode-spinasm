@@ -1,0 +1,53 @@
+{
+    "MPN": [
+        false,
+        "10129379-905001BLF"
+    ],
+    "datasheet": [
+        false,
+        ""
+    ],
+    "description": [
+        false,
+        "HEADER MALE 90° 1X5 PINS"
+    ],
+    "entity": "2120e112-45d4-4773-a328-286329e0a95a",
+    "inherit_model": false,
+    "inherit_tags": false,
+    "manufacturer": [
+        false,
+        "Amphenol"
+    ],
+    "model": "ac5d4cb0-2665-4030-867c-cc1af1d44e75",
+    "package": "2a972aa0-0719-4db5-a039-011bca30ab4e",
+    "pad_map": {
+        "39838892-6bb1-447a-a0b0-05127be51e9a": {
+            "gate": "9bfc223c-9c94-4de1-a725-29aa8a6bd3ae",
+            "pin": "a3af5efa-c012-435f-a176-a0bc87b6bbca"
+        },
+        "41cf19f6-fa66-4c92-87b6-3d32df19e114": {
+            "gate": "9bfc223c-9c94-4de1-a725-29aa8a6bd3ae",
+            "pin": "9b5c16c0-6572-4220-af61-aae1ede741cb"
+        },
+        "4bce2015-13d1-4325-9753-25db1c49d033": {
+            "gate": "9bfc223c-9c94-4de1-a725-29aa8a6bd3ae",
+            "pin": "16a79d56-e950-454b-9bff-aa0d1129cb8b"
+        },
+        "618fd586-e602-4910-a0b6-9402c37a535c": {
+            "gate": "9bfc223c-9c94-4de1-a725-29aa8a6bd3ae",
+            "pin": "92d94d53-3683-4066-9248-4ebc5881506c"
+        },
+        "f515e0c2-4c0e-4155-bd79-3b93edb15d67": {
+            "gate": "9bfc223c-9c94-4de1-a725-29aa8a6bd3ae",
+            "pin": "2a06a1a9-979f-4f1f-a291-6d1113af5b78"
+        }
+    },
+    "parametric": {},
+    "tags": [],
+    "type": "part",
+    "uuid": "62e9fa5b-4cfe-48b2-887b-d825ea619c47",
+    "value": [
+        false,
+        ""
+    ]
+}
