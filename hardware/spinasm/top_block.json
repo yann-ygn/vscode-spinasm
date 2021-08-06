@@ -67,7 +67,7 @@
             "group": "00000000-0000-0000-0000-000000000000",
             "part": "685b19f5-acb2-4323-90cf-8c0d2e699a7a",
             "pin_names": {},
-            "refdes": "C2",
+            "refdes": "C1",
             "tag": "8506b419-c728-4f2d-b143-791dc4f06356",
             "value": ""
         },
@@ -149,16 +149,16 @@
         "2a9e1a0f-003e-41a3-8ae5-4afdc67ff9e7": {
             "connections": {
                 "9bfc223c-9c94-4de1-a725-29aa8a6bd3ae/16a79d56-e950-454b-9bff-aa0d1129cb8b": {
-                    "net": "b8f5e58a-fd3a-40a4-9606-d71805cdee75"
-                },
-                "9bfc223c-9c94-4de1-a725-29aa8a6bd3ae/2a06a1a9-979f-4f1f-a291-6d1113af5b78": {
-                    "net": "22c913ab-de65-40f7-9281-b4490bc0c2a6"
-                },
-                "9bfc223c-9c94-4de1-a725-29aa8a6bd3ae/92d94d53-3683-4066-9248-4ebc5881506c": {
                     "net": "add2fa74-01b2-4bf0-a3bc-4fdf5c8f9d91"
                 },
-                "9bfc223c-9c94-4de1-a725-29aa8a6bd3ae/9b5c16c0-6572-4220-af61-aae1ede741cb": {
+                "9bfc223c-9c94-4de1-a725-29aa8a6bd3ae/2a06a1a9-979f-4f1f-a291-6d1113af5b78": {
                     "net": "2765605b-fbee-4934-adb8-88fc891e390a"
+                },
+                "9bfc223c-9c94-4de1-a725-29aa8a6bd3ae/92d94d53-3683-4066-9248-4ebc5881506c": {
+                    "net": "b8f5e58a-fd3a-40a4-9606-d71805cdee75"
+                },
+                "9bfc223c-9c94-4de1-a725-29aa8a6bd3ae/9b5c16c0-6572-4220-af61-aae1ede741cb": {
+                    "net": "22c913ab-de65-40f7-9281-b4490bc0c2a6"
                 },
                 "9bfc223c-9c94-4de1-a725-29aa8a6bd3ae/a3af5efa-c012-435f-a176-a0bc87b6bbca": {
                     "net": "c0567815-e091-4baa-b825-4a93d8b9d34a"
@@ -169,7 +169,7 @@
             "group": "00000000-0000-0000-0000-000000000000",
             "part": "62e9fa5b-4cfe-48b2-887b-d825ea619c47",
             "pin_names": {},
-            "refdes": "PROG",
+            "refdes": "J2",
             "tag": "0cbed4ff-11f7-479c-88ff-6d97cba1921a",
             "value": ""
         },
@@ -313,7 +313,7 @@
             "group": "00000000-0000-0000-0000-000000000000",
             "part": "237a5a53-0d06-4f1a-9080-3fa2554bceea",
             "pin_names": {},
-            "refdes": "C1",
+            "refdes": "C2",
             "tag": "a23b8f4a-d276-4d27-b6dd-4cc9d2d6ed79",
             "value": ""
         },

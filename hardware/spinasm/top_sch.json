@@ -33,12 +33,6 @@
                         -28750000
                     ]
                 },
-                "0596a652-64de-49aa-8e68-4ccf66e3bbc2": {
-                    "position": [
-                        173750000,
-                        -71250000
-                    ]
-                },
                 "0747eb36-8ace-4024-b728-e2c7aaafd949": {
                     "position": [
                         103750000,
@@ -72,7 +66,7 @@
                 "240eecdf-50b1-4b05-a859-2992f416a634": {
                     "position": [
                         173750000,
-                        -76250000
+                        -71250000
                     ]
                 },
                 "25760bc9-93a4-46b9-a9dc-15ead8e9e984": {
@@ -201,12 +195,6 @@
                         -93750000
                     ]
                 },
-                "5a0aad54-1952-4534-9ec2-1c08f94e4ed1": {
-                    "position": [
-                        173750000,
-                        -73750000
-                    ]
-                },
                 "5b873b1d-cc37-46fe-94e3-e88ddedc1f78": {
                     "position": [
                         160000000,
@@ -223,6 +211,12 @@
                     "position": [
                         25000000,
                         -76250000
+                    ]
+                },
+                "619e00c0-64a2-4f4c-8d21-002c7e297e32": {
+                    "position": [
+                        173750000,
+                        -78750000
                     ]
                 },
                 "61c4b04e-0d28-4304-8c96-44bcd807ce5a": {
@@ -263,8 +257,8 @@
                 },
                 "71518fef-9d14-4378-b7e1-d02d69114eb4": {
                     "position": [
-                        173750000,
-                        -80000000
+                        187500000,
+                        -72500000
                     ]
                 },
                 "7237f1e5-ce31-41db-8f40-9966978c40ca": {
@@ -327,6 +321,12 @@
                         -71250000
                     ]
                 },
+                "8ca2decb-42d8-471d-ae30-605162bf974f": {
+                    "position": [
+                        187500000,
+                        -68750000
+                    ]
+                },
                 "93efb0b1-ad61-4a70-b557-9d038c310167": {
                     "position": [
                         73750000,
@@ -375,6 +375,12 @@
                         -17500000
                     ]
                 },
+                "ad3c5aa9-cd32-40af-9b92-15ded6c7caea": {
+                    "position": [
+                        173750000,
+                        -73750000
+                    ]
+                },
                 "aedfc0d4-b9cf-45a8-b80a-053d3874c800": {
                     "position": [
                         160000000,
@@ -387,16 +393,10 @@
                         -56250000
                     ]
                 },
-                "b607f396-b25f-4674-b396-f263f98208f8": {
+                "ba8f59a2-9761-4782-ae32-36668523d75b": {
                     "position": [
                         173750000,
-                        -68750000
-                    ]
-                },
-                "b737d138-8bfb-4d65-80d2-ef8cc1346b0e": {
-                    "position": [
-                        53750000,
-                        -13750000
+                        -76250000
                     ]
                 },
                 "c2b4ca69-2069-4e6e-9fca-7a3a7ff683e7": {
@@ -459,12 +459,6 @@
                         -28750000
                     ]
                 },
-                "d54ed5b4-f1b3-4f79-91f7-22fc8a2cbd3f": {
-                    "position": [
-                        173750000,
-                        -78750000
-                    ]
-                },
                 "dcd727ed-37e7-4e5d-b6a4-9e41da3ca6d4": {
                     "position": [
                         20000000,
@@ -513,6 +507,12 @@
                         -5000000
                     ]
                 },
+                "eb014706-6899-4415-ad1c-40cb9afc05b1": {
+                    "position": [
+                        41250000,
+                        -13750000
+                    ]
+                },
                 "eb5ce718-561d-43e9-83e1-f21f710ae799": {
                     "position": [
                         103750000,
@@ -543,6 +543,12 @@
                         -17500000
                     ]
                 },
+                "f29d791d-e33c-4ed0-88ce-c5231835b3cb": {
+                    "position": [
+                        53750000,
+                        -13750000
+                    ]
+                },
                 "f2f14884-d765-4f89-9234-76fb75f5a95c": {
                     "position": [
                         73750000,
@@ -565,12 +571,6 @@
                     "position": [
                         136250000,
                         -61250000
-                    ]
-                },
-                "f404f121-4dce-4017-a407-e7f6bd297ace": {
-                    "position": [
-                        41250000,
-                        -13750000
                     ]
                 },
                 "f437a9c2-8bf3-474a-979b-93e1f63e4942": {
@@ -601,6 +601,12 @@
                     "orientation": "right",
                     "size": 1500000
                 },
+                "0a93597c-bdad-49a5-8057-c12795655084": {
+                    "junction": "ba8f59a2-9761-4782-ae32-36668523d75b",
+                    "offsheet_refs": true,
+                    "orientation": "right",
+                    "size": 1500000
+                },
                 "11f19c8b-3fb1-41a6-a4cb-d1ba305f1eb4": {
                     "junction": "3f24fd07-03d6-440a-8eb5-97637e39ba0b",
                     "offsheet_refs": true,
@@ -625,12 +631,6 @@
                     "orientation": "left",
                     "size": 1500000
                 },
-                "26d084b8-bf80-4193-a5d9-f2218710e917": {
-                    "junction": "b607f396-b25f-4674-b396-f263f98208f8",
-                    "offsheet_refs": true,
-                    "orientation": "right",
-                    "size": 1500000
-                },
                 "35cbc95d-c1b3-4304-89e5-25fec7c5f315": {
                     "junction": "7782d54c-247a-4df4-aa31-0cb7b3c843e9",
                     "offsheet_refs": true,
@@ -641,12 +641,6 @@
                     "junction": "82d37802-496c-4496-b7ec-065abf8b176f",
                     "offsheet_refs": true,
                     "orientation": "up",
-                    "size": 1500000
-                },
-                "452d8c3e-074d-497b-9361-f62f317f099b": {
-                    "junction": "0596a652-64de-49aa-8e68-4ccf66e3bbc2",
-                    "offsheet_refs": true,
-                    "orientation": "right",
                     "size": 1500000
                 },
                 "4d0e3e99-3ee8-44ad-ba8c-e28cfef44cca": {
@@ -685,12 +679,6 @@
                     "orientation": "right",
                     "size": 1500000
                 },
-                "9a12591e-a4ae-4e57-97dd-c10da5c7fe00": {
-                    "junction": "5a0aad54-1952-4534-9ec2-1c08f94e4ed1",
-                    "offsheet_refs": true,
-                    "orientation": "right",
-                    "size": 1500000
-                },
                 "9b76f4ac-618a-40aa-99f8-b1a0d3cccb7a": {
                     "junction": "4f5fbd6f-21b9-44ae-89ce-c99f13708fa2",
                     "offsheet_refs": true,
@@ -701,6 +689,12 @@
                     "junction": "fe088dce-d54d-4486-9c4b-7eb35f87b510",
                     "offsheet_refs": true,
                     "orientation": "left",
+                    "size": 1500000
+                },
+                "a028dfd5-f2d6-4c0d-9a94-818e2a21ea94": {
+                    "junction": "ad3c5aa9-cd32-40af-9b92-15ded6c7caea",
+                    "offsheet_refs": true,
+                    "orientation": "right",
                     "size": 1500000
                 },
                 "b3fd390d-f6ff-4081-9bfe-e96a80732523": {
@@ -773,6 +767,12 @@
                     "junction": "3e626e05-1d97-4631-98f0-2838b5d2ca8f",
                     "offsheet_refs": true,
                     "orientation": "up",
+                    "size": 1500000
+                },
+                "f4cadd41-3765-4bf3-b1e3-d24067664f86": {
+                    "junction": "619e00c0-64a2-4f4c-8d21-002c7e297e32",
+                    "offsheet_refs": true,
+                    "orientation": "right",
                     "size": 1500000
                 },
                 "f62b8d78-6383-4546-8f01-df9fb936d829": {
@@ -891,6 +891,18 @@
                         "pin": null
                     }
                 },
+                "0875a649-dd7c-43fd-8baf-a7bc43e74a32": {
+                    "from": {
+                        "bus_ripper": null,
+                        "junc": null,
+                        "pin": "e701cc38-4f0b-4ad7-a26c-7188709e2995/9b5c16c0-6572-4220-af61-aae1ede741cb"
+                    },
+                    "to": {
+                        "bus_ripper": null,
+                        "junc": "619e00c0-64a2-4f4c-8d21-002c7e297e32",
+                        "pin": null
+                    }
+                },
                 "08b9900d-6ed7-40a8-b1a5-9296a9cd206f": {
                     "from": {
                         "bus_ripper": null,
@@ -927,6 +939,18 @@
                         "pin": null
                     }
                 },
+                "0d73c062-1c99-4d34-b57c-a736e6aade7d": {
+                    "from": {
+                        "bus_ripper": null,
+                        "junc": null,
+                        "pin": "e701cc38-4f0b-4ad7-a26c-7188709e2995/92d94d53-3683-4066-9248-4ebc5881506c"
+                    },
+                    "to": {
+                        "bus_ripper": null,
+                        "junc": "240eecdf-50b1-4b05-a859-2992f416a634",
+                        "pin": null
+                    }
+                },
                 "0e175613-60ae-44a8-b44d-6efc8639aa64": {
                     "from": {
                         "bus_ripper": null,
@@ -939,18 +963,6 @@
                         "pin": "0509085e-2469-4a39-b80b-8493cf5e5472/09552127-78eb-44b7-b6eb-38cc164badb5"
                     }
                 },
-                "0ea1300a-b472-4761-ab28-3f0ff6a767b2": {
-                    "from": {
-                        "bus_ripper": null,
-                        "junc": null,
-                        "pin": "e701cc38-4f0b-4ad7-a26c-7188709e2995/16a79d56-e950-454b-9bff-aa0d1129cb8b"
-                    },
-                    "to": {
-                        "bus_ripper": null,
-                        "junc": "240eecdf-50b1-4b05-a859-2992f416a634",
-                        "pin": null
-                    }
-                },
                 "0ea7b71d-994d-41e3-8919-529e3f4d9e72": {
                     "from": {
                         "bus_ripper": null,
@@ -961,6 +973,18 @@
                         "bus_ripper": null,
                         "junc": null,
                         "pin": "5a64b028-7d46-4ecb-b703-7ca8decf0c5d/6a44037c-65e2-4876-9359-42890048841d"
+                    }
+                },
+                "0f18358e-1c70-436e-945e-364ba052c9b9": {
+                    "from": {
+                        "bus_ripper": null,
+                        "junc": "f29d791d-e33c-4ed0-88ce-c5231835b3cb",
+                        "pin": null
+                    },
+                    "to": {
+                        "bus_ripper": null,
+                        "junc": "eb014706-6899-4415-ad1c-40cb9afc05b1",
+                        "pin": null
                     }
                 },
                 "0f388527-ee01-47aa-a7e4-bec5e9062079": {
@@ -1011,18 +1035,6 @@
                         "pin": "384fee1f-d874-4b7b-a0aa-ad40326dc363/6a44037c-65e2-4876-9359-42890048841d"
                     }
                 },
-                "167bef6a-bf7f-490c-9b88-bd7f617e7f23": {
-                    "from": {
-                        "bus_ripper": null,
-                        "junc": null,
-                        "pin": "e701cc38-4f0b-4ad7-a26c-7188709e2995/9b5c16c0-6572-4220-af61-aae1ede741cb"
-                    },
-                    "to": {
-                        "bus_ripper": null,
-                        "junc": "d54ed5b4-f1b3-4f79-91f7-22fc8a2cbd3f",
-                        "pin": null
-                    }
-                },
                 "19178587-5014-4d95-902c-11bd92f4547c": {
                     "from": {
                         "bus_ripper": null,
@@ -1032,18 +1044,6 @@
                     "to": {
                         "bus_ripper": null,
                         "junc": "3f24fd07-03d6-440a-8eb5-97637e39ba0b",
-                        "pin": null
-                    }
-                },
-                "1951673b-4b90-4822-8ddc-f7ef5d429c1a": {
-                    "from": {
-                        "bus_ripper": null,
-                        "junc": null,
-                        "pin": "e701cc38-4f0b-4ad7-a26c-7188709e2995/2a06a1a9-979f-4f1f-a291-6d1113af5b78"
-                    },
-                    "to": {
-                        "bus_ripper": null,
-                        "junc": "b607f396-b25f-4674-b396-f263f98208f8",
                         "pin": null
                     }
                 },
@@ -1191,18 +1191,6 @@
                         "pin": null
                     }
                 },
-                "2c0185ae-1de1-4e50-a8f1-477005fcbb41": {
-                    "from": {
-                        "bus_ripper": null,
-                        "junc": "e712fd3f-8aa3-4cd0-86cc-bb2db08c86d2",
-                        "pin": null
-                    },
-                    "to": {
-                        "bus_ripper": null,
-                        "junc": "f404f121-4dce-4017-a407-e7f6bd297ace",
-                        "pin": null
-                    }
-                },
                 "2ed7c360-b9b7-4470-8483-4a8463b0bc86": {
                     "from": {
                         "bus_ripper": null,
@@ -1236,6 +1224,18 @@
                     "to": {
                         "bus_ripper": null,
                         "junc": "37a33c0a-b121-4f84-b53c-82eeda703600",
+                        "pin": null
+                    }
+                },
+                "320aaa49-9b7a-423e-9aad-3a9181002464": {
+                    "from": {
+                        "bus_ripper": null,
+                        "junc": null,
+                        "pin": "95e76c67-5d15-44c9-b3d7-dffe0be8ea8a/29995253-b4b1-4c7c-a049-b6db2713ca7c"
+                    },
+                    "to": {
+                        "bus_ripper": null,
+                        "junc": "5ba08758-e349-4d01-af80-cef9adaa18f8",
                         "pin": null
                     }
                 },
@@ -1275,15 +1275,15 @@
                         "pin": null
                     }
                 },
-                "3a0b31e8-59af-4166-b3e9-67d03ede3718": {
+                "35bd7b37-f45a-4c37-ba38-017857cb6ae5": {
                     "from": {
                         "bus_ripper": null,
-                        "junc": null,
-                        "pin": "44381ab7-e9ae-481c-a9dc-916ca14f47d4/29995253-b4b1-4c7c-a049-b6db2713ca7c"
+                        "junc": "e712fd3f-8aa3-4cd0-86cc-bb2db08c86d2",
+                        "pin": null
                     },
                     "to": {
                         "bus_ripper": null,
-                        "junc": "5ba08758-e349-4d01-af80-cef9adaa18f8",
+                        "junc": "eb014706-6899-4415-ad1c-40cb9afc05b1",
                         "pin": null
                     }
                 },
@@ -1323,18 +1323,6 @@
                         "pin": "68f7036d-9805-41db-878b-14e65fbad537/00754b81-3eb6-4454-ad1b-842c8075d807"
                     }
                 },
-                "3c1a5af3-9bc7-4518-84e0-60fe0046a377": {
-                    "from": {
-                        "bus_ripper": null,
-                        "junc": null,
-                        "pin": "e701cc38-4f0b-4ad7-a26c-7188709e2995/a3af5efa-c012-435f-a176-a0bc87b6bbca"
-                    },
-                    "to": {
-                        "bus_ripper": null,
-                        "junc": "5a0aad54-1952-4534-9ec2-1c08f94e4ed1",
-                        "pin": null
-                    }
-                },
                 "3d14143a-4278-45b6-a2c8-8ff55d43b1b9": {
                     "from": {
                         "bus_ripper": null,
@@ -1356,6 +1344,18 @@
                     "to": {
                         "bus_ripper": null,
                         "junc": "4ce98546-6e89-48df-b7d7-939469a21fbf",
+                        "pin": null
+                    }
+                },
+                "3e90c389-baa3-4cc3-891c-50b005392421": {
+                    "from": {
+                        "bus_ripper": null,
+                        "junc": null,
+                        "pin": "e701cc38-4f0b-4ad7-a26c-7188709e2995/2a06a1a9-979f-4f1f-a291-6d1113af5b78"
+                    },
+                    "to": {
+                        "bus_ripper": null,
+                        "junc": "8ca2decb-42d8-471d-ae30-605162bf974f",
                         "pin": null
                     }
                 },
@@ -1393,18 +1393,6 @@
                         "bus_ripper": null,
                         "junc": null,
                         "pin": "d9a15ec5-a449-49a5-9ff0-411194b035a9/2bf414f1-66e1-419f-8331-4d7051ae7f02"
-                    }
-                },
-                "4254ae9b-bee8-409d-bb8b-c2cd150bf7d1": {
-                    "from": {
-                        "bus_ripper": null,
-                        "junc": "b737d138-8bfb-4d65-80d2-ef8cc1346b0e",
-                        "pin": null
-                    },
-                    "to": {
-                        "bus_ripper": null,
-                        "junc": null,
-                        "pin": "95e76c67-5d15-44c9-b3d7-dffe0be8ea8a/852f1fe6-06dc-4661-8a14-61a9a6ebb26a"
                     }
                 },
                 "425999e2-ddbb-45b8-b5b7-509b3ac600d5": {
@@ -1491,27 +1479,15 @@
                         "pin": "291c522f-f731-4772-9c87-b6e118ed52ce/6a44037c-65e2-4876-9359-42890048841d"
                     }
                 },
-                "4d7c1807-3f3a-4af2-94a7-fed2b7b905f6": {
+                "4c54fb9f-6e3b-41d2-bd7a-3def24233a31": {
                     "from": {
                         "bus_ripper": null,
                         "junc": null,
-                        "pin": "95e76c67-5d15-44c9-b3d7-dffe0be8ea8a/29995253-b4b1-4c7c-a049-b6db2713ca7c"
+                        "pin": "e701cc38-4f0b-4ad7-a26c-7188709e2995/16a79d56-e950-454b-9bff-aa0d1129cb8b"
                     },
                     "to": {
                         "bus_ripper": null,
-                        "junc": "a2c16eb4-fc3b-4689-8e3d-5c92534cdd58",
-                        "pin": null
-                    }
-                },
-                "4fb4544e-b15a-4857-a1ee-07d80be3b383": {
-                    "from": {
-                        "bus_ripper": null,
-                        "junc": "f404f121-4dce-4017-a407-e7f6bd297ace",
-                        "pin": null
-                    },
-                    "to": {
-                        "bus_ripper": null,
-                        "junc": "b737d138-8bfb-4d65-80d2-ef8cc1346b0e",
+                        "junc": "ba8f59a2-9761-4782-ae32-36668523d75b",
                         "pin": null
                     }
                 },
@@ -1560,6 +1536,18 @@
                     "to": {
                         "bus_ripper": null,
                         "junc": "f148621c-a0d5-4c34-b534-8d7bd4dfbbd2",
+                        "pin": null
+                    }
+                },
+                "5733e891-42e4-4618-a75f-a1060936bd17": {
+                    "from": {
+                        "bus_ripper": null,
+                        "junc": "8ca2decb-42d8-471d-ae30-605162bf974f",
+                        "pin": null
+                    },
+                    "to": {
+                        "bus_ripper": null,
+                        "junc": "71518fef-9d14-4378-b7e1-d02d69114eb4",
                         "pin": null
                     }
                 },
@@ -1681,6 +1669,18 @@
                         "bus_ripper": null,
                         "junc": null,
                         "pin": "d9a15ec5-a449-49a5-9ff0-411194b035a9/70422cbe-d192-4590-b774-f94cc2b4d872"
+                    }
+                },
+                "68561088-bad6-40ca-801f-d68bb62f2f46": {
+                    "from": {
+                        "bus_ripper": null,
+                        "junc": null,
+                        "pin": "44381ab7-e9ae-481c-a9dc-916ca14f47d4/29995253-b4b1-4c7c-a049-b6db2713ca7c"
+                    },
+                    "to": {
+                        "bus_ripper": null,
+                        "junc": "a2c16eb4-fc3b-4689-8e3d-5c92534cdd58",
+                        "pin": null
                     }
                 },
                 "6872e4a4-fa48-427e-a597-373fab27d129": {
@@ -1839,15 +1839,15 @@
                         "pin": "476c8b99-abb1-44d8-bc11-69a918fa12a0/139580f6-31c0-4d75-8427-cfc1b742beac"
                     }
                 },
-                "84e3a38b-632a-4be7-b0d3-59bf39d08bb5": {
+                "8523eb33-b924-4c99-80e1-0110ca6f3a84": {
                     "from": {
                         "bus_ripper": null,
-                        "junc": "d54ed5b4-f1b3-4f79-91f7-22fc8a2cbd3f",
-                        "pin": null
+                        "junc": null,
+                        "pin": "44381ab7-e9ae-481c-a9dc-916ca14f47d4/852f1fe6-06dc-4661-8a14-61a9a6ebb26a"
                     },
                     "to": {
                         "bus_ripper": null,
-                        "junc": "71518fef-9d14-4378-b7e1-d02d69114eb4",
+                        "junc": "f29d791d-e33c-4ed0-88ce-c5231835b3cb",
                         "pin": null
                     }
                 },
@@ -1899,6 +1899,18 @@
                         "pin": null
                     }
                 },
+                "9341f32a-f447-48d0-bc26-eeded8b891de": {
+                    "from": {
+                        "bus_ripper": null,
+                        "junc": "eb014706-6899-4415-ad1c-40cb9afc05b1",
+                        "pin": null
+                    },
+                    "to": {
+                        "bus_ripper": null,
+                        "junc": null,
+                        "pin": "95e76c67-5d15-44c9-b3d7-dffe0be8ea8a/852f1fe6-06dc-4661-8a14-61a9a6ebb26a"
+                    }
+                },
                 "93ae5031-c0be-4408-9b72-fa24309df7e4": {
                     "from": {
                         "bus_ripper": null,
@@ -1909,18 +1921,6 @@
                         "bus_ripper": null,
                         "junc": "85befb4d-6883-4937-9f45-3a1a273ef0e3",
                         "pin": null
-                    }
-                },
-                "962b01be-cdeb-466f-9f17-b4a997206558": {
-                    "from": {
-                        "bus_ripper": null,
-                        "junc": "f404f121-4dce-4017-a407-e7f6bd297ace",
-                        "pin": null
-                    },
-                    "to": {
-                        "bus_ripper": null,
-                        "junc": null,
-                        "pin": "44381ab7-e9ae-481c-a9dc-916ca14f47d4/852f1fe6-06dc-4661-8a14-61a9a6ebb26a"
                     }
                 },
                 "9765f8cd-ae6a-4dfb-819a-a7f24b17bc79": {
@@ -1935,6 +1935,18 @@
                         "pin": null
                     }
                 },
+                "998f18e7-d122-4d07-93b6-9fec20b678a0": {
+                    "from": {
+                        "bus_ripper": null,
+                        "junc": null,
+                        "pin": "e701cc38-4f0b-4ad7-a26c-7188709e2995/a3af5efa-c012-435f-a176-a0bc87b6bbca"
+                    },
+                    "to": {
+                        "bus_ripper": null,
+                        "junc": "ad3c5aa9-cd32-40af-9b92-15ded6c7caea",
+                        "pin": null
+                    }
+                },
                 "99987498-23c7-40ef-9bdf-3ff25e4dc52b": {
                     "from": {
                         "bus_ripper": null,
@@ -1944,18 +1956,6 @@
                     "to": {
                         "bus_ripper": null,
                         "junc": "53c738bd-8c96-49f7-b564-e79491f82d54",
-                        "pin": null
-                    }
-                },
-                "a3008a8e-ef46-490c-9a68-49fed33a8305": {
-                    "from": {
-                        "bus_ripper": null,
-                        "junc": null,
-                        "pin": "e701cc38-4f0b-4ad7-a26c-7188709e2995/92d94d53-3683-4066-9248-4ebc5881506c"
-                    },
-                    "to": {
-                        "bus_ripper": null,
-                        "junc": "0596a652-64de-49aa-8e68-4ccf66e3bbc2",
                         "pin": null
                     }
                 },
@@ -2442,7 +2442,7 @@
                         "angle": 0,
                         "mirror": false,
                         "shift": [
-                            41250000,
+                            53750000,
                             -18750000
                         ]
                     },
@@ -2575,7 +2575,7 @@
                         "angle": 0,
                         "mirror": false,
                         "shift": [
-                            53750000,
+                            41250000,
                             -18750000
                         ]
                     },
