@@ -65,6 +65,7 @@ baudrate = 57600
 
             if (! fs.existsSync(folder)) { // Folder doesn't exist
                 try {
+                    Logs.log(0, "Creating folder : " + folder)
                     fs.mkdirSync(folder) // Bank folder
                 }
                 catch (error) {
@@ -72,6 +73,7 @@ baudrate = 57600
                 }
 
                 try {
+                    Logs.log(0, "Creating file : " + file)
                     fs.writeFileSync(file, programContent) // Blank program file
                 }
                 catch (error) {
@@ -79,6 +81,7 @@ baudrate = 57600
                 }
             }
             else { // Folder exists
+                Logs.log(0, "Folder " + folder + " already exists")
                 let programFile = fs.readdirSync(folder).filter(str => str.match("^[0-7].*\.spn")).toString(); // Look for existing program file
 
                 if (! programFile) { // Nothig found, create a blank file
@@ -88,6 +91,9 @@ baudrate = 57600
                     catch (error) {
                         throw new Error('Could not create ' + file + ' : ' + error.message);
                     }
+                }
+                else { // Program file already exists
+                    Logs.log(0, "Program already exists in folder " + folder + " : " + programFile)
                 }
             }
         }
