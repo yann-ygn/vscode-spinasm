@@ -34,6 +34,7 @@ class Config {
     
             let compilerCommand;
             let strComp = (this.config.asfv1.path.trim()); // Read the compiler executable path
+            //console.log(strComp);
 
             if (fs.existsSync(strComp)) {
                 compilerCommand = utils.sanitizePath(strComp); // Sanitize the path

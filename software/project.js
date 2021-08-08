@@ -101,21 +101,29 @@ baudrate = 57600
         // Create the output folder
         if (! fs.existsSync(this.outputFolder)) { // Output folder doesn't exist
             try {
+                Logs.log(0, "Creating output folder : " + this.outputFolder)
                 fs.mkdirSync(this.outputFolder) // Create output folder folder
             }
             catch (error) {
                 throw new Error('Could not create ' + this.outputFolder + ' : ' + error.message);
             }
         }
+        else { // Output folder already exists
+            Logs.log(0, "Output folder " + this.outputFolder + " already exists")
+        }
 
         // Create the ini file
         if (! fs.existsSync(this.iniFilePath)) // Ini file doesn't exist
         {
             try {
+                Logs.log(0, "Creating ini file : " + this.iniFilePath)
                 fs.writeFileSync(this.iniFilePath, iniFileContent) // Create blank ini file
             } catch (error) {
                 throw new Error('Could not create ' + this.iniFilePath + ' : ' + error.message);
             }
+        }
+        else { // Init file already exists
+            Logs.log(0, "Ini file " + this.iniFilePath + " already exists")
         }
     }
 

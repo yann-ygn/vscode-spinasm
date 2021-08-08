@@ -8,12 +8,25 @@ const Logs = require('./logs.js');
  */
 class Programmer {
     constructor(port, baud) {
+        this.serialPortPort = port;
+        this.serialPortBaud = baud;
         this.serialPort = new sp(port, {
             baudRate: baud,
             autoOpen: false
         });
         this.startMarker = 0x1E;
         this.endMarker = 0x1F;
+    }
+
+    programmerSetup(port, baud) {
+        if (this.serialPortPort != port || this.serialPortBaud != baud) {
+            this.serialPortPort = port;
+            this.serialPortBaud = baud;
+            this.serialPort = new sp(port, {
+                baudRate: baud,
+                autoOpen: false
+            });
+        }
     }
 
     /**
@@ -80,7 +93,7 @@ class Programmer {
                 data[1] = 0x04; // write
                 data[2] = this.endMarker; // End marker
 
-                result = await this.writeBufferReadBuffer1(data).catch(error => { throw new Error(error.message) }); // Write data and await 1 byte answer
+                result = await this.writeBufferReadBuffer1(data); // Write data and await 1 byte answer
 
                 if (result[0] == 99) { // 99 -> OK
                     return true;
@@ -110,7 +123,7 @@ class Programmer {
                 data[1] = 0x03; // read
                 data[2] = this.endMarker; // End marker
 
-                result = await this.writeBufferReadBuffer1(data).catch(error => { throw new Error(error.message) }); // Write data and await 1 byte answer
+                result = await this.writeBufferReadBuffer1(data); // Write data and await 1 byte answer
 
                 if (result[0] == 99) { // 99 -> OK
                     return true;
@@ -140,7 +153,7 @@ class Programmer {
                 data[1] = 0x05; // end
                 data[2] = this.endMarker; // End marker
 
-                result = await this.writeBufferReadBuffer1(data).catch(error => { throw new Error(error.message) }); // Write data and await 1 byte answer
+                result = await this.writeBufferReadBuffer1(data); // Write data and await 1 byte answer
 
                 if (result[0] == 99) { // 99 -> OK
                     return true;
@@ -171,7 +184,7 @@ class Programmer {
                 data[2] = address & 0xFF; // Address LB
                 data[3] = this.endMarker; // End marker
 
-                result = await this.writeBufferReadBuffer1(data).catch(error => { throw new Error(error.message) }); // Write data and await 1 byte answer
+                result = await this.writeBufferReadBuffer1(data); // Write data and await 1 byte answer
 
                 if (result[0] == 99) {  // 99 -> OK
                     return true;
@@ -230,9 +243,10 @@ class Programmer {
 
                 if (await this.sendWriteOrder()) {
                     for (let i = address; i < (address + 512); i = (i + 32)) { // Process by page of 32 bytes
+                        console.log(address);
 
                         if (await this.sendAddress(i)) { // The address was transmitted successfuly
-
+                            
                             buffer[0] = this.startMarker; // Start marker
                             data.copy(buffer, 1, i - address, (i - address) + 32); // Buffer a page
                             buffer[33] = this.endMarker; // End marker
@@ -382,7 +396,7 @@ class Programmer {
      */
     writeBufferReadBuffer1(data) {
         const parser = this.serialPort.pipe(new bl({length: 1}))
-
+        
         const timeout = new Promise((resolve, reject) => {
             const tm = setTimeout(() => {
                 clearTimeout(tm);
