@@ -31,7 +31,7 @@ class Config {
     readCompilerCommand() {
         try {
             this.readConfigFile();
-    
+
             let compilerCommand;
             let strComp = (this.config.asfv1.path.trim()); // Read the compiler executable path
             //console.log(strComp);
@@ -45,7 +45,7 @@ class Config {
             else {
                 throw new Error("Invalid compiler path");
             }
-        } 
+        }
         catch (error) {
             throw new Error(error.message);
         }

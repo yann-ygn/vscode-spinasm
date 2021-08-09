@@ -35,12 +35,12 @@ class Project {
      * @brief Initialize a blank project in the current directory
      */
     createProjectStructure() {
-        
+
         // Blank program content
         const programContent = ";Blank program";
 
         // Basic .ini file content
-        const iniFileContent = 
+        const iniFileContent =
 `;Project config file
 
 [asfv1]
@@ -128,7 +128,7 @@ baudrate = 57600
     }
 
     /**
-     * @brief Iterate thru the banks folder to find valid program files, a valid programfile being "x_programName.spn" where x is a number between 0 and 7
+     * @brief Iterate thru the banks folder to find valid program files, a valid program file being "x_programName.spn" where x is a number between 0 and 7
      */
     getAvailablePrograms() {
         // Reset the program array
@@ -143,7 +143,7 @@ baudrate = 57600
             let programFile = fs.readdirSync(currentProgramFolder).filter(str => str.match("^[0-7].*\.spn"));
 
             // Add it to the array if it exists
-            if (programFile) {					
+            if (programFile) {
                 let strProg = path.join(currentProgramFolder, programFile.toString());
                 let strOut = path.join(this.outputFolder, path.parse(programFile[0]).name.toString() + '.hex');
 
@@ -175,8 +175,8 @@ baudrate = 57600
 
     /**
      * @brief Remove a selected program from the fs
-     * 
-     * @param {*} program 
+     *
+     * @param {*} program
      */
     removeHexProgram(program) {
         let file = this.outputs[program];
@@ -241,7 +241,7 @@ baudrate = 57600
     runCompiler () {
         try {
             let output = cp.spawnSync(this.compiler, this.compilerArguments, {encoding: 'utf8'}); // Sync exec
-            
+
             Logs.log(0, "asfv1 return code : " + output.status)
 
             if (output.stdout) {
@@ -290,7 +290,7 @@ baudrate = 57600
                     throw new Error("Unknown return code : " + result);
                 }
             }
-        } 
+        }
         catch (error) {
             throw new Error(error.message);
         }
@@ -298,9 +298,9 @@ baudrate = 57600
 
     /**
      * @brief Compile a program to bin
-     * @param {Number} program 
+     * @param {Number} program
      */
-    compileProgramtoBin(program) {
+    compileProgramToBin(program) {
         try {
             if (this.programs[program]) {
 

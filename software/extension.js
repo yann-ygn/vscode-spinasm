@@ -15,7 +15,7 @@ const rootFolderPath = vscode.workspace.workspaceFolders[0].uri.fsPath;
 // Project object
 const project = new Project(rootFolderPath);
 
-// unitialized object
+// uninitialized object
 let config = undefined;
 let prog = undefined;
 
@@ -175,7 +175,7 @@ function activate(context) {
 				project.removeBinPrograms();
 
 				project.programs.forEach(program => {
-					project.compileProgramtoBin(project.programs.indexOf[program]);
+					project.compileProgramToBin(project.programs.indexOf[program]);
 				});
 			}
 			catch (error) {
@@ -187,6 +187,7 @@ function activate(context) {
 			try {
 				config.readConfigFile();
 				project.buildSetup(config.readCompilerCommand(), config.readCompilerArgs());
+				prog.programmerSetup(config.readSerialPort(), config.readBaudRate());
 				let programData = prog.readIntelHexData(project.outputs[0]);
 
 				prog.uploadProgram(0, programData.address, programData.data);

@@ -18,14 +18,31 @@ class Programmer {
         this.endMarker = 0x1F;
     }
 
+    /**
+     * @brief Check id the passed parameter match the curent serial port settings, recreate an object if they have changed
+     * @param {*} port
+     * @param {*} baud
+     */
     programmerSetup(port, baud) {
-        if (this.serialPortPort != port || this.serialPortBaud != baud) {
-            this.serialPortPort = port;
-            this.serialPortBaud = baud;
-            this.serialPort = new sp(port, {
-                baudRate: baud,
-                autoOpen: false
-            });
+        try {
+            if (this.serialPortPort != port || this.serialPortBaud != baud) { // Port or baudrate changed in the configuration
+                Logs.log(0, "Programmer configuration change, recreating port");
+                this.serialPortPort = port;
+                this.serialPortBaud = baud;
+                this.serialPort = new sp(port, {
+                    baudRate: baud,
+                    autoOpen: false
+                });
+            }
+            else { // No change
+                Logs.log(0, "No programmer configuration change");
+            }
+
+            Logs.log(0, "Programmer port : " + this.serialPortPort);
+            Logs.log(0, "Programmer baud rate : " + this.serialPortBaud);
+        }
+        catch (error) {
+            throw new Error(error.message);
         }
     }
 
@@ -56,7 +73,7 @@ class Programmer {
             else {
                 throw new Error("Error opening port");
             }
-        } 
+        }
         catch (error) {
             throw new Error(error.message);
         }
@@ -75,7 +92,7 @@ class Programmer {
             else {
                 throw new Error("Port already closed")
             }
-        } 
+        }
         catch (error) {
             throw error.message;
         }
@@ -135,7 +152,7 @@ class Programmer {
             else {
                 throw new Error("Port not open");
             }
-        } 
+        }
         catch (error) {
             throw error.message;
         }
@@ -172,7 +189,7 @@ class Programmer {
     }
 
     /**
-     * @brief Send the address to read to and process the answer 
+     * @brief Send the address to read to and process the answer
      */
     async sendAddress(address) {
         try {
@@ -243,10 +260,10 @@ class Programmer {
 
                 if (await this.sendWriteOrder()) {
                     for (let i = address; i < (address + 512); i = (i + 32)) { // Process by page of 32 bytes
-                        console.log(address);
+                        //console.log(address);
 
                         if (await this.sendAddress(i)) { // The address was transmitted successfuly
-                            
+
                             buffer[0] = this.startMarker; // Start marker
                             data.copy(buffer, 1, i - address, (i - address) + 32); // Buffer a page
                             buffer[33] = this.endMarker; // End marker
@@ -320,7 +337,7 @@ class Programmer {
         try {
             Logs.log(0, 'Serial port : ' + this.serialPort.path);
 
-            Logs.log(0, "Connecting to programmer on port : " + this.serialPort.path);	
+            Logs.log(0, "Connecting to programmer on port : " + this.serialPort.path);
             if (await this.connectProgrammer()) { // Connect to the programmer
                 Logs.log(0, "Programmer connected");
 
@@ -334,8 +351,8 @@ class Programmer {
 
                     let result = Buffer.compare(data, resultBuffer); // Comparison result
 
-                    console.log(data.toString('hex'));
-                    console.log(resultBuffer.toString('hex'));
+                    //console.log(data.toString('hex'));
+                    //console.log(resultBuffer.toString('hex'));
 
                     Logs.log(0, "Verifying...");
                     if (result == 0) { // 0 -> OK
@@ -349,7 +366,7 @@ class Programmer {
                 else {
                     throw new Error("Write failed");
                 }
-                
+
                 await this.disconnectProgrammer()
             }
         }
@@ -392,11 +409,11 @@ class Programmer {
 
     /**
      * @brief Returns a promise that resolves when 1 byte of data is received
-     * @param {Buffer} data 
+     * @param {Buffer} data
      */
     writeBufferReadBuffer1(data) {
         const parser = this.serialPort.pipe(new bl({length: 1}))
-        
+
         const timeout = new Promise((resolve, reject) => {
             const tm = setTimeout(() => {
                 clearTimeout(tm);
@@ -420,8 +437,8 @@ class Programmer {
 
     /**
      * @brief Returns a promise that resolves when 32 bytes of data are received
-     * 
-     * @param {Buffer} data 
+     *
+     * @param {Buffer} data
      */
     writeBufferReadBuffer32(data) {
         //console.log(data.toString());
@@ -473,7 +490,7 @@ class Programmer {
                 });
 
                 return returnObject;
-            } 
+            }
             catch (error) {
                 throw error.message;
             }

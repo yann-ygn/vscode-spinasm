@@ -81,25 +81,9 @@
     },
     "name": "smd-connector-usb-a",
     "pads": {
-        "31c7178b-1ef4-47bb-bc23-08462187c5b5": {
-            "name": "4",
-            "padstack": "3846f4bf-7acf-403a-bc36-771ec675eac9",
-            "parameter_set": {
-                "pad_height": 2000000,
-                "pad_width": 1200000
-            },
-            "placement": {
-                "angle": 0,
-                "mirror": false,
-                "shift": [
-                    -3500000,
-                    2600000
-                ]
-            }
-        },
-        "3e02f9b8-5441-461c-b49d-2b5f23c71a7b": {
+        "25ce4b1a-f4fe-4517-93c4-c51293ab1e46": {
             "name": "2",
-            "padstack": "3846f4bf-7acf-403a-bc36-771ec675eac9",
+            "padstack": "549ce255-6721-44db-9d47-ec07764772ca",
             "parameter_set": {
                 "pad_height": 2000000,
                 "pad_width": 1200000
@@ -109,6 +93,22 @@
                 "mirror": false,
                 "shift": [
                     1000000,
+                    2600000
+                ]
+            }
+        },
+        "2d225902-752b-41b5-acf9-b7e01565a59c": {
+            "name": "1",
+            "padstack": "549ce255-6721-44db-9d47-ec07764772ca",
+            "parameter_set": {
+                "pad_height": 2000000,
+                "pad_width": 1200000
+            },
+            "placement": {
+                "angle": 0,
+                "mirror": false,
+                "shift": [
+                    3500000,
                     2600000
                 ]
             }
@@ -143,9 +143,9 @@
                 ]
             }
         },
-        "86e090b9-7782-44a5-9fd1-7a8cb5ece8d2": {
-            "name": "1",
-            "padstack": "3846f4bf-7acf-403a-bc36-771ec675eac9",
+        "855f6f65-9bc5-482b-9f39-6e03b5d8a26d": {
+            "name": "3",
+            "padstack": "549ce255-6721-44db-9d47-ec07764772ca",
             "parameter_set": {
                 "pad_height": 2000000,
                 "pad_width": 1200000
@@ -154,7 +154,7 @@
                 "angle": 0,
                 "mirror": false,
                 "shift": [
-                    3500000,
+                    -1000000,
                     2600000
                 ]
             }
@@ -195,9 +195,9 @@
                 ]
             }
         },
-        "dcd85d3d-bef8-40fd-b6d6-4739f7b9d614": {
-            "name": "3",
-            "padstack": "3846f4bf-7acf-403a-bc36-771ec675eac9",
+        "ed764f9d-16c7-4b98-b5d4-e3dc05a6a503": {
+            "name": "4",
+            "padstack": "549ce255-6721-44db-9d47-ec07764772ca",
             "parameter_set": {
                 "pad_height": 2000000,
                 "pad_width": 1200000
@@ -206,7 +206,7 @@
                 "angle": 0,
                 "mirror": false,
                 "shift": [
-                    -1000000,
+                    -3500000,
                     2600000
                 ]
             }
