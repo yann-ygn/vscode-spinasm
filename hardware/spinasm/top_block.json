@@ -3,17 +3,17 @@
         "concrete_parts": {},
         "csv_settings": {
             "columns": [
+                "refdes",
                 "QTY",
-                "MPN",
                 "value",
-                "manufacturer",
-                "refdes"
+                "MPN",
+                "description"
             ],
             "order": "asc",
             "sort_column": "refdes"
         },
         "orderable_MPNs": {},
-        "output_filename": ""
+        "output_filename": "/home/yann/_dev/05 - Spinsemi/vscode-spinasm/assembly/BOM/BOM.csv"
     },
     "buses": {},
     "components": {
@@ -31,7 +31,7 @@
             "group": "00000000-0000-0000-0000-000000000000",
             "part": "5e0cb67b-06c0-48ba-ac6d-c0d7a20e2978",
             "pin_names": {},
-            "refdes": "D2",
+            "refdes": "RX",
             "tag": "774b53f2-e89e-446e-b4f8-d0b1f3bcc2d6",
             "value": ""
         },
@@ -295,7 +295,7 @@
             "group": "00000000-0000-0000-0000-000000000000",
             "part": "f5015dfb-27da-4779-a5d7-0433cfbabb8a",
             "pin_names": {},
-            "refdes": "D1",
+            "refdes": "PWR",
             "tag": "7723ed4e-f9b4-41fd-90a2-8f671ef5bb0e",
             "value": ""
         },
@@ -598,7 +598,7 @@
             "group": "00000000-0000-0000-0000-000000000000",
             "part": "5e0cb67b-06c0-48ba-ac6d-c0d7a20e2978",
             "pin_names": {},
-            "refdes": "D3",
+            "refdes": "TX",
             "tag": "681a2257-0abb-4136-b418-02336e4adfb1",
             "value": ""
         }

@@ -151,7 +151,7 @@ As there are many flavors of Arduino boards i will use two examples : the extrem
 
 #### Arduino Uno
 
-The Arduino Uno is not the ideal candidate for that very specific purpose as in most incarnation it will run off a 5V power supply while the target EEPROM will run at 3.3V. But it has to be the most common Arduino board out there so why not use it, all that is needed to make it talk the EEPROM are simple level shifters. They are available as pre-made boards but are really simple circuits :
+The Arduino Uno is not the ideal candidate for that very specific purpose as in most incarnation it will run off a 5V power supply while the target EEPROM will run at 3.3V. But it has to be the most common Arduino board out there so why not use it, all that is needed to make it talk to the EEPROM are simple level shifters. They are available as pre-made boards but are really simple circuits :
 
 <p align="center">
   <img src="_images/levelshift.png">
