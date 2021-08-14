@@ -43,6 +43,19 @@ function activate(context) {
 			}
 		}),
 
+		vscode.commands.registerCommand('spinasm.checkinstallation', function () {
+			try {
+				config.readConfigFile();
+				project.buildSetup(config.readCompilerCommand(), config.readCompilerArgs());
+				prog.programmerSetup(config.readSerialPort(), config.readBaudRate());
+
+				project.checkCompiler();
+			}
+			catch (error) {
+				Logs.log(1, error.message);
+			}
+		}),
+
 		vscode.commands.registerCommand('spinasm.compileprogram0', function () {
 			try {
 				config.readConfigFile();

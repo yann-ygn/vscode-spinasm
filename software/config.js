@@ -41,7 +41,6 @@ class Config {
 
                 return compilerCommand;
             }
-
             else {
                 throw new Error("Invalid compiler path");
             }

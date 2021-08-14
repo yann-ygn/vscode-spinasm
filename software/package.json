@@ -5,13 +5,14 @@
 	"version": "0.0.1",
 	"publisher": "effectspcbs",
 	"engines": {
-		"vscode": "^1.51.0"
+		"vscode": "^1.59.0"
 	},
 	"categories": [
 		"Other"
 	],
 	"activationEvents": [
 		"onCommand:spinasm.createproject",
+		"onCommand:spinasm.checkinstallation",
 		"onCommand:spinasm.compileprogram0",
 		"onCommand:spinasm.compileprogram1",
 		"onCommand:spinasm.compileprogram2",
@@ -48,6 +49,10 @@
 			{
 				"command": "spinasm.createproject",
 				"title": "SpinASM : Create project structure"
+			},
+			{
+				"command": "spinasm.checkinstallation",
+				"title": "SpinASM : Check installation"
 			},
 			{
 				"command": "spinasm.compileprogram0",

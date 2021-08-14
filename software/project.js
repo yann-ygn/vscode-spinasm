@@ -3,6 +3,7 @@ const path = require("path");
 const cp = require('child_process');
 
 const Logs = require('./logs.js');
+const { timeStamp } = require("console");
 
 /**
  * @brief A project is an ensemble of program files that can be compiled into output files ready to be programmed into an eeprom
@@ -29,6 +30,33 @@ class Project {
         else {
             return true;
         }
+    }
+
+    /**
+     * @brief Check if the path of the compiler is correct and if the compiler is working properly
+     */
+    checkCompiler() {
+        if (fs.existsSync(this.compiler)) {
+            Logs.log(0, "Compiler path valid");
+
+            try {
+                this.compilerArguments = [];
+                this.compilerArguments.push('-v');
+
+                let result = this.runCompiler();
+
+                if (result == 0) {
+                    Logs.log(0, "Compiler working successfully");
+                }
+            }
+            catch (error) {
+                throw new Error(error.message);
+            }
+        }
+        else {
+            Logs.log(1, "Compiler path invalid");
+        }
+
     }
 
     /**
