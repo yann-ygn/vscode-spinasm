@@ -17,11 +17,11 @@ class Config {
                 this.config = ini.parse(fs.readFileSync(this.iniFile, 'utf-8')); // Parse the file
             }
             else { // File doesn't exist
-                throw new Error("Ini file not found : " + this.iniFile);
+                throw new Error("Ini file not found : " + this.iniFile + ', please recreate project');
             }
         }
         catch (error) {
-            throw new Error(error.message);
+            throw error;
         }
     }
 
@@ -34,10 +34,9 @@ class Config {
 
             let compilerCommand;
             let strComp = (this.config.asfv1.path.trim()); // Read the compiler executable path
-            //console.log(strComp);
 
             if (fs.existsSync(strComp)) {
-                compilerCommand = utils.sanitizePath(strComp); // Sanitize the path
+                compilerCommand = utils.sanitizePath(strComp); // Sanitize the path for Windows systems
 
                 return compilerCommand;
             }
@@ -46,7 +45,7 @@ class Config {
             }
         }
         catch (error) {
-            throw new Error(error.message);
+            throw error;
         }
     }
 
@@ -54,16 +53,27 @@ class Config {
      * @brief Return an array containing the compiler options
      */
     readCompilerArgs() {
-        let strCompOpt = this.config.asfv1.options.trim(); // Read the compiler options
-        if (strCompOpt && strCompOpt.match("(\ ?(-q|-c|-s))*")) { // Check if it's valid and save it
-            let compilerOptions = strCompOpt.split(' ');  // Form the array
+        this.readConfigFile();
 
-            return compilerOptions;
+        try {
+            let strCompOpt = this.config.asfv1.options.trim(); // Read the compiler options
+            if (strCompOpt && strCompOpt.match("(\ ?(-q|-c|-s))*")) { // Check if it's valid and save it
+                let compilerOptions = strCompOpt.split(' ');  // Form the array
+
+                return compilerOptions;
+            }
+            else {
+                throw new Error("Invalid compiler options");
+            }
+        }
+        catch (error) {
+            throw error;
         }
     }
 
     readSerialPort() {
         this.readConfigFile();
+        console.log(this.config.serial.port.trim());
 
         let port = (this.config.serial.port.trim());
 
@@ -71,7 +81,7 @@ class Config {
             return port;
         }
         else {
-            throw new Error("Invalid serial port set");
+            throw new Error("No serial port set");
         }
     }
 
@@ -84,7 +94,7 @@ class Config {
             return parseInt(rate, 10);
         }
         else {
-            throw new Error("Invalid serial port set");
+            throw new Error("No baud rate set");
         }
     }
 }

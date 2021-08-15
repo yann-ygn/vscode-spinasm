@@ -22,6 +22,7 @@ class Logs {
                 break;
 
             case 1:
+                message = message.replaceAll('Error: ', '');
                 this.logChannel.appendLine(new Date().toISOString() + ' ERROR : ' + message);
                 break;
 

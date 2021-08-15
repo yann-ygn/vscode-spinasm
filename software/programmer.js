@@ -46,6 +46,37 @@ class Programmer {
         }
     }
 
+    async checkProgrammer() {
+        try {
+            await this.openSerialPort().catch(error => { throw error });
+
+            if (this.serialPort.isOpen) {
+                let data = Buffer.alloc(3); // Order buffer
+                let result = Buffer.alloc(1); // Response buffer
+                data[0] = this.startMarker; // Start marker
+                data[1] = 0x01; // ruthere
+                data[2] = this.endMarker; // End marker
+
+                result = await this.writeBufferReadBuffer1(data); // Write data and await 1 byte answer
+
+                if (result[0] == 99) { // 99 -> OK
+                    Logs.log(0, "Programmer connected and EEPROM ready");
+                }
+                else {
+                    Logs.log(0, "Programmer connected but EEPROM is not ready");
+                }
+
+                this.disconnectProgrammer();
+            }
+            else {
+                throw new Error("Error opening port");
+            }
+        }
+        catch (error) {
+            throw error;
+        }
+    }
+
     /**
      * @brief Open the serial port, send a ruthere order and process the answer
      */
@@ -85,7 +116,7 @@ class Programmer {
     async disconnectProgrammer() {
         try {
             if (this.serialPort.isOpen) {
-                await this.closeSerialPort().catch(error => { throw new Error(error.message) });;
+                await this.closeSerialPort().catch(error => { throw error });
                 Logs.log(0, "Disconnecting programmer on port : " + this.serialPort.path);
                 Logs.log(0, "Programmer disconnected");
             }
@@ -94,7 +125,7 @@ class Programmer {
             }
         }
         catch (error) {
-            throw error.message;
+            throw error;
         }
     }
 
@@ -182,7 +213,7 @@ class Programmer {
             else {
                 throw new Error("Port not open");
             }
-        } 
+        }
         catch (error) {
             throw error.message;
         }
@@ -385,8 +416,8 @@ class Programmer {
                 resolve();
             });
 
-            this.serialPort.on('error', (err) => {
-                reject(err);
+            this.serialPort.on('error', (error) => {
+                reject(error.message);
             });
         });
     }
@@ -401,8 +432,8 @@ class Programmer {
                 resolve();
             });
 
-            this.serialPort.on('error', (err) => {
-                reject(err);
+            this.serialPort.on('error', (error) => {
+                reject(error.message);
             });
         });
     }
