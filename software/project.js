@@ -198,6 +198,9 @@ baudrate = 57600
                     throw new Error('Could not remove ' + output + ' : ' + error.message);
                 }
             }
+            else {
+                Logs.log(0, "File : " + output + " does not already exists")
+            }
         });
     }
 
@@ -218,6 +221,9 @@ baudrate = 57600
                 throw new Error('Could not remove ' + file + ' : ' + error.message);
             }
         }
+        else {
+            Logs.log(0, "File : " + file + " does not already exists")
+        }
     }
 
     /**
@@ -232,6 +238,9 @@ baudrate = 57600
             catch(error) {
                 throw new Error('Could not remove ' + this.outputBinFile + ' : ' + error.message);
             }
+        }
+        else {
+            Logs.log(0, "File : " + this.outputBinFile + " does not already exists")
         }
     }
 

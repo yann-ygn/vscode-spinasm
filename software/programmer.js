@@ -42,12 +42,13 @@ class Programmer {
             Logs.log(0, "Programmer baud rate : " + this.serialPortBaud);
         }
         catch (error) {
-            throw new Error(error.message);
+            throw error;
         }
     }
 
     async checkProgrammer() {
         try {
+            Logs.log(0, "Opening serial port");
             await this.openSerialPort().catch(error => { throw error });
 
             if (this.serialPort.isOpen) {
@@ -62,14 +63,17 @@ class Programmer {
                 if (result[0] == 99) { // 99 -> OK
                     Logs.log(0, "Programmer connected and EEPROM ready");
                 }
-                else {
+                else if (result[0] == 98) {
                     Logs.log(0, "Programmer connected but EEPROM is not ready");
+                }
+                else {
+                    Logs.log(0, "Programmer connected but invalid response : " + result[0]);
                 }
 
                 this.disconnectProgrammer();
             }
             else {
-                throw new Error("Error opening port");
+                throw new Error("Port not open");
             }
         }
         catch (error) {
@@ -82,7 +86,8 @@ class Programmer {
      */
     async connectProgrammer() {
         try {
-            await this.openSerialPort().catch(error => { throw new Error(error.message) });
+            Logs.log(0, "Opening serial port");
+            await this.openSerialPort().catch(error => { throw error });
 
             if (this.serialPort.isOpen) {
                 let data = Buffer.alloc(3); // Order buffer

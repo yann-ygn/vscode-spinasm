@@ -57,6 +57,7 @@ class Config {
 
         try {
             let strCompOpt = this.config.asfv1.options.trim(); // Read the compiler options
+
             if (strCompOpt && strCompOpt.match("(\ ?(-q|-c|-s))*")) { // Check if it's valid and save it
                 let compilerOptions = strCompOpt.split(' ');  // Form the array
 
@@ -73,28 +74,37 @@ class Config {
 
     readSerialPort() {
         this.readConfigFile();
-        console.log(this.config.serial.port.trim());
 
-        let port = (this.config.serial.port.trim());
+        try {
+            let port = this.config.serial.port.trim();
 
-        if (port) {
-            return port;
+            if (port) {
+                return port;
+            }
+            else {
+                throw new Error("No serial port set");
+            }
         }
-        else {
-            throw new Error("No serial port set");
+        catch (error) {
+            throw error;
         }
     }
 
     readBaudRate() {
         this.readConfigFile();
 
-        let rate = (this.config.serial.baudrate.trim());
+        try {
+            let rate = (this.config.serial.baudrate.trim());
 
-        if (rate) {
-            return parseInt(rate, 10);
+            if (rate) {
+                return parseInt(rate, 10);
+            }
+            else {
+                throw new Error("No baud rate set");
+            }
         }
-        else {
-            throw new Error("No baud rate set");
+        catch (error) {
+            throw error;
         }
     }
 }

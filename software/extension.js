@@ -48,9 +48,11 @@ function activate(context) {
 			try {
 				config.readConfigFile();
 				project.buildSetup(config.readCompilerCommand(), config.readCompilerArgs());
+				project.checkCompiler();
 				prog.checkProgrammer().catch(error => Logs.log(1, error));
 			}
 			catch (error) {
+				console.log(error);
 				Logs.log(1, error.message);
 			}
 		}),
