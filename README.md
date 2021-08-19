@@ -100,7 +100,10 @@ On Windows systems this is done using the FT_PROG utility from FTDI. it's pretty
 
 #### Linux
 
-On Linux systems there's several ways to program the FTDI chips's EEPROM, i'm using the *ftdi_eeprom* package that's available on Debian/Ubuntu based distributions. Once it's installed you can use the pre-build configuration and image to program your chip
+On Linux systems there's several ways to program the FTDI chips's EEPROM, i'm using the *ftdi_eeprom* package that's available on Debian/Ubuntu based distributions. Once it's installed you can use the [pre-build configuration and image](https://github.com/effectspcbs/vscode-spinasm/tree/master/assembly/FTDI) to program your chip using the following command :
+
+`sudo ftdi_eeprom --device i:0x0403:0x6015 --flash-eeprom ft230x.conf`
+
 
 #### Firmware upload
 
@@ -135,12 +138,23 @@ The project uses VSCode and the PlatformIO module as a development environment, 
 platform = atmelavr
 board = ATmega328PB
 framework = arduino
-board_build.mcu = ATmega328PB
+board_build.mcu = atmega328pb
 board_build.f_cpu = 12000000L
 board_hardware.oscillator = external
 board_upload.speed = 57600
-upload_protocol = stk500v2
-upload_flags = -Pusb
+
+upload_protocol = custom
+upload_port = usb
+upload_flags =
+    -C
+    $PROJECT_PACKAGES_DIR/tool-avrdude/avrdude.conf
+    -p
+    $BOARD_MCU
+    -P
+    $UPLOAD_PORT
+    -c
+    stk500v2
+upload_command = avrdude $UPLOAD_FLAGS -U flash:w:$SOURCE:i
 ```
 The next step is to set the fuse bits :
 
@@ -296,7 +310,28 @@ port = COM6
 baudrate = 57600
 ```
 
-The settings.ini file is read every time a project is compiled or uploaded.
+On a Linux system it would look like this :
+
+```ini
+;Project config file
+
+[asfv1]
+;Path of the executable
+path = /path/to/bin/asfv1
+
+;Compiler options separated by a space :
+; -c 	clamp out of range values without error
+; -s 	read literals 2,1 as float (SpinASM compatibility)
+; -q 	suppress warnings
+options = -s
+
+[serial]
+;Serial port for the programmer
+port = /dev/ttyUSB0
+baudrate = 57600
+```
+
+The settings.ini file is read every time a project is compiled or uploaded so you can change the parameters on the go.
 
 ---
 
