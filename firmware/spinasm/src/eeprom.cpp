@@ -21,7 +21,7 @@ bool Eeprom::eepromAvailable()
     else
     {
         return true;
-    }    
+    }
 }
 
 bool Eeprom::eepromBusy()
@@ -39,7 +39,7 @@ bool Eeprom::eepromBusy()
     else
     {
         return false;
-    }  
+    }
 }
 
 uint8_t Eeprom::writeByte(uint16_t address, uint8_t data)
@@ -89,11 +89,11 @@ uint8_t Eeprom::writeArray(uint16_t address, uint8_t * data, uint8_t length)
 
 void Eeprom::readArray(uint16_t address, uint8_t * data, uint8_t length)
 {
-    Wire.beginTransmission(m_address);    
+    Wire.beginTransmission(m_address);
     Wire.write(highByte(address));
     Wire.write(lowByte(address));
     Wire.endTransmission(true);
-    
+
     Wire.requestFrom(m_address, length, (uint8_t)1);
 
     if (Wire.available() >= length)

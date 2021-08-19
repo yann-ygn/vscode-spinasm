@@ -102,7 +102,7 @@ void Programmer::processSerialInput()
                 m_error = true;
             }
         }
-        
+
         else // There is a current order being processed
         {
             if (m_currentOrder == write && ! m_addressSet) // Write order but no address set
@@ -222,7 +222,7 @@ void Programmer::executeOrder()
 
                 m_error = true;
             }
-            
+
             m_currentOrder = none; // Reset the current order
         }
 
@@ -290,7 +290,7 @@ void Programmer::executeOrder()
             m_response[0] = ok;
             Serial.write(m_response, 1);
         }
-        
+
         else // Write failed
         {
             m_response[0] = nok;
@@ -309,7 +309,7 @@ void Programmer::executeOrder()
         m_address = (highByte << 8) + lowByte; // Form the address
 
         m_addressSet = true; // Set the trigger
-        
+
         m_addressReceived = false;
     }
 

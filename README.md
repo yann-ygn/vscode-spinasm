@@ -29,11 +29,13 @@
     - [From a PCB](#from-a-pcb)
         - [Board build](#board-build)
         - [FTDI chip setup](#ftdi-chip-setup)
+          - [Windows]()
+          - [Linux]()
         - [Firmware upload](#firmware-upload)
     - [From an Arduino board](#from-an-arduino-board)
         - [Board setup](#board-setup)
-          - [Arduino Uno]()
-          - [Arduino Pro Mini]()
+          - [Arduino Uno](#arduino-uno)
+          - [Arduino Pro Mini](#arduino-pro-mini)
         - [Firmware upload](#firmware-upload)
     - [Programmer wiring](#programmer-wiring)
 - [Using the VSCode module](#using-the-vscode-module)
@@ -86,11 +88,19 @@ It is a very simple circuit that is basically a slimmed-down arduino board compo
 
 #### FTDI chip setup
 
-The board is powered by the target circuit so you need to set the correct CBUS bits for the *VBUS_SENSE* pin and the RX/TX LEDs if you choose to include them in your build. This is done using the FT_PROG utility from FTDI. it's pretty straightforward to use: power the board, connect it to a computer via USB and set the correct bits.
+The board is powered by the target circuit so you need to set the correct CBUS bits for the *VBUS_SENSE* pin and the RX/TX LEDs if you choose to include them in your build.
+
+#### Windows
+
+On Windows systems this is done using the FT_PROG utility from FTDI. it's pretty straightforward to use: power the board, connect it to a computer via USB and set the correct bits.
 
 <p align="center">
   <img src="_images/ftprog.png">
 </p>
+
+#### Linux
+
+On Linux systems there's several ways to program the FTDI chips's EEPROM, i'm using the *ftdi_eeprom* package that's available on Debian/Ubuntu based distributions. Once it's installed you can use the pre-build configuration and image to program your chip
 
 #### Firmware upload
 
@@ -105,7 +115,7 @@ Which out of my SOIC clamp translates to :
 <img align="left" src="_images/iscp_female.jpg" width="347" height="382">
 
 Pin | ICSP pin
---- | --- 
+--- | ---
 1 | RST
 2 | +3.3V
 3 | SCK
