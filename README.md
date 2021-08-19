@@ -100,7 +100,7 @@ On Windows systems this is done using the FT_PROG utility from FTDI. it's pretty
 
 #### Linux
 
-On Linux systems there's several ways to program the FTDI chips's EEPROM, i'm using the *ftdi_eeprom* package that's available on Debian/Ubuntu based distributions. Once it's installed you can use the [pre-build configuration and image](https://github.com/effectspcbs/vscode-spinasm/tree/master/assembly/FTDI) to program your chip using the following command :
+On Linux systems there are several ways to program the FTDI chips's EEPROM, i'm using the *ftdi_eeprom* package that's available on Debian/Ubuntu based distributions. Once it's installed simply power the board, connect it and you can use the [pre-built configuration file and image](https://github.com/effectspcbs/vscode-spinasm/tree/master/assembly/FTDI) to setup your device using the following command :
 
 `sudo ftdi_eeprom --device i:0x0403:0x6015 --flash-eeprom ft230x.conf`
 
@@ -131,7 +131,13 @@ Pin | ICSP pin
 <br />
 <br />
 
-The project uses VSCode and the PlatformIO module as a development environment, the repository is setup to upload the firmware via a generic AVRISP MKII programmer and target an ATMEGA328PB running at 12Mhz from an external crystal :
+The code requires a change in the base Arduino I2C library as the default buffer size is limited to 30 bytes, simply change the following value in the `twi.h` file:
+
+```cpp
+#define TWI_BUFFER_LENGTH 34
+```
+
+The project uses VSCode and the PlatformIO module as a development environment, the repository is setup to upload the firmware via a generic AVRISP mkII programmer and target an ATmega28PB running at 12Mhz from an external crystal :
 
 ```ini
 [env:ATmega328P]
@@ -162,7 +168,7 @@ The next step is to set the fuse bits :
 
 And finally upload the firmware :
 
-`platformio run --target program`
+`platformio run --target upload`
 
 
 ### From an Arduino board
