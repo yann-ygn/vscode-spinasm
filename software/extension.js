@@ -52,7 +52,6 @@ function activate(context) {
 				prog.checkProgrammer().catch(error => Logs.log(1, error));
 			}
 			catch (error) {
-				console.log(error);
 				Logs.log(1, error.message);
 			}
 		}),
