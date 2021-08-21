@@ -1,0 +1,64 @@
+;delay_dark01.spn
+;POT0 : Delay time
+;POT1 : Feedback
+;POT2 : LPF frequency
+
+EQU	    length		    32767
+EQU	    smooth		    0.000125
+EQU	    lpf		        0.344 ;2200Hz
+EQU	    hpf		        0.035 ;200Hz
+
+MEM	    echo		    length
+
+EQU	    pot0Smooth	    REG0
+EQU	    pot2Lpf	        REG1
+EQU	    delayOut	    REG2
+EQU	    lpfOut		    REG3
+EQU	    hpfFilter	    REG4
+EQU	    hpfOut  	    REG5
+EQU	    feedback	    REG6
+
+;POT0 smoothing
+RDAX	POT0, 1
+RDFX	pot0Smooth, smooth
+WRAX	pot0Smooth, 0
+
+;POT0 delay scaling
+RDAX    pot0Smooth, 1
+SOF     0.9, 0.1
+WRAX    ADDR_PTR, 0
+
+;POT2 scaling and invert
+RDAX    POT2, 1
+SOF	    0.75, 0
+SOF	    -1, 0.999
+WRAX	pot2Lpf, 0
+
+;Mix the dry input with the delay out
+RDAX    hpfOut, 1
+MULX    POT1
+RDAX    ADCL, 1
+WRA     echo, 0
+
+;Delay output
+RMPA    1
+WRAX    delayOut, 0
+
+;LPF
+RDAX	delayOut, lpf
+RDAX	lpfOut, -lpf
+MULX	pot2Lpf
+RDAX	lpfOut, 1
+WRAX	lpfOut, 0
+
+;HPF
+RDAX	lpfOut, 1
+RDFX	hpfFilter, hpf
+WRHX	hpfFilter, -1
+WRAX	hpfOut, 0
+
+;Output
+RDAX    hpfOut, 1
+
+WRAX    DACL, 1
+WRAX    DACR, 0
