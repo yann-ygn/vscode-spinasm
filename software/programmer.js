@@ -453,7 +453,7 @@ class Programmer {
         const timeout = new Promise((resolve, reject) => {
             const tm = setTimeout(() => {
                 clearTimeout(tm);
-                reject('Timeout');
+                reject('Timeout while communicating with the EEPROM');
             }, 500);
         });
 

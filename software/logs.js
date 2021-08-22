@@ -1,12 +1,14 @@
 const vscode = require('vscode');
 
+const utils = require('./utils.js');
+
 class Logs {
     constructor() {
 
     }
 
     static createChannel() {
-        this.logChannel = vscode.window.createOutputChannel("SPIN");
+        this.logChannel = vscode.window.createOutputChannel("SpinASM");
     }
 
     /**
@@ -18,12 +20,12 @@ class Logs {
 
         switch (type) {
             case 0:
-                this.logChannel.appendLine(new Date().toISOString() + ' INFO : ' + message);
+                this.logChannel.appendLine(utils.getFormattedDate() + ' | INFO  | ' + message);
                 break;
 
             case 1:
                 message = message.replaceAll('Error: ', '');
-                this.logChannel.appendLine(new Date().toISOString() + ' ERROR : ' + message);
+                this.logChannel.appendLine(utils.getFormattedDate() + ' | ERROR | ' + message);
                 break;
 
             default:
