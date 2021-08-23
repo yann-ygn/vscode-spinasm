@@ -54,7 +54,7 @@ class Project {
             }
         }
         else {
-            Logs.log(1, "Compiler path invalid");
+            throw new Error("Compiler path invalid");
         }
 
     }

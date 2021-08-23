@@ -41,7 +41,7 @@ class Config {
                 return compilerCommand;
             }
             else {
-                throw new Error("Invalid compiler path");
+                throw new Error("Invalid compiler path : " + strComp);
             }
         }
         catch (error) {
