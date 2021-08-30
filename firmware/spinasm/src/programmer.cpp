@@ -8,6 +8,9 @@ void Programmer::programmerSetup()
 {
     Serial.begin(57600);
     eeprom0.eepromSetup();
+
+    pinMode(m_fv1Pin, OUTPUT);
+    digitalWrite(m_fv1Pin, HIGH);
 }
 
 void Programmer::processSerialInput()
@@ -289,6 +292,10 @@ void Programmer::executeOrder()
         {
             m_response[0] = ok;
             Serial.write(m_response, 1);
+
+            digitalWrite(m_fv1Pin, LOW);
+            delay(50);
+            digitalWrite(m_fv1Pin, HIGH);
         }
 
         else // Write failed

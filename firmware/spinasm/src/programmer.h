@@ -42,6 +42,8 @@ class Programmer
         uint8_t m_dataBytes = 0;
         bool m_newData = false;
 
+        uint8_t m_fv1Pin = 9;
+
         void resetBuffer();
 
     public:
