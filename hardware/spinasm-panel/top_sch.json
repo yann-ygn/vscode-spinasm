@@ -1,0 +1,50 @@
+{
+    "annotation": {
+        "fill_gaps": true,
+        "ignore_unknown": false,
+        "keep": true,
+        "mode": "sheet_100",
+        "order": "right_down"
+    },
+    "block": "24b88bc5-fe87-469f-87bf-f143be0f8b25",
+    "group_tag_visible": false,
+    "name": "",
+    "pdf_export_settings": {
+        "min_line_width": 0,
+        "output_filename": ""
+    },
+    "rules": {
+        "single_pin_net": {
+            "enabled": true,
+            "include_unnamed": true,
+            "order": -1
+        }
+    },
+    "sheets": {
+        "6a6741e5-de58-409a-b1ca-64015f6f24c4": {
+            "arcs": {},
+            "bus_labels": {},
+            "bus_rippers": {},
+            "index": 1,
+            "junctions": {},
+            "lines": {},
+            "name": "First sheet",
+            "net_labels": {},
+            "net_lines": {},
+            "power_symbols": {},
+            "symbols": {},
+            "texts": {},
+            "title_block_values": {}
+        }
+    },
+    "title_block_values": {
+        "author": "yann",
+        "date": "2021-09-12",
+        "project_name": "spinasm-panel",
+        "project_title": "SpinASM panel",
+        "rev": "1"
+    },
+    "type": "schematic_block",
+    "uuid": "3506cbd2-46d0-456f-969a-e5a491f656d6",
+    "version": 1
+}

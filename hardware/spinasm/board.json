@@ -75,6 +75,22 @@
         "prefix": "spinasm",
         "zip_output": false
     },
+    "grid_settings": {
+        "current": {
+            "mode": "square",
+            "name": "",
+            "origin": [
+                0,
+                0
+            ],
+            "spacing_rect": [
+                1250000,
+                1250000
+            ],
+            "spacing_square": 100000
+        },
+        "grids": {}
+    },
     "holes": {},
     "junctions": {
         "00aa5d4c-aa63-4953-8a32-423e72eaca19": {
@@ -23322,8 +23338,8 @@
             "enabled": true,
             "hole_solder_mask_expansion": 100000,
             "order": -1,
-            "paste_mask_contraction": 0,
-            "solder_mask_expansion": 75000,
+            "paste_mask_contraction": 75000,
+            "solder_mask_expansion": 0,
             "via_solder_mask_expansion": 100000
         },
         "plane": {

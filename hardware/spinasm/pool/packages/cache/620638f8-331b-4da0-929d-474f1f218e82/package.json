@@ -2,6 +2,22 @@
     "arcs": {},
     "default_model": "84d87b4d-458f-4ea8-b8e8-3394d5406100",
     "dimensions": {},
+    "grid_settings": {
+        "current": {
+            "mode": "square",
+            "name": "",
+            "origin": [
+                0,
+                0
+            ],
+            "spacing_rect": [
+                1250000,
+                1250000
+            ],
+            "spacing_square": 50000
+        },
+        "grids": {}
+    },
     "junctions": {
         "61602e46-d6e7-4178-8b86-a64b361f488a": {
             "position": [
@@ -614,7 +630,8 @@
     },
     "parameter_program": "10.470mm 10.470mm\nget-parameter [ courtyard_expansion ]\n2 * +xy\nset-polygon [ courtyard rectangle 0.000mm 0.000mm ]",
     "parameter_set": {
-        "courtyard_expansion": 50000
+        "courtyard_expansion": 50000,
+        "paste_mask_contraction": 100000
     },
     "polygons": {
         "2b0cc5d6-b7db-4296-baff-1f7127373660": {

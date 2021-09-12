@@ -1,0 +1,38 @@
+{
+    "bom_export_settings": {
+        "concrete_parts": {},
+        "csv_settings": {
+            "columns": [
+                "QTY",
+                "MPN",
+                "value",
+                "manufacturer",
+                "refdes"
+            ],
+            "order": "asc",
+            "sort_column": "refdes"
+        },
+        "orderable_MPNs": {},
+        "output_filename": ""
+    },
+    "buses": {},
+    "components": {},
+    "group_names": {},
+    "name": "",
+    "net_class_default": "22e20f7d-387d-47d1-9356-42ee84f71567",
+    "net_classes": {
+        "22e20f7d-387d-47d1-9356-42ee84f71567": {
+            "name": "default"
+        }
+    },
+    "nets": {},
+    "project_meta": {
+        "author": "yann",
+        "date": "2021-09-12",
+        "project_name": "spinasm-panel",
+        "project_title": "SpinASM panel",
+        "rev": "1"
+    },
+    "tag_names": {},
+    "uuid": "24b88bc5-fe87-469f-87bf-f143be0f8b25"
+}
