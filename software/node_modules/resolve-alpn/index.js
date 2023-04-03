@@ -7,6 +7,8 @@ module.exports = (options = {}, connect = tls.connect) => new Promise((resolve, 
 	let socket;
 
 	const callback = async () => {
+		await socketPromise;
+
 		socket.off('timeout', onTimeout);
 		socket.off('error', reject);
 
@@ -28,7 +30,7 @@ module.exports = (options = {}, connect = tls.connect) => new Promise((resolve, 
 		callback();
 	};
 
-	(async () => {
+	const socketPromise = (async () => {
 		try {
 			socket = await connect(options, callback);
 

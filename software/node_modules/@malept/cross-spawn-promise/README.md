@@ -4,7 +4,7 @@
 
 [![CI](https://github.com/malept/cross-spawn-promise/workflows/CI/badge.svg)](https://github.com/malept/cross-spawn-promise/actions?query=workflow%3ACI)
 [![NPM package](https://img.shields.io/npm/v/@malept/cross-spawn-promise.svg)](https://www.npmjs.com/package/@malept/cross-spawn-promise)
-[![codecov](https://codecov.io/gh/malept/cross-spawn-promise/branch/master/graph/badge.svg)](https://codecov.io/gh/malept/cross-spawn-promise)
+[![codecov](https://codecov.io/gh/malept/cross-spawn-promise/branch/main/graph/badge.svg)](https://codecov.io/gh/malept/cross-spawn-promise)
 
 ## Different Behavior
 
