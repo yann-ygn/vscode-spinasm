@@ -6,15 +6,17 @@
             "schematic_filename": "top_sch.json"
         }
     ],
+    "blocks_filename": "blocks.json",
     "board_filename": "board.json",
     "name": "",
     "pictures_filename": "pictures",
+    "planes_filename": "planes.json",
     "pool_cache_directory": "cache",
     "pool_directory": "pool",
     "pool_uuid": "15ccebcf-4669-46be-a5da-5eb099cfd5ae",
     "title": "",
     "type": "project",
     "uuid": "cf94b79c-4486-4eef-8cde-7808d3c278d9",
-    "version": 1,
+    "version": 3,
     "vias_directory": ""
 }
